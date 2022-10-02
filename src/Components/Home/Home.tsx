@@ -1,7 +1,8 @@
+import './style.css';
 
 const Home = () => {
   return (
-    <div>
+    <div id="homeContainer">
       Hi
     </div>
   )
