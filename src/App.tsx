@@ -3,7 +3,9 @@ import RouteSwitch from './RouteSwitch';
 import Login from './Components/Login/Login';
 
 const App = () => {
-  const [loginState, setLoginStatel] = useState(false);
+  const [loginState, setLoginState] = useState(false);
+
+  
 
   switch (loginState){
     case false:
