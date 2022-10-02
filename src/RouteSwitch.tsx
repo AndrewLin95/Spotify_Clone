@@ -4,16 +4,14 @@ import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 
 const RouteSwitch = () => {
-  return(
-    <>
-      <BrowserRouter>
+  return (
+    <BrowserRouter>
       <Header />
-        <Routes>
-          <Route path="" element={<Home />}/>
-        </Routes>
+      <Routes>
+        <Route path="" element={<Home />}/>
+      </Routes>
       <Footer />
-      </BrowserRouter>
-    </>
+    </BrowserRouter>
   )
 }
 
