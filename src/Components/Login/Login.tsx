@@ -1,4 +1,5 @@
 import './style.css';
+import { loginUrl } from '../Spotify/Spotify';
 
 const Login = () => {
   return (
@@ -8,7 +9,7 @@ const Login = () => {
         src={`${process.env.PUBLIC_URL}/assets/Spotify_Logo_RGB_Green.png`} 
         alt="spotifylogo"
       />
-      <button id='loginBtn' type="button">Login with Spotify</button>
+      <a href={loginUrl}>Login with Spotify</a>
     </div>
   )
 }
