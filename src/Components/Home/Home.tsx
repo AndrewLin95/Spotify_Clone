@@ -3,7 +3,7 @@ import './style.css';
 const Home = () => {
   return (
     <div id="homeContainer">
-      Hi
+      Hiasdf
     </div>
   )
 }
