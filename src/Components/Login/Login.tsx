@@ -1,8 +1,22 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import './style.css';
-import { loginUrl } from '../Spotify/Spotify';
+import { getTokenFromUrl, loginUrl } from '../Spotify/Spotify';
 
 const Login: FC = () => {
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    const hash = getTokenFromUrl();
+    window.location.hash = '';
+    const _token = hash.access_token;
+
+    if (_token) {
+      setToken(_token);
+    }
+
+    console.log("token", token);
+  }, []);
+
   return (
     <div id='loginContainer'>
       <img 
