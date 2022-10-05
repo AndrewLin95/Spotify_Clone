@@ -4,6 +4,9 @@ import Footer from "./Components/Footer/Footer";
 import Login from "./Components/Login/Login";
 import App from "./App";
 
+// TODO: dynamically render header and footer based on token authentication status
+// TODO: IF token is unidentified, route user back to login screen
+
 const RouteSwitch = () => {
   return (
     <BrowserRouter>
