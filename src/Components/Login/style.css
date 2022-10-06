@@ -15,6 +15,22 @@
   height: auto;
 }
 
-#loginBtn{
-  width: 150px;
+.loginBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 175px;
+  height: 50px;
+  border-radius: 50px 50px;
+  background: rgb(30 215 96);
+  color: black;
+  text-decoration: none;
+}
+
+.loginBtn.access{
+  width: 240px;
+}
+
+.loginBtn:hover{
+  font-weight: 600;
 }

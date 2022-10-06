@@ -33,7 +33,7 @@ const Login:FC <Props> = ({ sendToken }) => {
             src={`${process.env.PUBLIC_URL}/assets/Spotify_Logo_RGB_Green.png`} 
             alt="spotifylogo"
           />
-          <a href={loginUrl}>Login with Spotify</a>
+          <a className="loginBtn" href={loginUrl}>Login with Spotify</a>
         </div>
       );
 
@@ -46,7 +46,7 @@ const Login:FC <Props> = ({ sendToken }) => {
             src={`${process.env.PUBLIC_URL}/assets/Spotify_Logo_RGB_Green.png`} 
             alt="spotifylogo"
           />
-          <Link onClick={() => {sendToken(token)}} className="naveLinks" to="/home">Click here to Access Spotify</Link>
+          <Link onClick={() => {sendToken(token)}} className="loginBtn access" to="/home">Click here to Access Spotify</Link>
         </div>
       )
   }
