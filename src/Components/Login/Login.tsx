@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import './style.css';
 import { getTokenFromUrl, loginUrl } from '../Spotify/Spotify';
 
+interface Props{
+  sendToken: (token: string) => void
+}
 
-const Login = () => {
+const Login:FC <Props> = ({ sendToken }) => {
   const [token, setToken] = useState<undefined | string>();
 
   useEffect(() => {
@@ -43,7 +46,7 @@ const Login = () => {
             src={`${process.env.PUBLIC_URL}/assets/Spotify_Logo_RGB_Green.png`} 
             alt="spotifylogo"
           />
-          <Link className="naveLinks" to="/home">Click here to Access Spotify</Link>
+          <Link onClick={() => {sendToken(token)}} className="naveLinks" to="/home">Click here to Access Spotify</Link>
         </div>
       )
   }
