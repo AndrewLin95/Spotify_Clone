@@ -1,25 +1,14 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Link } from "react-router-dom";
 import './style.css';
-import { getTokenFromUrl, loginUrl } from '../Spotify/Spotify';
+import { loginUrl } from '../Spotify/Spotify'
 
 interface Props{
-  sendToken: (token: string) => void
+  token: undefined | string;
+  accessSite: (authStatus: boolean) => void;
 }
 
-const Login:FC <Props> = ({ sendToken }) => {
-  const [token, setToken] = useState<undefined | string>();
-
-  useEffect(() => {
-    const hash = getTokenFromUrl();
-    window.location.hash = '';
-    const _token = hash.access_token;
-
-    if (_token) {
-      setToken(_token);
-    }
-  }, []);
-
+const Login:FC <Props> = ({ token, accessSite }) => {
   switch (typeof(token)) {
     case "undefined":
       return (
@@ -42,7 +31,7 @@ const Login:FC <Props> = ({ sendToken }) => {
             src={`${process.env.PUBLIC_URL}/assets/Spotify_Logo_RGB_Green.png`} 
             alt="spotifylogo"
           />
-          <Link onClick={() => {sendToken(token)}} className="loginBtn access" to="/home">Click here to Access Spotify</Link>
+          <Link onClick={() => {accessSite(true)}} className="loginBtn access" to="/home">Click here to Access Spotify</Link>
         </div>
       )
   }
