@@ -1,15 +1,18 @@
 import { faHouse, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 const Header = () => {
 
   return (
     <div id='headerContainer'>
-      <FontAwesomeIcon icon={faHouse} />
-      <div>
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
-        <input></input>
+      <div  id='headerHomeContainer'>
+        <Link id='headerHome' to="/home"><FontAwesomeIcon icon={faHouse} /></Link>
+      </div>
+      <div id='headerSearchContainer'>
+        <FontAwesomeIcon id='headerSearchIcon' icon={faMagnifyingGlass} />
+        <input id='headerSearchInput' placeholder='What do you want to listen to?'></input>
       </div>
     </div>
   )
