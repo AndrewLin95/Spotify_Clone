@@ -20,10 +20,6 @@ const Login:FC <Props> = ({ sendToken }) => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log("token", typeof(token))
-  }, [token])
-
   switch (typeof(token)) {
     case "undefined":
       return (
