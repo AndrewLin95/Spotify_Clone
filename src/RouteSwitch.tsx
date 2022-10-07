@@ -6,8 +6,6 @@ import Login from "./Components/Login/Login";
 import Home from './Components/Home/Home';
 import { getTokenFromUrl } from './Components/Spotify/Spotify'
 
-// TODO: IF token is unidentified, route user back to login screen
-
 const RouteSwitch: FC = () => {
   const [token, setToken] = useState<string>();
   const [auth, setAuth] = useState<boolean>(false);
@@ -31,7 +29,7 @@ const RouteSwitch: FC = () => {
         {auth? <Header /> : null}
         <Routes>
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
-          <Route path="/home" element={<Home />}/>
+          {auth? <Route path="/home" element={<Home />}/> : <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> }
           {/* page not found route */}
           <Route path="*" element={<Login token={token} accessSite={accessSite}/>} />  
         </Routes>
