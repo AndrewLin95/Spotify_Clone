@@ -1,3 +1,5 @@
+import SpotifyWebApi from "spotify-web-api-js";
+
 export const authEndpoint = "https://accounts.spotify.com/authorize";
 const redirectUri = "http://localhost:3000";
 const clientId = "44531b7506a649129f802b598710dfab";
@@ -20,6 +22,8 @@ export const getTokenFromUrl = () => {
       return initial;
     }, {});
 };
+
+export const spotifyAPI = new SpotifyWebApi();
 
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
   "%20"

@@ -4,7 +4,7 @@ import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Login from "./Components/Login/Login";
 import Home from './Components/Home/Home';
-import { getTokenFromUrl } from './Components/Spotify/Spotify'
+import { getTokenFromUrl, spotifyAPI } from './Components/Spotify/Spotify'
 
 const RouteSwitch: FC = () => {
   const [token, setToken] = useState<string>();
@@ -18,18 +18,33 @@ const RouteSwitch: FC = () => {
     if (_token) {
       setToken(_token);
     }
+    // sets the access token to be used for API calls
+    spotifyAPI.setAccessToken(`${token}`);
   }, []);
 
   const accessSite = ( authStatus: boolean ) => {
     setAuth(authStatus)
   }
 
+  async function testFunction() {
+    try {
+      const response = await spotifyAPI.searchArtists('Love');
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <BrowserRouter>
-        {auth? <Header /> : null}
+        {auth? <Header testFunction={testFunction} /> : null}
         <Routes>
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
-          {auth? <Route path="/home" element={<Home />}/> : <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> }
+          {auth ? (
+            <Route path="/home" element={<Home />}/> 
+          ) : (
+            <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
+          )}
           {/* page not found route */}
           <Route path="*" element={<Login token={token} accessSite={accessSite}/>} />  
         </Routes>
