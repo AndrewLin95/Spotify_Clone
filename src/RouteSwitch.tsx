@@ -21,6 +21,8 @@ const RouteSwitch: FC = () => {
         <Routes>
           <Route path="" element={<Login sendToken={sendToken}/>} />
           <Route path="/home" element={<Home />}/>
+          {/* page not found route */}
+          <Route path="*" element={<Login sendToken={sendToken}/>} />  
         </Routes>
         {token? <Footer /> : null}
     </BrowserRouter>
