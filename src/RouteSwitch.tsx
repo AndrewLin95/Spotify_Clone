@@ -61,15 +61,6 @@ const RouteSwitch: FC = () => {
     }
   }, [query])
 
-  async function testFunction() {
-    try {
-      const response = await spotifyAPI.searchArtists('Love');
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   // updates the search state with the search parameters after a short debounce
   const handleSearch = (e: number | string) => {
     setQuery(e);
@@ -91,7 +82,7 @@ const RouteSwitch: FC = () => {
 
   return (
     <BrowserRouter>
-        {auth? <Header debouncedSearch={debouncedSearch} testFunction={testFunction} /> : null}
+        {auth? <Header debouncedSearch={debouncedSearch} /> : null}
         <Routes>
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
           {auth ? (
