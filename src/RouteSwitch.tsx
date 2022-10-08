@@ -76,10 +76,6 @@ const RouteSwitch: FC = () => {
     };
   });
 
-  useEffect(() => {
-    console.log(`query: ${query}`);
-  }, [query])
-
   return (
     <BrowserRouter>
         {auth? <Header debouncedSearch={debouncedSearch} /> : null}
