@@ -9,6 +9,7 @@ import { getTokenFromUrl, spotifyAPI } from './Components/Spotify/Spotify';
 
 const RouteSwitch: FC = () => {
   const [token, setToken] = useState<string>();
+  const [user, setUser] = useState<SpotifyApi.CurrentUsersProfileResponse>();
   const [auth, setAuth] = useState<boolean>(false);
   const [query, setQuery] = useState<number | string>('');
 
@@ -16,6 +17,7 @@ const RouteSwitch: FC = () => {
   const [album, setAlbum] = useState<any>();
   const [track, setTrack]= useState<any>();
 
+  // on mount, take token from url and store in state to be used for SpotifyAPI authentication
   useEffect(() => {
     const hash = getTokenFromUrl();
     window.location.hash = '';
@@ -25,8 +27,10 @@ const RouteSwitch: FC = () => {
       setToken(_token);
        // sets the access token to be used for API calls
       spotifyAPI.setAccessToken(_token);
-    }
-    console.log("token", token);
+      spotifyAPI.getMe().then((u) => {
+        setUser(u)
+      });
+    };
   }, []);
 
   const accessSite = ( authStatus: boolean ) => {
