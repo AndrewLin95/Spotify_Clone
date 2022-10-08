@@ -13,9 +13,11 @@ const RouteSwitch: FC = () => {
   const [auth, setAuth] = useState<boolean>(false);
   const [query, setQuery] = useState<number | string>('');
 
-  const [artist, setArtist] = useState<any>();
-  const [album, setAlbum] = useState<any>();
-  const [track, setTrack]= useState<any>();
+  const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
+  const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
+  const [track, setTrack]= useState<SpotifyApi.TrackSearchResponse>();
+
+  const [userPlaylist, setUserPlaylist] = useState<SpotifyApi.ListOfUsersPlaylistsResponse>();
 
   // on mount, take token from url and store in state to be used for SpotifyAPI authentication
   useEffect(() => {
@@ -36,6 +38,28 @@ const RouteSwitch: FC = () => {
   const accessSite = ( authStatus: boolean ) => {
     setAuth(authStatus)
   }
+
+  useEffect(() => {
+    async function pullHomePageData() {
+      try {
+        let response = await Promise.all([
+          spotifyAPI.getUserPlaylists(user?.id)
+        ]);
+        setUserPlaylist(response[0]);
+      }
+      catch (err) {
+        console.log(err);
+      }
+    }
+
+    if (user){
+      pullHomePageData();
+    }
+  }, [token])
+
+  useEffect(() => {
+    console.log('userplayerlist', userPlaylist);
+  }, [userPlaylist])
 
   // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
   useEffect(() => {
