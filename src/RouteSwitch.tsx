@@ -11,7 +11,6 @@ const RouteSwitch: FC = () => {
   const [token, setToken] = useState<string>();
   const [auth, setAuth] = useState<boolean>(false);
   const [query, setQuery] = useState<number | string>();
-  const [searchParam, setSearchParam] = useState<number | string>();
 
   useEffect(() => {
     const hash = getTokenFromUrl();
@@ -20,14 +19,26 @@ const RouteSwitch: FC = () => {
 
     if (_token) {
       setToken(_token);
+       // sets the access token to be used for API calls
+      spotifyAPI.setAccessToken(_token);
     }
-    // sets the access token to be used for API calls
-    spotifyAPI.setAccessToken(`${token}`);
+    console.log("token", token);
   }, []);
 
   const accessSite = ( authStatus: boolean ) => {
     setAuth(authStatus)
   }
+
+  // const testFunction = () => {
+  //   spotifyAPI.searchArtists('Love').then(
+  //     function(data) {
+  //       console.log('Search by "Love"', data);
+  //     },
+  //     function (err) {
+  //       console.error(err);
+  //     }
+  //   )
+  // }
 
   async function testFunction() {
     try {
