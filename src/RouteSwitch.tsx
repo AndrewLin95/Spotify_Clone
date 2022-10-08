@@ -10,7 +10,11 @@ import { getTokenFromUrl, spotifyAPI } from './Components/Spotify/Spotify';
 const RouteSwitch: FC = () => {
   const [token, setToken] = useState<string>();
   const [auth, setAuth] = useState<boolean>(false);
-  const [query, setQuery] = useState<number | string>();
+  const [query, setQuery] = useState<number | string>('');
+
+  const [artist, setArtist] = useState<any>();
+  const [album, setAlbum] = useState<any>();
+  const [track, setTrack]= useState<any>();
 
   useEffect(() => {
     const hash = getTokenFromUrl();
@@ -29,16 +33,33 @@ const RouteSwitch: FC = () => {
     setAuth(authStatus)
   }
 
-  // const testFunction = () => {
-  //   spotifyAPI.searchArtists('Love').then(
-  //     function(data) {
-  //       console.log('Search by "Love"', data);
-  //     },
-  //     function (err) {
-  //       console.error(err);
-  //     }
-  //   )
-  // }
+  // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
+  useEffect(() => {
+    async function searchArtist() {
+      try {
+        let response = await Promise.all([
+          spotifyAPI.searchArtists(query.toString()),
+          spotifyAPI.searchAlbums(query.toString()),
+          spotifyAPI.searchTracks(query.toString())
+        ])
+        console.log('response', response);
+
+        setArtist(response[0]),
+        setAlbum(response[1]),
+        setTrack(response[2])
+
+        console.log('artist', artist);
+        console.log('album', album);
+        console.log('track', track);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    if (query){
+      searchArtist();
+    }
+  }, [query])
 
   async function testFunction() {
     try {

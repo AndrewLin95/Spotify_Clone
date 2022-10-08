@@ -24,7 +24,6 @@ export const getTokenFromUrl = () => {
 };
 
 export const spotifyAPI = new SpotifyWebApi();
-console.log(`spotifyAPI authenticated`)
 
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
   "%20"
