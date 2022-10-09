@@ -51,8 +51,9 @@ const RouteSwitch: FC = () => {
         console.log(err);
       }
     }
-
-    pullHomePageData();
+    if (token){
+      pullHomePageData();
+    }
   }, [token])
 
   useEffect(() => {
