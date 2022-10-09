@@ -1,9 +1,20 @@
+import { FC } from 'react';
 import './style.css';
 
-const Home = () => {
+interface Props{
+  userPlaylist: SpotifyApi.PlaylistObjectSimplified[]
+}
+
+const Home: FC<Props> = ({ userPlaylist }) => {
   return (
     <div id="homeContainer">
-      Hiasdf
+      {Object.entries(userPlaylist).map(([key, value]) => {
+        return(
+          <div key={key}>
+            {value.name}
+          </div>
+        )
+      })}
     </div>
   )
 }

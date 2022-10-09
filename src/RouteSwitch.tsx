@@ -17,7 +17,7 @@ const RouteSwitch: FC = () => {
   const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
   const [track, setTrack]= useState<SpotifyApi.TrackSearchResponse>();
 
-  const [userPlaylist, setUserPlaylist] = useState<SpotifyApi.ListOfUsersPlaylistsResponse>();
+  const [userPlaylist, setUserPlaylist] = useState<SpotifyApi.PlaylistObjectSimplified[]>([]);
 
   // on mount, take token from url and store in state to be used for SpotifyAPI authentication
   useEffect(() => {
@@ -45,21 +45,19 @@ const RouteSwitch: FC = () => {
         let response = await Promise.all([
           spotifyAPI.getUserPlaylists(user?.id)
         ]);
-        setUserPlaylist(response[0]);
+        setUserPlaylist(response[0].items);
       }
       catch (err) {
         console.log(err);
       }
     }
 
-    if (user){
-      pullHomePageData();
-    }
+    pullHomePageData();
   }, [token])
 
   useEffect(() => {
     console.log('userplayerlist', userPlaylist);
-  }, [userPlaylist])
+  }, [token, userPlaylist])
 
   // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
   useEffect(() => {
@@ -70,15 +68,9 @@ const RouteSwitch: FC = () => {
           spotifyAPI.searchAlbums(query.toString()),
           spotifyAPI.searchTracks(query.toString())
         ])
-        console.log('response', response);
-
-        setArtist(response[0]),
-        setAlbum(response[1]),
-        setTrack(response[2])
-
-        console.log('artist', artist);
-        console.log('album', album);
-        console.log('track', track);
+        setArtist(response[0]);
+        setAlbum(response[1]);
+        setTrack(response[2]);
       } catch (err) {
         console.log(err);
       }
@@ -88,6 +80,12 @@ const RouteSwitch: FC = () => {
       searchArtist();
     }
   }, [query])
+
+  useEffect(() => {
+    console.log('artist', artist);
+    console.log('album', album);
+    console.log('track', track);
+  }, [artist])
 
   // updates the search state with the search parameters after a short debounce
   const handleSearch = (e: number | string) => {
@@ -110,7 +108,7 @@ const RouteSwitch: FC = () => {
         <Routes>
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
           {auth ? (
-            <Route path="/home" element={<Home />}/> 
+            <Route path="/home" element={<Home userPlaylist={userPlaylist}/>}/> 
           ) : (
             <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
           )}
