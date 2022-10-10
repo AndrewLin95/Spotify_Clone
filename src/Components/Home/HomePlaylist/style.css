@@ -11,14 +11,6 @@
   overflow-y: auto;
 }
 
-#homePlaylistHeader{
-  padding-left: 20px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  font-size: larger;
-  font-weight: bold;
-}
-
 .homePlaylistContainer{
   display: flex;
   height: 100px;

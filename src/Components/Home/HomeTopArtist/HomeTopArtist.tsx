@@ -13,7 +13,7 @@ interface Props{
 const HomeTopArtist:FC<Props> = ({ userTopArtists }) => {
   return (
     <>
-      <div id='homeTopArtistHeader'>Your Top Artists</div>
+      <div className='homeCategoryHeader'>Your Top Artists</div>
       <Stack id='topArtistContainer'>
         {Object.entries(userTopArtists).map(([key, value]) => {
           return (

@@ -21,7 +21,7 @@ const HomePlaylist:FC<Props> = ({ userPlaylist }) => {
 
   return (
     <>
-      <div id='homePlaylistHeader'>Playlists</div>
+      <div className='homeCategoryHeader'>Playlists</div>
       <Stack id="playlistContainer">
         {Object.entries(userPlaylist).map(([key, value]) => {
           return(
