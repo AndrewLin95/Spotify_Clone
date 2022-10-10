@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import HomePlaylist from './HomePlaylist/HomePlaylist';
 import HomeTopArtist from './HomeTopArtist/HomeTopArtist'
+import './style.css'
 
 interface Props{
   userPlaylist: SpotifyApi.PlaylistObjectSimplified[],
