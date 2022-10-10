@@ -1,6 +1,8 @@
 import { FC, useState, useEffect, useMemo } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { debounce } from 'lodash';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './Components/Util/muiThemes';
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Login from "./Components/Login/Login";
@@ -105,6 +107,7 @@ const RouteSwitch: FC = () => {
 
   return (
     <BrowserRouter>
+      <ThemeProvider theme={theme}>
         {auth? <Header debouncedSearch={debouncedSearch} /> : null}
         <Routes>
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
@@ -117,6 +120,7 @@ const RouteSwitch: FC = () => {
           <Route path="*" element={<Login token={token} accessSite={accessSite}/>} />  
         </Routes>
         {auth? <Footer /> : null}
+      </ThemeProvider>
     </BrowserRouter>
   )
 }
