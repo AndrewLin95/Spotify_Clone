@@ -24,7 +24,7 @@ const HomeTopArtist:FC<Props> = ({ userTopArtists }) => {
                   image={value.images[0].url}
                 />
                 <CardContent>
-                  <div>{value.name}</div>
+                  <div className='homeTopArtistName'>{value.name}</div>
                 </CardContent>
               </CardActionArea>
             </Card>

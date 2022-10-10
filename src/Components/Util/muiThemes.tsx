@@ -25,7 +25,18 @@ const theme = createTheme({
     background: {
       main: 'rgba(25,25,25,1)',
       secondary1: 'rgba(55, 55, 55, 0.7)',
-    },
+    }
+  },
+  components: {
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: '0px',
+          height: '2vw',
+          width: '100%'
+        }
+      }
+    }
   }
 });
 
