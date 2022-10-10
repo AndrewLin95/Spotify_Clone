@@ -143,6 +143,7 @@ const RouteSwitch: FC = () => {
             <Route path="/home" element={<Home 
               userPlaylist={userPlaylist} 
               userTopArtists={userTopArtists} 
+              userRecommendedArtists={userRecommendedArtists}
             />}/> 
           ) : (
             <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
