@@ -62,6 +62,7 @@ const RouteSwitch: FC = () => {
   }, [token])
 
   useEffect(() => {
+    // retrieves the IDs for the top five user artists into an array
     let topFiveArtistID: string[] = [];
     if (userTopArtists.length != 0) {
       let i = 0;
@@ -73,6 +74,7 @@ const RouteSwitch: FC = () => {
 
     async function pullRelatedArtists() {
       try{
+        // randomizes the top five user artists and returns recommended artists based on the determiend ID
         let response = await spotifyAPI.getArtistRelatedArtists(topFiveArtistID[Math.floor(Math.random()*topFiveArtistID.length)]);
         setUserRecommendedArtists(response.artists);
       } catch (err) {
