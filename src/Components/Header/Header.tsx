@@ -12,7 +12,7 @@ const Header: FC<Props> = ({ debouncedSearch }) => {
 
   return (
     <div id='headerContainer'>
-      <div  id='headerHomeContainer'>
+      <div id='headerHomeContainer'>
         <Link id='headerHome' to="/home"><FontAwesomeIcon icon={faHouse} /></Link>
       </div>
       <div id='headerSearchContainer'>

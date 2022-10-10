@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import './style.css';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import { CardActionArea } from '@mui/material';
