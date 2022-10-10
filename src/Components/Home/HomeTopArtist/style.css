@@ -29,3 +29,39 @@
   position: relative;
   top: 40%;
 }
+
+@media (max-width: 1200px) {
+  #topArtistContainer{
+    height: 375px;
+  }
+  .homeTopArtistContainer{
+    height: 17vw;
+    width: calc(100% / 7);
+  }
+}
+
+@media (max-width: 900px) {
+  #topArtistContainer{
+    height: 330px;
+  }
+  .homeTopArtistContainer{
+    height: 20vw;
+    width: calc(100% / 6);
+  }
+  .homeTopArtistName{
+    font-size: small;
+  }
+}
+
+@media (max-width: 600px) {
+  #topArtistContainer{
+    height: 330px;
+  }
+  .homeTopArtistContainer{
+    height: 29vw;
+    width: calc(100% / 4);
+  }
+  .homeTopArtistName{
+    font-size: smaller;
+  }
+}
