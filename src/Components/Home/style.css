@@ -2,7 +2,7 @@
   height: 90vh;
 }
 
-#albumContainer{
+#playlistContainer{
   height: 240px;
   width: 100%;
   display: flex;
@@ -15,7 +15,7 @@
   overflow-y: auto;
 }
 
-#homeAlbumHeader{
+#homePlaylistHeader{
   padding-left: 20px;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -23,7 +23,7 @@
   font-weight: bold;
 }
 
-.homeAlbumContainer{
+.homePlaylistContainer{
   display: flex;
   border: solid 1px purple;
   height: 100px;
@@ -33,12 +33,12 @@
   gap: 10px;
 }
 
-.homeAlbumImage{
+.homePlaylistImage{
   height: 100px;
   width: 100px;
 }
 
-.homeAlbumText{
+.homePlaylistText{
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -46,32 +46,32 @@
 }
 
 @media (max-width: 1200px) {
-  .homeAlbumContainer{
+  .homePlaylistContainer{
     height: 60px;
   }
-  .homeAlbumImage{
+  .homePlaylistImage{
     height: 60px;
     width: 60px;
   }
 }
 
 @media (max-width: 900px) {
-  .homeAlbumContainer{
+  .homePlaylistContainer{
     height: 100px;
     width: calc((100% - 90px) / 2); 
   }
-  .homeAlbumImage{
+  .homePlaylistImage{
     height: 100px;
     width: 100px;
   }
 }
 
 @media (max-width: 600px) {
-  .homeAlbumContainer{
+  .homePlaylistContainer{
     height: 60px;
     min-width: 175px;
   }
-  .homeAlbumImage{
+  .homePlaylistImage{
     height: 60px;
     width: 60px;
   }

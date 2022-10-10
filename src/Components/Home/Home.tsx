@@ -20,13 +20,13 @@ const Home: FC<Props> = ({ userPlaylist }) => {
 
   return (
     <div id='homeContainer'>
-      <div id='homeAlbumHeader'>Albums</div>
-      <Stack id="albumContainer">
+      <div id='homePlaylistHeader'>Playlists</div>
+      <Stack id="playlistContainer">
         {Object.entries(userPlaylist).map(([key, value]) => {
           return(
-            <Item className='homeAlbumContainer' key={key}>
-              <img className='homeAlbumImage' src={value.images[0].url}></img>
-              <div className='homeAlbumText'>{value.name}</div>
+            <Item className='homePlaylistContainer' key={key}>
+              <img className='homePlaylistImage' src={value.images[0].url}></img>
+              <div className='homePlaylistText'>{value.name}</div>
             </Item>
           )
         })}
