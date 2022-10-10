@@ -21,7 +21,6 @@
 
 .homePlaylistContainer{
   display: flex;
-  border: solid 1px purple;
   height: 100px;
   width: calc((100% - 90px) / 3); 
   min-width: 250px;
