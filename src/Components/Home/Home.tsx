@@ -11,8 +11,6 @@ import './style.css';
     '&.MuiPaper-root': {
       backgroundColor: theme.customPalette.background.secondary1,
       color: theme.palette.grey[200],
-      padding: theme.spacing(0),
-      textAlign: 'center',
     }
   })
 interface Props{
