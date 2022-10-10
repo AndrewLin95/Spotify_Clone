@@ -20,6 +20,7 @@ const RouteSwitch: FC = () => {
   const [track, setTrack]= useState<SpotifyApi.TrackSearchResponse>();
 
   const [userPlaylist, setUserPlaylist] = useState<SpotifyApi.PlaylistObjectSimplified[]>([]);
+  const [userTopArtists, setUserTopArtists] = useState<SpotifyApi.ArtistObjectFull[]>([]);
 
   // on mount, take token from url and store in state to be used for SpotifyAPI authentication
   useEffect(() => {
@@ -45,9 +46,11 @@ const RouteSwitch: FC = () => {
     async function pullHomePageData() {
       try {
         let response = await Promise.all([
-          spotifyAPI.getUserPlaylists(user?.id)
+          spotifyAPI.getUserPlaylists(user?.id),
+          spotifyAPI.getMyTopArtists(user?.id)
         ]);
         setUserPlaylist(response[0].items);
+        setUserTopArtists(response[1].items);
       }
       catch (err) {
         console.log(err);
@@ -60,7 +63,8 @@ const RouteSwitch: FC = () => {
 
   useEffect(() => {
     console.log('userplayerlist', userPlaylist);
-  }, [token, userPlaylist])
+    console.log('userTopArist', userTopArtists)
+  }, [token, userPlaylist, userTopArtists])
 
   // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
   useEffect(() => {
@@ -112,7 +116,7 @@ const RouteSwitch: FC = () => {
         <Routes>
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
           {auth ? (
-            <Route path="/home" element={<Home userPlaylist={userPlaylist}/>}/> 
+            <Route path="/home" element={<Home userPlaylist={userPlaylist} userTopArtists={userTopArtists}/>}/> 
           ) : (
             <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
           )}
