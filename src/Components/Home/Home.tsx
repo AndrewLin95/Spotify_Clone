@@ -3,7 +3,11 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled, useTheme } from '@mui/material/styles';
 import './style.css';
+interface Props{
+  userPlaylist: SpotifyApi.PlaylistObjectSimplified[]
+}
 
+const Home: FC<Props> = ({ userPlaylist }) => {
   // below is required to use custom mui themes
   const theme = useTheme();
 
@@ -13,15 +17,11 @@ import './style.css';
       color: theme.palette.grey[200],
     }
   })
-interface Props{
-  userPlaylist: SpotifyApi.PlaylistObjectSimplified[]
-}
 
-const Home: FC<Props> = ({ userPlaylist }) => {
   return (
-    <div>
+    <div id='homeContainer'>
       <div id='homeAlbumHeader'>Albums</div>
-      <Stack id="homeContainer">
+      <Stack id="albumContainer">
         {Object.entries(userPlaylist).map(([key, value]) => {
           return(
             <Item className='homeAlbumContainer' key={key}>

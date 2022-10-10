@@ -1,7 +1,10 @@
 #homeContainer{
   height: 90vh;
+}
+
+#albumContainer{
+  height: 240px;
   width: 100%;
-  border: green solid 1px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -14,6 +17,10 @@
 
 #homeAlbumHeader{
   padding-left: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: larger;
+  font-weight: bold;
 }
 
 .homeAlbumContainer{
@@ -23,6 +30,7 @@
   width: calc((100% - 90px) / 3); 
   min-width: 250px;
   max-width: 500px;
+  gap: 10px;
 }
 
 .homeAlbumImage{
@@ -40,6 +48,28 @@
 @media (max-width: 1200px) {
   .homeAlbumContainer{
     height: 60px;
+  }
+  .homeAlbumImage{
+    height: 60px;
+    width: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .homeAlbumContainer{
+    height: 100px;
+    width: calc((100% - 90px) / 2); 
+  }
+  .homeAlbumImage{
+    height: 100px;
+    width: 100px;
+  }
+}
+
+@media (max-width: 600px) {
+  .homeAlbumContainer{
+    height: 60px;
+    min-width: 175px;
   }
   .homeAlbumImage{
     height: 60px;
