@@ -9,14 +9,18 @@
   padding-left: 20px;
   flex-wrap: wrap;
   overflow-y: auto;
+  border: solid pink 1px;
 }
 
-.homePlaylistContainer{
-  display: flex;
+.linkPlaylist{
   height: 100px;
   width: calc((100% - 90px) / 3); 
   min-width: 250px;
   max-width: 500px;
+}
+
+.homePlaylistContainer{
+  display: flex;
   gap: 10px;
 }
 
@@ -33,7 +37,7 @@
 }
 
 @media (max-width: 1200px) {
-  .homePlaylistContainer{
+  .linkPlaylist{
     height: 60px;
   }
   .homePlaylistImage{
@@ -43,7 +47,7 @@
 }
 
 @media (max-width: 900px) {
-  .homePlaylistContainer{
+  .linkPlaylist{
     height: 100px;
     width: calc((100% - 90px) / 2); 
   }
@@ -54,7 +58,7 @@
 }
 
 @media (max-width: 600px) {
-  .homePlaylistContainer{
+  .linkPlaylist{
     height: 60px;
     min-width: 175px;
   }

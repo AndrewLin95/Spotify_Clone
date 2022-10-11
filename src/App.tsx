@@ -78,6 +78,12 @@ const App: FC = () => {
     };
   });
 
+
+  const handlePlaylistClick = (value: SpotifyApi.PlaylistObjectSimplified) => {
+    console.log('testValue', value);
+  }
+
+
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
@@ -86,7 +92,7 @@ const App: FC = () => {
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
           {auth ? (
             <>
-              <Route path="/home" element={<Home user={user}/>}/> 
+              <Route path="/home" element={<Home user={user} handlePlaylistClick={handlePlaylistClick}/>}/> 
               <Route path="/playlist" element={<Playlists />} />
             </>
           ) : (

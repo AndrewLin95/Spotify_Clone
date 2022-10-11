@@ -3,12 +3,14 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled, useTheme } from '@mui/material/styles';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 interface Props{
   userPlaylist: SpotifyApi.PlaylistObjectSimplified[],
+  handlePlaylistClick: (value: SpotifyApi.PlaylistObjectSimplified) => void;
 }
 
-const HomePlaylist:FC<Props> = ({ userPlaylist }) => {
+const HomePlaylist:FC<Props> = ({ userPlaylist, handlePlaylistClick }) => {
   // below is required to use custom mui themes
   const theme = useTheme();
 
@@ -25,10 +27,12 @@ const HomePlaylist:FC<Props> = ({ userPlaylist }) => {
       <Stack id="playlistContainer">
         {Object.entries(userPlaylist).map(([key, value]) => {
           return(
-            <Item className='homePlaylistContainer' key={key}>
-              <img className='homePlaylistImage' src={value.images[0].url}></img>
-              <div className='homePlaylistText'>{value.name}</div>
-            </Item>
+            <Link className='linkPlaylist' to={'/playlist'} key={key} style={{textDecoration: 'none'}}>
+              <Item className='homePlaylistContainer' onClick={() => {handlePlaylistClick(value)}}>
+                <img className='homePlaylistImage' src={value.images[0].url}></img>
+                <div className='homePlaylistText'>{value.name}</div>
+              </Item>
+            </Link>
           )
         })}
       </Stack>
