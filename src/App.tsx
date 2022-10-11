@@ -10,6 +10,7 @@ import Home from './Components/Home/Home';
 import { spotifyAPI } from './Components/Spotify/Spotify';
 
 import useRetrieveToken from './Components/Util/useRetrieveToken';
+import Playlists from './Components/Music/Playlists';
 
 const App: FC = () => {
   const [token, setToken] = useState<string>();
@@ -84,7 +85,10 @@ const App: FC = () => {
         <Routes>
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
           {auth ? (
-            <Route path="/home" element={<Home user={user}/>}/> 
+            <>
+              <Route path="/home" element={<Home user={user}/>}/> 
+              <Route path="/playlist" element={<Playlists />} />
+            </>
           ) : (
             <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
           )}
