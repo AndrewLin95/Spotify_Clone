@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { spotifyAPI } from '../Spotify/Spotify';
 
+// TODO: Memoize functions
+
 const useHomePageData = (user: SpotifyApi.CurrentUsersProfileResponse, userTopArtists: SpotifyApi.ArtistObjectFull[]) => {
   const [loading, setLoading] = useState(true);
   const [dataHomePagePlaylist, setDataHomePagePlaylist] = useState<SpotifyApi.PlaylistObjectSimplified[]>([]);
