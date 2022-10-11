@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { spotifyAPI } from '../Spotify/Spotify';
 
-// TODO: Memoize functions
-
 const useHomePageData = (user: SpotifyApi.CurrentUsersProfileResponse, userTopArtists: SpotifyApi.ArtistObjectFull[]) => {
   const [loading, setLoading] = useState(true);
   const [dataHomePagePlaylist, setDataHomePagePlaylist] = useState<SpotifyApi.PlaylistObjectSimplified[]>([]);
@@ -33,7 +31,7 @@ const useHomePageData = (user: SpotifyApi.CurrentUsersProfileResponse, userTopAr
       let response = await spotifyAPI.getArtistRelatedArtists(topFiveArtistID[Math.floor(Math.random()*topFiveArtistID.length)]);
       setDataRelatedArtists(response.artists);
       setLoading(false);
-      
+
     } catch (err) {
       throw(err);
     }
