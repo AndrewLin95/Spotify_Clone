@@ -11,45 +11,37 @@ const useHomePageData = (user: SpotifyApi.CurrentUsersProfileResponse, userTopAr
   
   async function pullHomePageData() {
     try {
+      // pulls the user playlists and top artists based on user profile
       let _response: [SpotifyApi.ListOfUsersPlaylistsResponse, SpotifyApi.UsersTopArtistsResponse] = await Promise.all([
         spotifyAPI.getUserPlaylists(user?.id),
         spotifyAPI.getMyTopArtists(user?.id),
-      ]);
+      ])
       setDataHomePagePlaylist(_response[0].items);
       setDataHomePageTopArtist(_response[1].items);
 
-    } catch (err) {
-      throw(err);
-    }
-  }
-  // retrieves the IDs for the top five user artists into an array
-  let topFiveArtistID: string[] = [];
-  if (userTopArtists.length != 0) {
-    let i = 0;
-    while (i < 5){
-      topFiveArtistID.push(userTopArtists[i].id);
-      i++;
-    }
-  }
+      // retrieves the IDs for the top five user artists into an array
+      let topFiveArtistID: string[] = [];
+      if (_response[1].items.length != 0) {
+        let i = 0;
+        while (i < 5){
+          topFiveArtistID.push(_response[1].items[i].id);
+          i++;
+        }
+      }
 
-  async function pullRelatedArtists() {
-    try{
       // randomizes the top five user artists and returns recommended artists based on the determiend ID
       let response = await spotifyAPI.getArtistRelatedArtists(topFiveArtistID[Math.floor(Math.random()*topFiveArtistID.length)]);
       setDataRelatedArtists(response.artists);
       setLoading(false);
+      
     } catch (err) {
-      throw (err);
+      throw(err);
     }
   }
-  
+
   useEffect(() => {
     pullHomePageData();
   }, []);
-
-  useEffect(()=> {
-    pullRelatedArtists();
-  }, [dataHomePageTopArtist])
 
   return { loading, dataHomePage: { dataHomePagePlaylist, dataHomePageTopArtist, dataRelatedArtists }};
 }
