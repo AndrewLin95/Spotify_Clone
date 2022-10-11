@@ -11,7 +11,7 @@ import { spotifyAPI } from './Components/Spotify/Spotify';
 
 import useRetrieveToken from './Components/Util/useRetrieveToken';
 
-const RouteSwitch: FC = () => {
+const App: FC = () => {
   const [token, setToken] = useState<string>();
   // TODO: fix the any type for user (SpotifyApi.CurrentUsersProfileResponse)
   const [user, setUser] = useState<any>();
@@ -97,4 +97,4 @@ const RouteSwitch: FC = () => {
   )
 }
 
-export default RouteSwitch; 
+export default App; 
