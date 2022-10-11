@@ -30,7 +30,7 @@ const Home: FC<Props> = ({ user }) => {
   }, [userPlaylist, userTopArtists, userRecommendedArtists])
 
   return (
-    <div id='homeContainer'>
+    <div className='mainContainer'>
       <HomePlaylist userPlaylist={userPlaylist}/>
       <HomeTopArtist userTopArtists={userTopArtists} />
       <HomeRecommendedArtist userRecommendedArtists={userRecommendedArtists} />
