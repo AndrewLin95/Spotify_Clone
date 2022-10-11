@@ -16,7 +16,7 @@ const useHomePageData = (user: SpotifyApi.CurrentUsersProfileResponse) => {
       setDataHomePageTopArtist(_response[1].items);
       setLoading(false);
     } catch (err) {
-      console.log(err);
+      throw(err);
     }
   }
 

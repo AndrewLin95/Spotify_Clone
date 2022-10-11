@@ -61,13 +61,7 @@ const RouteSwitch: FC = () => {
       searchArtist();
     }
   }, [query])
-
-  useEffect(() => {
-    console.log('artist', artist);
-    console.log('album', album);
-    console.log('track', track);
-  }, [artist])
-
+  
   // updates the search state with the search parameters after a short debounce
   const handleSearch = (e: number | string) => {
     setQuery(e);

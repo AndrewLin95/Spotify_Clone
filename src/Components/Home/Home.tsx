@@ -40,7 +40,7 @@ const Home: FC<Props> = ({ user }) => {
         let response = await spotifyAPI.getArtistRelatedArtists(topFiveArtistID[Math.floor(Math.random()*topFiveArtistID.length)]);
         setUserRecommendedArtists(response.artists);
       } catch (err) {
-        console.log(err);
+        throw (err);
       }
     }
     pullRelatedArtists();
