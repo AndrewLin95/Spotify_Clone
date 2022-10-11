@@ -2,7 +2,6 @@ import { FC, useState, useEffect } from 'react';
 import HomePlaylist from './HomePlaylist/HomePlaylist';
 import HomeRecommendedArtist from './HomeRecommendedArtist/HomeRecommendedArtist';
 import HomeTopArtist from './HomeTopArtist/HomeTopArtist';
-import { spotifyAPI } from '../Spotify/Spotify'
 import './style.css';
 
 import useHomePageData from '../APICalls/useHomePageData';
@@ -16,35 +15,13 @@ const Home: FC<Props> = ({ user }) => {
   const [userTopArtists, setUserTopArtists] = useState<SpotifyApi.ArtistObjectFull[]>([]);
   const [userRecommendedArtists, setUserRecommendedArtists] = useState<SpotifyApi.ArtistObjectFull[]>([]);
 
-  const { loading: boolean, dataHomePage } = useHomePageData(user);
+  const { loading, dataHomePage } = useHomePageData(user, userTopArtists);
 
   useEffect(() => {
     setUserPlaylist(dataHomePage.dataHomePagePlaylist);
     setUserTopArtists(dataHomePage.dataHomePageTopArtist);
+    setUserRecommendedArtists(dataHomePage.dataRelatedArtists);
   })
-
-  useEffect(() => {
-    // retrieves the IDs for the top five user artists into an array
-    let topFiveArtistID: string[] = [];
-    if (userTopArtists.length != 0) {
-      let i = 0;
-      while (i < 5){
-        topFiveArtistID.push(userTopArtists[i].id);
-        i++;
-      }
-    }
-
-    async function pullRelatedArtists() {
-      try{
-        // randomizes the top five user artists and returns recommended artists based on the determiend ID
-        let response = await spotifyAPI.getArtistRelatedArtists(topFiveArtistID[Math.floor(Math.random()*topFiveArtistID.length)]);
-        setUserRecommendedArtists(response.artists);
-      } catch (err) {
-        throw (err);
-      }
-    }
-    pullRelatedArtists();
-  }, [userTopArtists])
 
   useEffect(() => {
     console.log('userplayerlist', userPlaylist);
