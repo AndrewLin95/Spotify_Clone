@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
 
 interface Props{
   userPlaylist: SpotifyApi.PlaylistObjectSimplified[],
-  handlePlaylistClick: (value: SpotifyApi.PlaylistObjectSimplified) => void;
+  handlePlaylistAlbumClick: (value: SpotifyApi.PlaylistObjectSimplified) => void;
 }
 
-const HomePlaylist:FC<Props> = ({ userPlaylist, handlePlaylistClick }) => {
+const HomePlaylist:FC<Props> = ({ userPlaylist, handlePlaylistAlbumClick }) => {
   // below is required to use custom mui themes
   const theme = useTheme();
 
@@ -28,7 +28,7 @@ const HomePlaylist:FC<Props> = ({ userPlaylist, handlePlaylistClick }) => {
         {Object.entries(userPlaylist).map(([key, value]) => {
           return(
             <Link className='linkPlaylist' to={'/playlist'} key={key} style={{textDecoration: 'none'}}>
-              <Item className='homePlaylistContainer' onClick={() => {handlePlaylistClick(value)}}>
+              <Item className='homePlaylistContainer' onClick={() => {handlePlaylistAlbumClick(value)}}>
                 <img className='homePlaylistImage' src={value.images[0].url}></img>
                 <div className='homePlaylistText'>{value.name}</div>
               </Item>

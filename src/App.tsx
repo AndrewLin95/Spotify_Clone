@@ -19,6 +19,8 @@ const App: FC = () => {
   const [auth, setAuth] = useState<boolean>(false);
   const [query, setQuery] = useState<number | string>('');
 
+  const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<any>();
+
   const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
   const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
   const [track, setTrack]= useState<SpotifyApi.TrackSearchResponse>();
@@ -78,8 +80,9 @@ const App: FC = () => {
     };
   });
 
-
-  const handlePlaylistClick = (value: SpotifyApi.PlaylistObjectSimplified) => {
+  // handles playlist click from Home page
+  const handlePlaylistAlbumClick = (value: SpotifyApi.PlaylistObjectSimplified) => {
+    setCurrPlaylistAlbum(value);
     console.log('testValue', value);
   }
 
@@ -92,8 +95,8 @@ const App: FC = () => {
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
           {auth ? (
             <>
-              <Route path="/home" element={<Home user={user} handlePlaylistClick={handlePlaylistClick}/>}/> 
-              <Route path="/playlist" element={<Playlists />} />
+              <Route path="/home" element={<Home user={user} handlePlaylistAlbumClick={handlePlaylistAlbumClick}/>}/> 
+              <Route path="/playlist" element={<Playlists currPlaylistAlbum={currPlaylistAlbum}/>} />
             </>
           ) : (
             <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
