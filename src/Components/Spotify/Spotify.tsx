@@ -1,3 +1,6 @@
+// Spotify API types
+// https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/spotify-api/index.d.ts
+
 import SpotifyWebApi from "spotify-web-api-js";
 
 export const authEndpoint = "https://accounts.spotify.com/authorize";
