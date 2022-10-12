@@ -13,7 +13,7 @@ import useRetrieveToken from './Components/Util/useRetrieveToken';
 import Playlists from './Components/Music/Playlists';
 
 const App: FC = () => {
-  const [token, setToken] = useState<string>();
+  const [token, setToken] = useState<string>('');
   // TODO: fix the any type for user (SpotifyApi.CurrentUsersProfileResponse)
   const [user, setUser] = useState<any>();
   const [auth, setAuth] = useState<boolean>(false);
@@ -96,7 +96,7 @@ const App: FC = () => {
           {auth ? (
             <>
               <Route path="/home" element={<Home user={user} handlePlaylistAlbumClick={handlePlaylistAlbumClick}/>}/> 
-              <Route path="/playlist" element={<Playlists currPlaylistAlbum={currPlaylistAlbum}/>} />
+              <Route path="/playlist" element={<Playlists currPlaylistAlbum={currPlaylistAlbum} token={token}/>} />
             </>
           ) : (
             <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
