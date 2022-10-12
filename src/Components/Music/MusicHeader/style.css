@@ -1,14 +1,16 @@
 .musicHeaderMain{
   display: flex;
   justify-content: flex-start;
+  margin-top: 15px;
   padding-top: 25px;
   padding-left: 25px;
+  height: 225px;
 }
 
 .musicHeaderImage{
-  height: auto;
+  height: 200px;
   width: 200px;
-  box-shadow: 0 0 20px #c19ee0;
+  box-shadow: 0 0 20px rgb(40,40,40);
 }
 
 .musicHeaderText{
@@ -16,16 +18,16 @@
   flex-direction: column;
   justify-content: space-around;
   padding-left: 10px;
+  position: relative;
+  bottom: 10px;
 }
 
 .musicHeaderType{
   font-weight: bold;
-  position: relative;
-  top: 10px;
 }
 
 .musicHeaderName{
-  font-size: 450%;
+  font-size: 300%;
   font-weight: bolder;
 }
 
