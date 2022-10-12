@@ -24,11 +24,13 @@ const MusicHeader:FC<Props> = ({ currPlaylistAlbum }) => {
 
   return (
     <div className='musicHeaderMain' style={{backgroundColor: `rgba(${domColor.value[0]}, ${domColor.value[1]}, ${domColor.value[2]}, 0.7)`}}>
-      <img className='musicHeaderImage' src={currPlaylistAlbum.images[0].url} crossOrigin='anonymous' width={`200px`} height={`200px`}/>
-      <div className='musicHeaderText'>
-        <div className='musicHeaderType'>{currPlaylistAlbum.type.toUpperCase()}</div>
-        <div className='musicHeaderName'>{currPlaylistAlbum.name}</div>
-        <div className='musicHeaderInfo'>{currPlaylistAlbum.owner.display_name} · {currPlaylistAlbum.tracks.total} songs</div>
+      <div className='musicHeaderContainer'>
+        <img className='musicHeaderImage' src={currPlaylistAlbum.images[0].url} crossOrigin='anonymous' width={`200px`} height={`200px`}/>
+        <div className='musicHeaderText'>
+          <div className='musicHeaderType'>{currPlaylistAlbum.type.toUpperCase()}</div>
+          <div className='musicHeaderName'>{currPlaylistAlbum.name}</div>
+          <div className='musicHeaderInfo'>{currPlaylistAlbum.owner.display_name} · {currPlaylistAlbum.tracks.total} songs</div>
+        </div>
       </div>
     </div>
   )

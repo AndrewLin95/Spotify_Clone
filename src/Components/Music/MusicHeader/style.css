@@ -1,25 +1,38 @@
 .musicHeaderMain{
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   margin-top: 15px;
   padding-top: 25px;
+  /* todo: the gradient effect */
+  padding-bottom: 25px;
   padding-left: 25px;
+  padding-right: 25px;
   height: 225px;
 }
 
-.musicHeaderImage{
+.musicHeaderContainer{
+  display: flex;
+  justify-content: flex-start;
   height: 200px;
-  width: 200px;
+  width: 100%;
+  border: pink solid 1px;
+}
+
+.musicHeaderImage{
+  height: 100%;
+  width: auto;
   box-shadow: 0 0 20px rgb(40,40,40);
 }
 
 .musicHeaderText{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-end;
   padding-left: 10px;
   position: relative;
-  bottom: 10px;
+  padding-bottom: 25px;
+  gap: 10px;
 }
 
 .musicHeaderType{
@@ -27,10 +40,25 @@
 }
 
 .musicHeaderName{
-  font-size: 300%;
+  font-size: 200%;
   font-weight: bolder;
 }
 
 .musicHeaderInfo{
   font-weight: bold;
+}
+
+@media (max-width: 600px){
+  .musicHeaderContainer{
+    height: 150px;
+  }
+  .musicHeaderText{
+    font-size: 75%;
+  }
+}
+
+@media (max-width: 450px){
+  .musicHeaderText{
+    font-size: 50%;
+  }
 }
