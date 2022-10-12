@@ -28,7 +28,7 @@ const Home: FC<Props> = ({ user, handlePlaylistAlbumClick }) => {
     console.log('userplayerlist', userPlaylist);
     console.log('userTopArist', userTopArtists);
     console.log('userRecommendedArtists', userRecommendedArtists);
-  }, [userPlaylist, userTopArtists, userRecommendedArtists])
+  }, [userPlaylist])
 
   return (
     <div className='mainContainer'>
