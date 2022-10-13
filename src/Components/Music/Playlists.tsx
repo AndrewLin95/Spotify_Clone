@@ -5,10 +5,13 @@ import usePullTracks from '../APICalls/usePullTracks';
 
 interface Props{
   currPlaylistAlbum: SpotifyApi.PlaylistObjectSimplified,
-  token: string
+  token: string,
 }
 
 const Playlists:FC<Props> = ({ currPlaylistAlbum, token }) => {
+  const pagingObject = {} as SpotifyApi.PagingObject<[]>
+  const [tracks, setTracks] = useState<SpotifyApi.PagingObject<[]>>(pagingObject);
+
   if (currPlaylistAlbum === undefined) {
     return (
       <div>
@@ -19,10 +22,14 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token }) => {
   
   const { loadingTracks, dataTracks } = usePullTracks(currPlaylistAlbum, token);
 
+  useEffect(() => {
+    setTracks(dataTracks);
+  })
+
   return (
     <div className="mainContainer">
       <MusicHeader currPlaylistAlbum={currPlaylistAlbum} />
-      <MusicTracks />
+      <MusicTracks tracks={tracks}/>
     </div>
   )
 }
