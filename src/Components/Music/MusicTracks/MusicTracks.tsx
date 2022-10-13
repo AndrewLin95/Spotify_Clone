@@ -7,7 +7,7 @@ import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 
 interface Props{
-  tracks: SpotifyApi.PagingObject<[]>
+  tracks: SpotifyApi.PagingObject<SpotifyApi.PlaylistTrackObject>,
 }
 
 const MusicTracks:FC<Props> = ({ tracks }) => {
@@ -25,13 +25,13 @@ const MusicTracks:FC<Props> = ({ tracks }) => {
         </TableHead>
 
         <TableBody>
-          {/* {tracks.items.map(([key, value]) =>{
+          {Object.entries(tracks.items).map(([key, value]) => {
             return (
               <TableRow key={key}>
-                
+                <TableCell>{value.track.name}</TableCell>
               </TableRow>
             )
-          })} */}
+          })}
         </TableBody>
       </Table>
     </TableContainer>

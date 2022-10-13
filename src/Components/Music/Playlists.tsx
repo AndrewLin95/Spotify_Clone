@@ -9,8 +9,9 @@ interface Props{
 }
 
 const Playlists:FC<Props> = ({ currPlaylistAlbum, token }) => {
-  const pagingObject = {} as SpotifyApi.PagingObject<[]>
-  const [tracks, setTracks] = useState<SpotifyApi.PagingObject<[]>>(pagingObject);
+  const pagingObject = {} as SpotifyApi.PagingObject<SpotifyApi.PlaylistTrackObject>
+  const [tracks, setTracks] = useState<SpotifyApi.PagingObject<SpotifyApi.PlaylistTrackObject>>(pagingObject);
+  const [loadingTracks, setLoadingTracks] = useState<boolean>();
 
   if (currPlaylistAlbum === undefined) {
     return (
@@ -20,16 +21,18 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token }) => {
     )
   }
   
-  const { loadingTracks, dataTracks } = usePullTracks(currPlaylistAlbum, token);
+  // potential solution, move it up to main page.
+  const { _loadingTracks, dataTracks } = usePullTracks(currPlaylistAlbum, token);
 
   useEffect(() => {
     setTracks(dataTracks);
+    setLoadingTracks(_loadingTracks);
   })
 
   return (
     <div className="mainContainer">
       <MusicHeader currPlaylistAlbum={currPlaylistAlbum} />
-      <MusicTracks tracks={tracks}/>
+      {loadingTracks ? null : <MusicTracks tracks={tracks} /> }
     </div>
   )
 }
