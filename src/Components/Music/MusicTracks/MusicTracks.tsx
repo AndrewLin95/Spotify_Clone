@@ -8,6 +8,8 @@ import TableBody from '@mui/material/TableBody';
 import { toInteger } from 'lodash';
 import './style.css';
 import PlaylistTrackObjectFull from '../../Util/modals';
+import formatDate from '../../Util/formatDate';
+import formatTime from '../../Util/formatTime';
 
 interface Props{
   tracks: SpotifyApi.PagingObject<PlaylistTrackObjectFull>,
@@ -30,15 +32,16 @@ const MusicTracks:FC<Props> = ({ tracks }) => {
 
         <TableBody>
           {Object.entries(tracks.items).map(([key, value]) => {
-
+            const formattedDate = formatDate(value.added_at);
+            const formattedTime = formatTime(value.track.duration_ms);
 
             return (
               <TableRow key={key}>
                 <TableCell className='tableTrackNum' align='center'>{1 + toInteger(key)}</TableCell>
                 <TableCell className='tableTitle'>{value.track.name}</TableCell>
                 <TableCell className='tableAlbum'>{value.track.album.name}</TableCell>
-                <TableCell className='tableDateAdded'>{value.added_at}</TableCell>
-                <TableCell className='tableDuration'>{value.track.duration_ms}</TableCell>
+                <TableCell className='tableDateAdded'>{formattedDate}</TableCell>
+                <TableCell className='tableDuration'>{formattedTime}</TableCell>
               </TableRow>
             )
           })}
