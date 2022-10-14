@@ -33,10 +33,18 @@ const theme = createTheme({
         root: {
           padding: '0px',
           height: '2vw',
-          width: '100%'
+          width: '100%',
         }
       }
-    }
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          color: 'rgba(220, 220, 220, 1)',
+          borderBottom: "none",
+        }
+      }
+    },
   }
 });
 
