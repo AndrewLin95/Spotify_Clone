@@ -5,7 +5,16 @@ const formatTime = (time: number) => {
   let minutes = millisecondsToMinutes(time);
   let seconds = millisecondsToSeconds(time);
 
-  const formattedTime = `${minutes}:${seconds % 60}`;
+  let unformattedSeconds = seconds % 60;
+  let formattedSeconds
+
+  if (unformattedSeconds < 10) {
+    formattedSeconds = `0${unformattedSeconds}`;
+  } else {
+    formattedSeconds = unformattedSeconds;
+  }
+
+  const formattedTime = `${minutes}:${formattedSeconds}`;
   return formattedTime;
 }
 
