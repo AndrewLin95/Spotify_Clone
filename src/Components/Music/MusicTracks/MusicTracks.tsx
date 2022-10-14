@@ -7,6 +7,7 @@ import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import { toInteger } from 'lodash';
 import './style.css';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PlaylistTrackObjectFull from '../../Util/modals';
 import formatDate from '../../Util/formatDate';
 import formatTime from '../../Util/formatTime';
@@ -26,7 +27,7 @@ const MusicTracks:FC<Props> = ({ tracks }) => {
             <TableCell align='left'>TITLE</TableCell>
             <TableCell align='left'>ALBUM</TableCell>
             <TableCell align='left'>DATE ADDED</TableCell>
-            <TableCell align='center'>duration_temp</TableCell>
+            <TableCell align='center'><AccessTimeIcon fontSize='small'></AccessTimeIcon></TableCell>
           </TableRow>
         </TableHead>
 
