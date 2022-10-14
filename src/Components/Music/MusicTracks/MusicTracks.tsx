@@ -13,7 +13,7 @@ import formatDate from '../../Util/formatDate';
 import formatTime from '../../Util/formatTime';
 
 interface Props{
-  tracks: SpotifyApi.PagingObject<PlaylistTrackObjectFull>,
+  tracks: PlaylistTrackObjectFull[],
 }
 
 const MusicTracks:FC<Props> = ({ tracks }) => {
@@ -32,7 +32,7 @@ const MusicTracks:FC<Props> = ({ tracks }) => {
         </TableHead>
 
         <TableBody>
-          {Object.entries(tracks.items).map(([key, value]) => {
+          {Object.entries(tracks).map(([key, value]) => {
             const formattedDate = formatDate(value.added_at);
             const formattedTime = formatTime(value.track.duration_ms);
 
@@ -41,7 +41,7 @@ const MusicTracks:FC<Props> = ({ tracks }) => {
                 <TableCell className='tableTrackNum' align='center'>{1 + toInteger(key)}</TableCell>
                 <TableCell className='tableTitleContainer'> 
                   <div className='tableTitle'>
-                    <img className='tableImg' src={value.track.album.images[1].url}/>
+                    <img className='tableImg' src={value.track.album.images[1].url} />
                       <div className='tableTitleText'>
                         <div>{value.track.name}</div>
                         <div className='tableArtist'>{value.track.artists[0].name}</div>

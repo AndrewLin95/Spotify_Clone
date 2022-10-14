@@ -3,8 +3,8 @@ import PlaylistTrackObjectFull from '../Util/modals';
 
 const usePullTracks = (currPlaylistAlbum: SpotifyApi.PlaylistObjectSimplified, token: string ) => {
   const [_loadingTracks, setLoadingTracks] = useState(true);
-  const pagingObject = {} as SpotifyApi.PagingObject<PlaylistTrackObjectFull>
-  const [dataTracks, setDataTracks] = useState<SpotifyApi.PagingObject<PlaylistTrackObjectFull>>(pagingObject);
+  const pagingObject = {} as PlaylistTrackObjectFull[]
+  const [dataTracks, setDataTracks] = useState<PlaylistTrackObjectFull[]>(pagingObject);
 
   async function pullTracks() {
     const url = `https://api.spotify.com/v1/playlists/${currPlaylistAlbum.id}/tracks`;
@@ -20,10 +20,24 @@ const usePullTracks = (currPlaylistAlbum: SpotifyApi.PlaylistObjectSimplified, t
 
     try {
       const response = await fetch(url, requestOptions)
-      const data = await response.json();
-      setDataTracks(data);
+      const data: SpotifyApi.PagingObject<PlaylistTrackObjectFull> = await response.json();
+
+      let dataPayload = data.items;
+      let numTracks = 100;
+      let nextUrl = data.next;
+
+      while (data.total > numTracks) {
+        const response = await fetch(nextUrl, requestOptions)
+        const data: SpotifyApi.PagingObject<PlaylistTrackObjectFull> = await response.json();
+        nextUrl = data.next;
+        dataPayload.push(...data.items);
+        numTracks += 100;
+      }
+
+      setDataTracks(dataPayload);
       setLoadingTracks(false);
-      console.log(data);
+      console.log('data', dataPayload);
+      
     } catch (err) {
       throw err;
     }

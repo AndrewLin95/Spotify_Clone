@@ -9,8 +9,8 @@ interface Props{
 }
 
 const Playlists:FC<Props> = ({ currPlaylistAlbum, token }) => {
-  const pagingObject = {} as SpotifyApi.PagingObject<PlaylistTrackObjectFull>
-  const [tracks, setTracks] = useState<SpotifyApi.PagingObject<PlaylistTrackObjectFull>>(pagingObject);
+  const pagingObject = {} as PlaylistTrackObjectFull[]
+  const [tracks, setTracks] = useState<PlaylistTrackObjectFull[]>(pagingObject);
   const [loadingTracks, setLoadingTracks] = useState<boolean>(true);
 
   const { _loadingTracks, dataTracks } = usePullTracks(currPlaylistAlbum, token);
