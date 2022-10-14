@@ -3,10 +3,21 @@
 }
 
 .tableTitle{
-  width: 400px;
+  width: 50vw;
 }
 
 .tableAlbum{
-  width: 300px;
+  width: 30vw;
+  border: purple solid 1px;
 }
 
+.tableDateAdded{
+  width: 110px;
+  min-width: 100px;
+  border: pink solid 1px;
+}
+
+.tableDuration{
+  width: 50px;
+  border: pink solid 1px;
+}

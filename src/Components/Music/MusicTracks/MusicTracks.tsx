@@ -41,7 +41,7 @@ const MusicTracks:FC<Props> = ({ tracks }) => {
                 <TableCell className='tableTitle'>{value.track.name}</TableCell>
                 <TableCell className='tableAlbum'>{value.track.album.name}</TableCell>
                 <TableCell className='tableDateAdded'>{formattedDate}</TableCell>
-                <TableCell className='tableDuration'>{formattedTime}</TableCell>
+                <TableCell className='tableDuration' align='center'>{formattedTime}</TableCell>
               </TableRow>
             )
           })}
