@@ -38,7 +38,15 @@ const MusicTracks:FC<Props> = ({ tracks }) => {
             return (
               <TableRow key={key}>
                 <TableCell className='tableTrackNum' align='center'>{1 + toInteger(key)}</TableCell>
-                <TableCell className='tableTitle'>{value.track.name}</TableCell>
+                <TableCell className='tableTitleContainer'> 
+                  <div className='tableTitle'>
+                    <img className='tableImg' src={value.track.album.images[1].url}/>
+                      <div className='tableTitleText'>
+                        <div>{value.track.name}</div>
+                        <div className='tableArtist'>{value.track.artists[0].name}</div>
+                      </div>
+                  </div>
+                </TableCell>
                 <TableCell className='tableAlbum'>{value.track.album.name}</TableCell>
                 <TableCell className='tableDateAdded'>{formattedDate}</TableCell>
                 <TableCell className='tableDuration' align='center'>{formattedTime}</TableCell>

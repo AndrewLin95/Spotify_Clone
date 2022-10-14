@@ -42,6 +42,7 @@ const theme = createTheme({
         root: {
           color: 'rgba(220, 220, 220, 1)',
           borderBottom: "none",
+          padding: '4px',
         }
       }
     },

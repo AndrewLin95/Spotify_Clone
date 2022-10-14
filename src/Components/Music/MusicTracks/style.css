@@ -2,8 +2,29 @@
   width: 50px;
 }
 
-.tableTitle{
+.tableImg{
+  width: 40px;
+  height: auto;
+}
+
+.tableTitleContainer{
   width: 50vw;
+  height: auto;
+}
+
+.tableTitle{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.tableTitleText{
+  display: flex;
+  flex-direction: column;
+}
+
+.tableArtist{
+  color: rgba(150, 150, 150, 1);
 }
 
 .tableAlbum{
