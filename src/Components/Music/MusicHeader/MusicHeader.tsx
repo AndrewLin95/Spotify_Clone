@@ -23,7 +23,10 @@ const MusicHeader:FC<Props> = ({ currPlaylistAlbum }) => {
   }, [])
 
   return (
-    <div className='musicHeaderMain' style={{backgroundColor: `rgba(${domColor.value[0]}, ${domColor.value[1]}, ${domColor.value[2]}, 0.7)`}}>
+    <div className='musicHeaderMain' style={{
+      backgroundImage: `linear-gradient(rgba(${domColor.value[0]}, ${domColor.value[1]}, ${domColor.value[2]}, 0.7), rgba(25,25,25,0) )`,  
+      // backgroundColor: `rgba(${domColor.value[0]}, ${domColor.value[1]}, ${domColor.value[2]}, 0.7)`,
+    }}>
       <div className='musicHeaderContainer'>
         <img className='musicHeaderImage' src={currPlaylistAlbum.images[0].url} crossOrigin='anonymous' width={`200px`} height={`200px`}/>
         <div className='musicHeaderText'>
