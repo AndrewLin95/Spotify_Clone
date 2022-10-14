@@ -19,7 +19,8 @@ const App: FC = () => {
   const [auth, setAuth] = useState<boolean>(false);
   const [query, setQuery] = useState<number | string>('');
 
-  const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<any>();
+  const currPlaylistInterface = {} as SpotifyApi.PlaylistObjectSimplified
+  const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<SpotifyApi.PlaylistObjectSimplified>(currPlaylistInterface);
 
   const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
   const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();

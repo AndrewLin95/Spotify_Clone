@@ -2,14 +2,15 @@ import { FC, useEffect, useState } from 'react';
 import MusicHeader from './MusicHeader/MusicHeader';
 import MusicTracks from './MusicTracks/MusicTracks';
 import usePullTracks from '../APICalls/usePullTracks';
+import PlaylistTrackObjectFull from '../Util/modals';
 interface Props{
   currPlaylistAlbum: SpotifyApi.PlaylistObjectSimplified,
   token: string
 }
 
 const Playlists:FC<Props> = ({ currPlaylistAlbum, token }) => {
-  const pagingObject = {} as SpotifyApi.PagingObject<SpotifyApi.PlaylistTrackObject>
-  const [tracks, setTracks] = useState<SpotifyApi.PagingObject<SpotifyApi.PlaylistTrackObject>>(pagingObject);
+  const pagingObject = {} as SpotifyApi.PagingObject<PlaylistTrackObjectFull>
+  const [tracks, setTracks] = useState<SpotifyApi.PagingObject<PlaylistTrackObjectFull>>(pagingObject);
   const [loadingTracks, setLoadingTracks] = useState<boolean>(true);
 
   const { _loadingTracks, dataTracks } = usePullTracks(currPlaylistAlbum, token);
