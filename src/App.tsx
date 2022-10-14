@@ -96,7 +96,7 @@ const App: FC = () => {
           {auth ? (
             <>
               <Route path="/home" element={<Home user={user} handlePlaylistAlbumClick={handlePlaylistAlbumClick}/>}/> 
-              <Route path="/playlist" element={<Playlists currPlaylistAlbum={currPlaylistAlbum} token={token}/>} />
+              <Route path="/playlist" element={<Playlists currPlaylistAlbum={currPlaylistAlbum} token={token} />} />
             </>
           ) : (
             <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
