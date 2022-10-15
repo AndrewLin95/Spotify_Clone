@@ -41,7 +41,7 @@ const MusicTracks:FC<Props> = ({ tracks }) => {
                 <TableCell className='tableTrackNum' align='center'>{1 + toInteger(key)}</TableCell>
                 <TableCell className='tableTitleContainer'> 
                   <div className='tableTitle'>
-                    <img className='tableImg' src={value.track.album.images[1].url} />
+                    <img className='tableImg' src={value.track.album.images[1].url}/>
                       <div className='tableTitleText'>
                         <div>{value.track.name}</div>
                         <div className='tableArtist'>{value.track.artists[0].name}</div>
