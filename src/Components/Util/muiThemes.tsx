@@ -55,6 +55,16 @@ const theme = createTheme({
         }
       }
     },
+    MuiSlider: {
+      styleOverrides: {
+        root: {
+          color: 'rgba(255,255,255,1)',
+        },
+        thumb: {
+          display: 'none',
+        }
+      }
+    }
   }
 });
 
