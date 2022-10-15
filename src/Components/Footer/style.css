@@ -1,3 +1,4 @@
 #footerContainer{
-  height: 5vh;
+  height: 10vh;
+  border: pink solid 1px;
 }
