@@ -12,11 +12,19 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
-  border: solid pink 1px;
 }
 
 #footerPlaybackControlsContainer{
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 50%;
+  position: relative;
+  top: 8px;
+}
+
+#footerTimeSliderContainer{
+  height: 50%;
+  position: relative;
+  bottom: 10px;
 }

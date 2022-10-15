@@ -7,7 +7,7 @@ import FastRewindRounded from '@mui/icons-material/FastRewindRounded';
 
 const PlaybackControls = () => {
   return(
-    <Box sx={{width: 200, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <Box sx={{width: 300, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <Stack spacing={1} direction='row' alignItems='center'>
         <FastRewindRounded />
         <PauseRounded/>
