@@ -1,4 +1,22 @@
 #footerContainer{
-  height: 10vh;
+  height: 8vh;
   border: pink solid 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Footer Center */
+#footerCenter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  border: solid pink 1px;
+}
+
+#footerPlaybackControlsContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './style.css';
 import TimeSlider from './TimeSlider/TimeSlider';
+import PlaybackControls from './PlaybackControls/PlaybackControls';
 
 const Footer = () => {
 
@@ -11,11 +12,13 @@ const Footer = () => {
       </div>
       <div id='footerCenter'>
         <div id='footerPlaybackControlsContainer'>
-
+          <PlaybackControls />
         </div>
         <div id='footerTimeSliderContainer'>
           <div className='footerCurrTime'></div>
-          <div className='footerTimeSlider'><TimeSlider /></div>
+          <div className='footerTimeSlider'>
+            <TimeSlider />
+            </div>
           <div className='footerTotalTime'></div>
         </div>
       </div>
