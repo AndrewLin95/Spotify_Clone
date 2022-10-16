@@ -105,7 +105,7 @@ const App: FC = () => {
           {/* page not found route */}
           <Route path="*" element={<Login token={token} accessSite={accessSite}/>} />  
         </Routes>
-        {auth? <Footer /> : null}
+        {auth? <Footer token={token}/> : null}
       </ThemeProvider>
     </BrowserRouter>
   )

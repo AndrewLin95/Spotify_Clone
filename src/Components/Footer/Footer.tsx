@@ -1,9 +1,107 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import './style.css';
 import TimeSlider from './TimeSlider/TimeSlider';
 import PlaybackControls from './PlaybackControls/PlaybackControls';
 
-const Footer = () => {
+declare global {
+  interface Window { 
+    onSpotifyWebPlaybackSDKReady: any; 
+    Spotify: any;
+  }
+}
+
+interface Props {
+  token: string,
+}
+
+interface play{
+  spotify_uri: any;
+  playerInstance: {
+      _options: {
+          getOAuthToken: any;
+          id: any;
+      };
+  };
+}
+
+const Footer:FC<Props> = ({ token }) => {
+  const [is_paused, setPaused] = useState(false);
+  const [is_active, setActive] = useState(false);
+  const [player, setPlayer] = useState(undefined);
+  const [current_track, setTrack] = useState(`spotify:track:4r34Yi0eltsu1tp6z4lq3x`);
+
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://sdk.scdn.co/spotify-player.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    window.onSpotifyWebPlaybackSDKReady = () => {
+      const player = new window.Spotify.Player({
+        name: 'Web Playback SDK',
+        getOAuthToken: (cb: any) => { cb(token) },
+        volume: 0.5
+      });
+
+      setPlayer(player);
+
+      player.addListener('ready', ({ device_id }: any) => {
+          console.log('Ready with Device ID', device_id);
+          
+          const play = ({
+            spotify_uri,
+            playerInstance: {
+              _options: {
+                getOAuthToken,
+                id
+              }
+            }
+          }: play) => {
+            getOAuthToken((token: string) => {
+              fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({ uris: [spotify_uri] }),
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+                },
+              });
+            });
+          };
+    
+          play({
+            playerInstance: player,
+            spotify_uri: "spotify:track:7M2qLDA7hAwKgyrTjJfI2C",
+          });
+
+      });
+
+      player.addListener('not_ready', ({ device_id }: any) => {
+          console.log('Device ID has gone offline', device_id);
+      });
+
+      // player.addListener('player_state_changed', ( (state: any) => {
+
+      //     if (!state) {
+      //         return;
+      //     }
+
+      //     setTrack(state.track_window.current_track);
+      //     setPaused(state.paused);
+
+      //     player.getCurrentState().then( (state:any) => { 
+      //         (!state)? setActive(false) : setActive(true) 
+      //     });
+      // }));
+      player.connect();
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log('mount');
+  }, [])
 
   return (
     <div id='footerContainer'>
