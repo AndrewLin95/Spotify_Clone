@@ -28,7 +28,7 @@ const Footer:FC<Props> = ({ token }) => {
   const [is_paused, setPaused] = useState(false);
   const [is_active, setActive] = useState(false);
   const [player, setPlayer] = useState(undefined);
-  const [current_track, setTrack] = useState(`spotify:track:4r34Yi0eltsu1tp6z4lq3x`);
+  const [current_track, setTrack] = useState();
 
 
   useEffect(() => {
@@ -54,13 +54,12 @@ const Footer:FC<Props> = ({ token }) => {
             spotify_uri,
             playerInstance: {
               _options: {
-                getOAuthToken,
-                id
+                getOAuthToken
               }
             }
           }: play) => {
             getOAuthToken((token: string) => {
-              fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+              fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
                 method: 'PUT',
                 body: JSON.stringify({ uris: [spotify_uri] }),
                 headers: {
@@ -73,9 +72,8 @@ const Footer:FC<Props> = ({ token }) => {
     
           play({
             playerInstance: player,
-            spotify_uri: "spotify:track:7M2qLDA7hAwKgyrTjJfI2C",
+            spotify_uri: '',
           });
-
       });
 
       player.addListener('not_ready', ({ device_id }: any) => {

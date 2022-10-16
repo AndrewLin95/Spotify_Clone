@@ -22,6 +22,8 @@ const App: FC = () => {
   const currPlaylistInterface = {} as SpotifyApi.PlaylistObjectSimplified
   const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<SpotifyApi.PlaylistObjectSimplified>(currPlaylistInterface);
 
+  const [currTrack, setCurrTrack] = useState();
+
   const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
   const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
   const [track, setTrack]= useState<SpotifyApi.TrackSearchResponse>();
