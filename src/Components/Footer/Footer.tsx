@@ -28,11 +28,8 @@ interface play{
 }
 
 const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
-  const [is_paused, setPaused] = useState(false);
-  const [is_active, setActive] = useState(false);
-
   // activates Spotify Web Playback SDK to trigger player functions
-  const { player, deviceID } = SpotifyWebPlaybackSDK(token);
+  const { player, deviceID, current_track, is_paused } = SpotifyWebPlaybackSDK(token);
 
   async function playTracks(_spotifyURI: string, _playlistAlbumKey:string,) {
     const url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`
@@ -68,16 +65,6 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
     playTracks(spotifyURI, playlistAlbumKey)
   }, [spotifyURI, playlistAlbumKey])
 
-  const handleNextTrack = () => {
-    player.nextTrack().then(() => {
-      console.log('Next Track');
-    })
-  }
-
-  useEffect(() => {
-    console.log('token', token)
-  }, [])
-
   return (
     <div id='footerContainer'>
       <div id='footerLeft'>
@@ -86,9 +73,9 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
       <div id='footerCenter'>
         <div id='footerPlaybackControlsContainer'>
           <PlaybackControls 
-            handleNextTrack={handleNextTrack}
+            player={player}
+            is_paused={is_paused}
           />
-          <button onClick={() => { player.nextTrack() }}>TEST</button>
         </div>
         <div id='footerTimeSliderContainer'>
           <div className='footerCurrTime'></div>

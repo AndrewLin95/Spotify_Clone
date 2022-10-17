@@ -4,6 +4,10 @@ const SpotifyWebPlaybackSDK = ( token: any ) => {
   const [player, setPlayer] = useState<any>(undefined);
   const [deviceID, setDeviceID] = useState<string>('');
 
+  const [current_track, setTrack] = useState();
+  const [is_paused, setPaused] = useState(false);
+  const [is_active, setActive] = useState(false);
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://sdk.scdn.co/spotify-player.js";
@@ -29,19 +33,19 @@ const SpotifyWebPlaybackSDK = ( token: any ) => {
           console.log('Device ID has gone offline', device_id);
       });
   
-      // player.addListener('player_state_changed', ( (state: any) => {
+      player.addListener('player_state_changed', ( (state: any) => {
   
-      //     if (!state) {
-      //         return;
-      //     }
+          if (!state) {
+              return;
+          }
   
-      //     setTrack(state.track_window.current_track);
-      //     setPaused(state.paused);
+          setTrack(state.track_window.current_track);
+          setPaused(state.paused);
   
-      //     player.getCurrentState().then( (state:any) => { 
-      //         (!state)? setActive(false) : setActive(true) 
-      //     });
-      // }));
+          player.getCurrentState().then( (state:any) => { 
+              (!state)? setActive(false) : setActive(true) 
+          });
+      }));
       player.connect();
 
       return () => {
@@ -50,7 +54,7 @@ const SpotifyWebPlaybackSDK = ( token: any ) => {
     }
   }, [])
 
-  return { player, deviceID };
+  return { player, deviceID, current_track, is_paused};
 }
 
 export default SpotifyWebPlaybackSDK;
