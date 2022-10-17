@@ -80,7 +80,12 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
         <div id='footerTimeSliderContainer'>
           <div className='footerCurrTime'></div>
           <div className='footerTimeSlider'>
-            <TimeSlider is_paused={is_paused} trackPosition={trackPosition}/>
+            <TimeSlider 
+              is_paused={is_paused} 
+              trackPosition={trackPosition} 
+              current_track={current_track}
+              token={token}
+            />
             </div>
           <div className='footerTotalTime'></div>
         </div>
