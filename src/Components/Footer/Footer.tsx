@@ -29,7 +29,7 @@ interface play{
 
 const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
   // activates Spotify Web Playback SDK to trigger player functions
-  const { player, deviceID, current_track, is_paused } = SpotifyWebPlaybackSDK(token);
+  const { player, deviceID, current_track, is_paused, trackPosition } = SpotifyWebPlaybackSDK(token);
 
   async function playTracks(_spotifyURI: string, _playlistAlbumKey:string,) {
     const url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`
@@ -80,7 +80,7 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
         <div id='footerTimeSliderContainer'>
           <div className='footerCurrTime'></div>
           <div className='footerTimeSlider'>
-            <TimeSlider />
+            <TimeSlider is_paused={is_paused} trackPosition={trackPosition}/>
             </div>
           <div className='footerTotalTime'></div>
         </div>

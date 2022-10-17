@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import WebPlaybackTrack from '../Util/modals';
 
 const SpotifyWebPlaybackSDK = ( token: any ) => {
   const [player, setPlayer] = useState<any>(undefined);
   const [deviceID, setDeviceID] = useState<string>('');
 
   const [current_track, setTrack] = useState();
-  const [is_paused, setPaused] = useState(false);
+  const [is_paused, setPaused] = useState(true);
   const [is_active, setActive] = useState(false);
+
+  const [trackPosition, setTrackPosition] = useState(0);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -33,18 +36,18 @@ const SpotifyWebPlaybackSDK = ( token: any ) => {
           console.log('Device ID has gone offline', device_id);
       });
   
-      player.addListener('player_state_changed', ( (state: any) => {
-  
-          if (!state) {
-              return;
-          }
-  
-          setTrack(state.track_window.current_track);
-          setPaused(state.paused);
-  
-          player.getCurrentState().then( (state:any) => { 
-              (!state)? setActive(false) : setActive(true) 
-          });
+      player.addListener('player_state_changed', ( (state: WebPlaybackTrack) => {
+        if (!state) {
+            return;
+        }
+
+        setTrack(state.track_window.current_track);
+        setPaused(state.paused);
+        setTrackPosition(state.position);
+
+        player.getCurrentState().then( (state: any) => { 
+            (!state)? setActive(false) : setActive(true) 
+        });
       }));
       player.connect();
 
@@ -54,7 +57,7 @@ const SpotifyWebPlaybackSDK = ( token: any ) => {
     }
   }, [])
 
-  return { player, deviceID, current_track, is_paused};
+  return { player, deviceID, current_track, is_paused, trackPosition};
 }
 
 export default SpotifyWebPlaybackSDK;
