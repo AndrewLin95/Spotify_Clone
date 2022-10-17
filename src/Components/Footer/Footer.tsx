@@ -14,7 +14,8 @@ declare global {
 
 interface Props {
   token: string,
-  currTrack: string,
+  spotifyURI: string,
+  playlistAlbumKey: string,
 }
 
 interface play{
@@ -27,13 +28,13 @@ interface play{
   };
 }
 
-const Footer:FC<Props> = ({ token, currTrack }) => {
+const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
   const [is_paused, setPaused] = useState(false);
   const [is_active, setActive] = useState(false);
 
   const { player, deviceID } = SpotifyWebPlaybackSDK(token);
   
-  async function playTracks() {
+  async function playTracks(_spotifyURI: string, _playlistAlbumKey:string) {
     const url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`
     const requestOptions = {
       method: 'PUT',
@@ -43,9 +44,9 @@ const Footer:FC<Props> = ({ token, currTrack }) => {
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        'context_uri': 'spotify:playlist:4U1fWzFgfHM67rKSJijuHL',
+        'context_uri': _spotifyURI,
         'offset': {
-          'position': 1
+          'position': _playlistAlbumKey
         },
         "position_ms": 0
       })
@@ -60,20 +61,15 @@ const Footer:FC<Props> = ({ token, currTrack }) => {
     }
   }
 
-
-  useEffect(()=>{
-    playTracks();
-  }, [player, currTrack])
+  useEffect(() => {
+    playTracks(spotifyURI, playlistAlbumKey)
+  }, [spotifyURI, playlistAlbumKey])
 
   const handleNextTrack = () => {
     player.nextTrack().then(() => {
       console.log('Next Track');
     })
   }
-
-  useEffect(() => {
-    console.log(currTrack);
-  }, [currTrack])
 
   useEffect(() => {
     console.log('token', token)

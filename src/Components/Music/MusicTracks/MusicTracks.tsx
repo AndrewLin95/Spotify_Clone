@@ -14,10 +14,11 @@ import formatTime from '../../Util/formatTime';
 
 interface Props{
   tracks: PlaylistTrackObjectFull[],
-  handleTrackPress: (trackURI: string) => void,
+  handleTrackPress: (trackURI: string, key: string) => void,
+  currPlaylistAlbum: SpotifyApi.PlaylistObjectSimplified,
 }
 
-const MusicTracks:FC<Props> = ({ tracks, handleTrackPress }) => {
+const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum }) => {
 
   return(
     <TableContainer>
@@ -40,7 +41,7 @@ const MusicTracks:FC<Props> = ({ tracks, handleTrackPress }) => {
             return (
               <TableRow key={key}>
                 <TableCell 
-                  onClick={() => {handleTrackPress(value.track.uri)}}
+                  onClick={() => {handleTrackPress(currPlaylistAlbum.uri, key)}}
                   className='tableTrackNum' 
                   align='center'>{1 + toInteger(key)}
                 </TableCell>

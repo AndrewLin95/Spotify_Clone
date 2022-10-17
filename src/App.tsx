@@ -22,7 +22,8 @@ const App: FC = () => {
   const currPlaylistInterface = {} as SpotifyApi.PlaylistObjectSimplified
   const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<SpotifyApi.PlaylistObjectSimplified>(currPlaylistInterface);
 
-  const [currTrack, setCurrTrack] = useState<string>('');
+  const [spotifyURI, setSpotifyURI] = useState<string>('');
+  const [playlistAlbumKey, setPlaylistAlbumKey] = useState<string>('');
 
   const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
   const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
@@ -46,8 +47,10 @@ const App: FC = () => {
     setAuth(authStatus)
   }
 
-  const handleTrackPress = (trackURI: string) => {
-    setCurrTrack(trackURI);
+  const handleTrackPress = (spotifyURI: string, key: string) => {
+    setSpotifyURI(spotifyURI);
+    setPlaylistAlbumKey(key);
+    console.log('playlistalbumkey', key);
   }
 
   // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
@@ -115,7 +118,7 @@ const App: FC = () => {
           {/* page not found route */}
           <Route path="*" element={<Login token={token} accessSite={accessSite}/>} />  
         </Routes>
-        {auth? <Footer token={token} currTrack={currTrack}/> : null}
+        {auth? <Footer token={token} spotifyURI={spotifyURI} playlistAlbumKey={playlistAlbumKey}/> : null}
       </ThemeProvider>
     </BrowserRouter>
   )

@@ -6,7 +6,7 @@ import PlaylistTrackObjectFull from '../Util/modals';
 interface Props{
   currPlaylistAlbum: SpotifyApi.PlaylistObjectSimplified,
   token: string,
-  handleTrackPress: (trackURI: string) => void,
+  handleTrackPress: (trackURI: string, key: string) => void,
 }
 
 const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress }) => {
@@ -25,7 +25,14 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress }) => 
   return (
     <div className="mainContainer">
       <MusicHeader currPlaylistAlbum={currPlaylistAlbum} />
-      {loadingTracks ? null : <MusicTracks tracks={tracks} handleTrackPress={handleTrackPress} /> }
+      {loadingTracks ? 
+        null : 
+        <MusicTracks 
+          currPlaylistAlbum={currPlaylistAlbum} 
+          tracks={tracks} 
+          handleTrackPress={handleTrackPress} 
+        />
+      }
     </div>
   )
 }
