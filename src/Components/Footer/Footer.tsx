@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from 'react';
 import './style.css';
 import TimeSlider from './TimeSlider/TimeSlider';
 import PlaybackControls from './PlaybackControls/PlaybackControls';
-import { spotifyAPI } from '../Spotify/Spotify';
 import SpotifyWebPlaybackSDK from '../Spotify/SpotifyWebPlaybackSDK';
 
 declare global {
@@ -32,9 +31,10 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
   const [is_paused, setPaused] = useState(false);
   const [is_active, setActive] = useState(false);
 
+  // activates Spotify Web Playback SDK to trigger player functions
   const { player, deviceID } = SpotifyWebPlaybackSDK(token);
-  
-  async function playTracks(_spotifyURI: string, _playlistAlbumKey:string) {
+
+  async function playTracks(_spotifyURI: string, _playlistAlbumKey:string,) {
     const url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`
     const requestOptions = {
       method: 'PUT',
@@ -51,16 +51,19 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
         "position_ms": 0
       })
     };
+
     try{
       const response = await fetch(url, requestOptions)
       const data = await response.json()
       console.log(data);
     }
+
     catch (err){
       throw (err);
     }
   }
 
+  // when a track gets clicked, spotifyURI at the app component changes state. this updates and plays the track
   useEffect(() => {
     playTracks(spotifyURI, playlistAlbumKey)
   }, [spotifyURI, playlistAlbumKey])
