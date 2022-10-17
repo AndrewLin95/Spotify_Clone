@@ -22,7 +22,7 @@ const App: FC = () => {
   const currPlaylistInterface = {} as SpotifyApi.PlaylistObjectSimplified
   const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<SpotifyApi.PlaylistObjectSimplified>(currPlaylistInterface);
 
-  const [currTrack, setCurrTrack] = useState();
+  const [currTrack, setCurrTrack] = useState<string>('');
 
   const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
   const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
@@ -44,6 +44,10 @@ const App: FC = () => {
 
   const accessSite = ( authStatus: boolean ) => {
     setAuth(authStatus)
+  }
+
+  const handleTrackPress = (trackURI: string) => {
+    setCurrTrack(trackURI);
   }
 
   // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
@@ -99,7 +103,11 @@ const App: FC = () => {
           {auth ? (
             <>
               <Route path="/home" element={<Home user={user} handlePlaylistAlbumClick={handlePlaylistAlbumClick}/>}/> 
-              <Route path="/playlist" element={<Playlists currPlaylistAlbum={currPlaylistAlbum} token={token} />} />
+              <Route path="/playlist" element={<Playlists 
+                currPlaylistAlbum={currPlaylistAlbum} 
+                token={token} 
+                handleTrackPress={handleTrackPress} 
+              />} />
             </>
           ) : (
             <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
@@ -107,7 +115,7 @@ const App: FC = () => {
           {/* page not found route */}
           <Route path="*" element={<Login token={token} accessSite={accessSite}/>} />  
         </Routes>
-        {auth? <Footer token={token}/> : null}
+        {auth? <Footer token={token} currTrack={currTrack}/> : null}
       </ThemeProvider>
     </BrowserRouter>
   )

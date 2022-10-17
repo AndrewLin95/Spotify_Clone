@@ -5,10 +5,11 @@ import usePullTracks from '../APICalls/usePullTracks';
 import PlaylistTrackObjectFull from '../Util/modals';
 interface Props{
   currPlaylistAlbum: SpotifyApi.PlaylistObjectSimplified,
-  token: string
+  token: string,
+  handleTrackPress: (trackURI: string) => void,
 }
 
-const Playlists:FC<Props> = ({ currPlaylistAlbum, token }) => {
+const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress }) => {
   const pagingObject = {} as PlaylistTrackObjectFull[]
   const [tracks, setTracks] = useState<PlaylistTrackObjectFull[]>(pagingObject);
   const [loadingTracks, setLoadingTracks] = useState<boolean>(true);
@@ -24,7 +25,7 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token }) => {
   return (
     <div className="mainContainer">
       <MusicHeader currPlaylistAlbum={currPlaylistAlbum} />
-      {loadingTracks ? null : <MusicTracks tracks={tracks} /> }
+      {loadingTracks ? null : <MusicTracks tracks={tracks} handleTrackPress={handleTrackPress} /> }
     </div>
   )
 }
