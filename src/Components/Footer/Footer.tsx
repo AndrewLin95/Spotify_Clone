@@ -3,6 +3,7 @@ import './style.css';
 import TimeSlider from './TimeSlider/TimeSlider';
 import PlaybackControls from './PlaybackControls/PlaybackControls';
 import { spotifyAPI } from '../Spotify/Spotify';
+import SpotifyWebPlaybackSDK from '../Spotify/SpotifyWebPlaybackSDK';
 
 declare global {
   interface Window { 
@@ -29,77 +30,9 @@ interface play{
 const Footer:FC<Props> = ({ token, currTrack }) => {
   const [is_paused, setPaused] = useState(false);
   const [is_active, setActive] = useState(false);
-  const [player, setPlayer] = useState<any>(undefined);
-  const [deviceID, setDeviceID] = useState(undefined);
 
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://sdk.scdn.co/spotify-player.js";
-    script.async = true;
-
-    document.body.appendChild(script);
-
-    window.onSpotifyWebPlaybackSDKReady = () => {
-      const player = new window.Spotify.Player({
-        name: 'Web Playback SDK',
-        getOAuthToken: (cb: any) => { cb(token) },
-        volume: 0.2
-      });
-
-      setPlayer(player);
- 
-      player.addListener('ready', ({ device_id }: any) => {
-          console.log('Ready with Device ID', device_id);
-          setDeviceID(device_id);
-          
-          // const play = ({
-          //   spotify_uri,
-          //   playerInstance: {
-          //     _options: {
-          //       getOAuthToken
-          //     }
-          //   }
-          // }: play) => {
-          //   getOAuthToken((token: string) => {
-          //     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
-          //       method: 'PUT',
-          //       body: JSON.stringify({ uris: [spotify_uri] }),
-          //       headers: {
-          //         'Content-Type': 'application/json',
-          //         'Authorization': `Bearer ${token}`
-          //       },
-          //     });
-          //   });
-          // };
-
-          // play({
-          //   playerInstance: player,
-          //   spotify_uri: "spotify:playlist:4U1fWzFgfHM67rKSJijuHL",
-          // });
-      });
-
-      player.addListener('not_ready', ({ device_id }: any) => {
-          console.log('Device ID has gone offline', device_id);
-      });
-
-      // player.addListener('player_state_changed', ( (state: any) => {
-
-      //     if (!state) {
-      //         return;
-      //     }
-
-      //     setTrack(state.track_window.current_track);
-      //     setPaused(state.paused);
-
-      //     player.getCurrentState().then( (state:any) => { 
-      //         (!state)? setActive(false) : setActive(true) 
-      //     });
-      // }));
-      player.connect();
-    }
-  }, [])
-   
+  const { player, deviceID } = SpotifyWebPlaybackSDK(token);
+  
   async function playTracks() {
     const url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`
     const requestOptions = {
