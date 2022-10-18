@@ -1,6 +1,7 @@
 .mainContainer{
   height: calc(100vh - 60px - 70px);
   overflow-x: hidden;
+  border: solid 1px green;
 }
 
 .homeCategoryHeader{
