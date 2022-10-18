@@ -3,6 +3,8 @@ import './style.css';
 import TimeSlider from './TimeSlider/TimeSlider';
 import PlaybackControls from './PlaybackControls/PlaybackControls';
 import SpotifyWebPlaybackSDK from '../Spotify/SpotifyWebPlaybackSDK';
+import putPlaybackShuffle from '../APICalls/putPlaybackShuffle';
+import putRepeatState from '../APICalls/putRepeatState';
 
 declare global {
   interface Window { 
@@ -27,9 +29,18 @@ interface play{
   };
 }
 
+const _repeatState = {
+  OFF: 'off',
+  CONTEXT: 'context',
+  TRACK: 'track',
+}
+
 const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
   // activates Spotify Web Playback SDK to trigger player functions
   const { player, deviceID, current_track, is_paused, trackPosition } = SpotifyWebPlaybackSDK(token);
+
+  const [shuffleState, setShuffleState] = useState(false);
+  const [repeatState, setRepeatState] = useState(_repeatState.OFF);
 
   async function playTracks(_spotifyURI: string, _playlistAlbumKey:string,) {
     const url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`
@@ -51,8 +62,6 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
 
     try{
       const response = await fetch(url, requestOptions)
-      const data = await response.json()
-      console.log(data);
     }
 
     catch (err){
@@ -65,6 +74,29 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
     playTracks(spotifyURI, playlistAlbumKey)
   }, [spotifyURI, playlistAlbumKey])
 
+  const handleShuffleState = () => {
+    putPlaybackShuffle(!shuffleState, token, deviceID);
+    setShuffleState(!shuffleState);
+  }
+
+  const handleRepeatState = () => {
+    let newRepeatState = ''
+    switch (repeatState) {
+      case _repeatState.OFF:
+        newRepeatState = _repeatState.CONTEXT
+        break;
+      case _repeatState.CONTEXT:
+        newRepeatState = _repeatState.TRACK
+        break;
+      case _repeatState.TRACK:
+        newRepeatState = _repeatState.OFF
+        break;
+    }
+   
+    putRepeatState(newRepeatState, deviceID, token);
+    setRepeatState(newRepeatState);
+  }
+
   return (
     <div id='footerContainer'>
       <div id='footerLeft'>
@@ -75,6 +107,10 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
           <PlaybackControls 
             player={player}
             is_paused={is_paused}
+            handleShuffleState={handleShuffleState}
+            shuffleState={shuffleState}
+            handleRepeatState={handleRepeatState}
+            repeatState={repeatState}
           />
         </div>
         <div id='footerTimeSliderContainer'>

@@ -9,24 +9,45 @@ import Shuffle from '@mui/icons-material/Shuffle';
 import ShuffleOn from '@mui/icons-material/ShuffleOn';
 import Repeat from '@mui/icons-material/Repeat';
 import RepeatOn from '@mui/icons-material/RepeatOn';
-import RepeatOne from '@mui/icons-material/RepeatOne';
+import RepeatOneOn from '@mui/icons-material/RepeatOneOn';
 
 interface Props{
   player: any,
-  is_paused: boolean
+  is_paused: boolean,
+  handleShuffleState: () => void,
+  shuffleState: boolean,
+  handleRepeatState: () => void,
+  repeatState: string,
 }
 
-const PlaybackControls:FC<Props> = ({ player, is_paused }) => {
+const _repeatState = {
+  OFF: 'off',
+  CONTEXT: 'context',
+  TRACK: 'track',
+}
+
+const PlaybackControls:FC<Props> = ({ player, is_paused, handleShuffleState, shuffleState, handleRepeatState, repeatState }) => {
   return(
     <Box sx={{width: 300, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <Stack spacing={1} direction='row' alignItems='center'>
-        <div> <Shuffle fontSize='small' /> </div>
+        <div onClick={handleShuffleState}> { shuffleState ? <ShuffleOn fontSize='small' /> : <Shuffle fontSize='small'/> } </div>
         <div onClick={() => {player.previousTrack()}}><FastRewindRounded /></div>
         <div onClick={() => {player.togglePlay()}}>
           {is_paused ? <PlayArrowRounded fontSize='large' /> : <PauseRounded fontSize='large'/> }
         </div>
         <div onClick={() => {player.nextTrack()}}><FastForwardRounded /></div>
-        <div> <Repeat fontSize='small'/> </div>
+        <div onClick={handleRepeatState}> 
+          {(() => {
+            switch (repeatState) {
+              case _repeatState.OFF:
+                return <Repeat fontSize='small' /> 
+              case _repeatState.CONTEXT:
+                return <RepeatOn fontSize='small' />
+              case _repeatState.TRACK:
+                return <RepeatOneOn fontSize='small' />
+            };
+          })()}
+        </div>
       </Stack>
     </Box>
   )
