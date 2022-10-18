@@ -1,0 +1,13 @@
+#footerLeftMain{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#footerLeftText{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

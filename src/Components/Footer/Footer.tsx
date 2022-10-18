@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import './style.css';
 import TimeSlider from './TimeSlider/TimeSlider';
 import PlaybackControls from './PlaybackControls/PlaybackControls';
+import FooterLeft from './FooterLeft/FooterLeft';
 import SpotifyWebPlaybackSDK from '../Spotify/SpotifyWebPlaybackSDK';
 import putPlaybackShuffle from '../APICalls/putPlaybackShuffle';
 import putRepeatState from '../APICalls/putRepeatState';
@@ -100,7 +101,7 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
   return (
     <div id='footerContainer'>
       <div id='footerLeft'>
-        
+        <FooterLeft current_track={current_track}/>
       </div>
       <div id='footerCenter'>
         <div id='footerPlaybackControlsContainer'>
