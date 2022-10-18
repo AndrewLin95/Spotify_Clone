@@ -1,6 +1,6 @@
 export default async function putRepeatState(repeatState: string, deviceID: string, token: string) {
   console.log(repeatState);
-  const url = `https://api.spotify.com/v1/me/player/repeat?state=off&device_id=${deviceID}`
+  const url = `https://api.spotify.com/v1/me/player/repeat?state=${repeatState}&device_id=${deviceID}`
   const requestOptions = {
     method: 'PUT',
     headers: {
