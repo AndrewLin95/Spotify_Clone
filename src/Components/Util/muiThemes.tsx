@@ -67,6 +67,14 @@ const theme = createTheme({
           display: 'none',
         }
       }
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(55, 55, 55, 0.7)',
+          color: '#eeeeee',
+        }
+      }
     }
   }
 });
