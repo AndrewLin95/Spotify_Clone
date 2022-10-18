@@ -1,5 +1,5 @@
 .mainContainer{
-  height: 86vh;
+  height: calc(100vh - 60px - 70px);
   overflow-x: hidden;
 }
 

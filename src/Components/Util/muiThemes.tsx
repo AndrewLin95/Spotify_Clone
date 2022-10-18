@@ -60,6 +60,8 @@ const theme = createTheme({
         root: {
           color: 'rgba(255,255,255,1)',
           padding: '0px',
+          paddingTop: '0px',
+          paddingBottom: '0px',
         },
         thumb: {
           display: 'none',
