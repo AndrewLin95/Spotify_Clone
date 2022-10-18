@@ -6,7 +6,10 @@ interface Props{
 }
 
 const FooterLeft:FC<Props> = ({current_track}) => {
-  console.log(current_track);
+  if (current_track === undefined){
+    return null;
+  }
+  
   return (
     <div id="footerLeftMain">
       <img src={current_track.album.images[1].url} />

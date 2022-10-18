@@ -1,29 +1,26 @@
 #footerContainer{
-  height: 60px;
+  height: 80px;
   width: 100%;
   border: pink solid 1px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 /* Footer Center */
 #footerCenter{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  align-content: center;
-  height: 100%;
+  gap: 5px;
 }
 
 #footerPlaybackControlsContainer{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 5px;
 }
 
 #footerTimeSliderContainer{
   display: flex;
-  padding: 0px;
 }
