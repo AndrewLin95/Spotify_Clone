@@ -27,7 +27,7 @@ const MusicHeader:FC<Props> = ({ currPlaylistAlbum }) => {
       }).catch(e => {
         throw(e);
       })
-  }, [])
+  }, [currPlaylistAlbum])
 
   return (
     <div className='musicHeaderMain' style={{
