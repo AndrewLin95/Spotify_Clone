@@ -22,12 +22,13 @@ interface Props{
     name: string,
     owner_name: string,
     totalTracks: string,
-    playlisturi: string,
+    uri: string,
     urlID: string,
   },
+  handleAlbumClick: (value: any) => void;
 }
 
-const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum }) => {
+const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum, handleAlbumClick }) => {
   if (tracks === undefined){
     return null;
   }
@@ -53,7 +54,7 @@ const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum }) 
             return (
               <TableRow key={key}>
                 <TableCell 
-                  onClick={() => {handleTrackPress(currPlaylistAlbum.playlisturi, key)}}
+                  onClick={() => {handleTrackPress(currPlaylistAlbum.uri, key)}}
                   className='tableTrackNum' 
                   align='center'>{1 + toInteger(key)}
                 </TableCell>
@@ -66,7 +67,7 @@ const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum }) 
                       </div>
                   </div>
                 </TableCell>
-                <Link to={'/playlist'} style={{textDecoration: 'none'}}>
+                <Link onClick={() => {handleAlbumClick(value.track.album)}} to={'/playlist'} style={{textDecoration: 'none'}}>
                   <TableCell className='tableAlbum'>{value.track.album.name}</TableCell>  
                 </Link>
                 <TableCell className='tableDateAdded'>{formattedDate}</TableCell>

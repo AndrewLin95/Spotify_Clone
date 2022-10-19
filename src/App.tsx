@@ -18,7 +18,7 @@ interface _currPlaylistAlbum{
   name: string,
   owner_name: string,
   totalTracks: string,
-  playlisturi: string,
+  uri: string,
   urlID: string,
 }
 
@@ -101,19 +101,30 @@ const App: FC = () => {
   });
 
   // handles playlist click from Home page
-  const handlePlaylistAlbumClick = (value: SpotifyApi.PlaylistObjectSimplified) => {
+  const handlePlaylistClick = (value: SpotifyApi.PlaylistObjectSimplified) => {
     setCurrPlaylistAlbum({
       image: value.images[0].url,
       type: value.type,
       name: value.name,
       owner_name: value.owner.display_name,
       totalTracks: value.tracks.total,
-      playlisturi: value.uri,
+      uri: value.uri,
       urlID: value.id,
     });
     console.log('testValue', value);
   }
 
+  const handleAlbumClick = (value: any) => {
+    setCurrPlaylistAlbum({
+      image: value.images[0].url,
+      type: value.type,
+      name: value.name,
+      owner_name: value.artists[0].name,
+      totalTracks: value.total_tracks,
+      uri: value.uri,
+      urlID: value.id
+    })
+  }
 
   return (
     <BrowserRouter>
@@ -123,11 +134,12 @@ const App: FC = () => {
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
           {auth ? (
             <>
-              <Route path="/home" element={<Home user={user} handlePlaylistAlbumClick={handlePlaylistAlbumClick}/>}/> 
+              <Route path="/home" element={<Home user={user} handlePlaylistClick={handlePlaylistClick}/>}/> 
               <Route path="/playlist" element={<Playlists 
                 currPlaylistAlbum={currPlaylistAlbum} 
                 token={token} 
                 handleTrackPress={handleTrackPress} 
+                handleAlbumClick={handleAlbumClick}
               />} />
             </>
           ) : (

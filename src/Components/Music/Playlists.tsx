@@ -3,6 +3,8 @@ import MusicHeader from './MusicHeader/MusicHeader';
 import MusicTracks from './MusicTracks/MusicTracks';
 import usePullTracks from '../APICalls/usePullTracks';
 import PlaylistTrackObjectFull from '../Util/modals';
+import pullTracks from '../APICalls/pullTracks';
+
 interface Props{
   currPlaylistAlbum: {
     image: string,
@@ -10,25 +12,28 @@ interface Props{
     name: string,
     owner_name: string,
     totalTracks: string,
-    playlisturi: string,
+    uri: string,
     urlID: string,
   },
   token: string,
   handleTrackPress: (trackURI: string, key: string) => void,
+  handleAlbumClick: (value: any) => void;
 }
 
-const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress }) => {
+const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handleAlbumClick }) => {
   const pagingObject = {} as PlaylistTrackObjectFull[]
   const [tracks, setTracks] = useState<PlaylistTrackObjectFull[]>(pagingObject);
   const [loadingTracks, setLoadingTracks] = useState<boolean>(true);
 
-  const { _loadingTracks, dataTracks } = usePullTracks(currPlaylistAlbum.urlID, token);
-
   useEffect(() =>{
-    setTracks(dataTracks);
-    setLoadingTracks(_loadingTracks);
-    console.log(currPlaylistAlbum);
-  })
+    async function getTrackInfo() {
+      const data = await pullTracks(currPlaylistAlbum.urlID, token);
+      
+      setTracks(data.dataPayload);
+      setLoadingTracks(data._loadingTracks);
+    }
+    getTrackInfo();
+  }, [currPlaylistAlbum]);
 
 
   return (
@@ -40,6 +45,7 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress }) => 
           currPlaylistAlbum={currPlaylistAlbum} 
           tracks={tracks} 
           handleTrackPress={handleTrackPress} 
+          handleAlbumClick={handleAlbumClick}
         />
       }
     </div>

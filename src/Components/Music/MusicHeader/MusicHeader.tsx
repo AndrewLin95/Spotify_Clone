@@ -9,7 +9,7 @@ interface Props{
     name: string,
     owner_name: string,
     totalTracks: string,
-    playlisturi: string,
+    uri: string,
   },
 }
 
