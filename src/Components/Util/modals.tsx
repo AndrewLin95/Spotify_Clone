@@ -19,11 +19,20 @@ interface TrackObjectFull {
   uri: string;
 }
 
-export default interface PlaylistTrackObjectFull {
+export interface PlaylistTrackObjectFull {
   added_at: string;
   added_by: SpotifyApi.UserObjectPublic;
   is_local: boolean;
   track: TrackObjectFull;
+}
+
+export interface tracksInterface {
+  addedDate: string,
+  trackDuration: number,
+  albumImg?: string,
+  trackName: string,
+  artistName: string,
+  album?: any,
 }
 
 interface WebPlaybackTrack {

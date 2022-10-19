@@ -9,12 +9,14 @@ import { toInteger } from 'lodash';
 import './style.css';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Link } from 'react-router-dom';
-import PlaylistTrackObjectFull from '../../Util/modals';
+import { tracksInterface } from '../../Util/modals';
 import formatDate from '../../Util/formatDate';
 import formatTime from '../../Util/formatTime';
 
+// TODO: Interface for Tracks to support both playlist and album
+
 interface Props{
-  tracks: PlaylistTrackObjectFull[],
+  tracks: tracksInterface,
   handleTrackPress: (trackURI: string, key: string) => void,
   currPlaylistAlbum: {
     image: string,
@@ -48,8 +50,8 @@ const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum, ha
 
         <TableBody>
           {Object.entries(tracks).map(([key, value]) => {
-            const formattedDate = formatDate(value.added_at);
-            const formattedTime = formatTime(value.track.duration_ms);
+            const formattedDate = formatDate(value.addedDate);
+            const formattedTime = formatTime(value.trackDuration);
 
             return (
               <TableRow key={key}>
@@ -60,15 +62,15 @@ const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum, ha
                 </TableCell>
                 <TableCell className='tableTitleContainer'> 
                   <div className='tableTitle'>
-                    <img className='tableImg' src={value.track.album.images[1].url}/>
-                      <div className='tableTitleText'>
-                        <div>{value.track.name}</div>
-                        <div className='tableArtist'>{value.track.artists[0].name}</div>
-                      </div>
+                    <img className='tableImg' src={value.albumImg}/>
+                    <div className='tableTitleText'>
+                      <div>{value.trackName}</div>
+                      <div className='tableArtist'>{value.artistName}</div>
+                    </div>
                   </div>
                 </TableCell>
-                <Link onClick={() => {handleAlbumClick(value.track.album)}} to={'/playlist'} style={{textDecoration: 'none'}}>
-                  <TableCell className='tableAlbum'>{value.track.album.name}</TableCell>  
+                <Link onClick={() => {handleAlbumClick(value.album.uri)}} to={'/playlist'} style={{textDecoration: 'none'}}>
+                  <TableCell className='tableAlbum'>{value.album.name}</TableCell>  
                 </Link>
                 <TableCell className='tableDateAdded'>{formattedDate}</TableCell>
                 <TableCell className='tableDuration' align='center'>{formattedTime}</TableCell>

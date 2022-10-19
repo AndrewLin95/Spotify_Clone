@@ -1,6 +1,5 @@
-import PlaylistTrackObjectFull from '../Util/modals';
 
-export default async function pullTracks(currPlaylistAlbum_id: string, token: string) {
+export default async function pullAlbumTracks(currPlaylistAlbum_id: string, token: string) {
   let _loadingTracks = true;
   
   const url = `https://api.spotify.com/v1/playlists/${currPlaylistAlbum_id}/tracks`;
@@ -16,7 +15,7 @@ export default async function pullTracks(currPlaylistAlbum_id: string, token: st
 
   try {
     const response = await fetch(url, requestOptions)
-    const data: SpotifyApi.PagingObject<PlaylistTrackObjectFull> = await response.json();
+    const data: any = await response.json();
 
     let dataPayload = data.items;
     let numTracks = 100;
@@ -24,7 +23,7 @@ export default async function pullTracks(currPlaylistAlbum_id: string, token: st
 
     while (data.total > numTracks) {
       const response = await fetch(nextUrl, requestOptions)
-      const data: SpotifyApi.PagingObject<PlaylistTrackObjectFull> = await response.json();
+      const data: any = await response.json();
       nextUrl = data.next;
       dataPayload.push(...data.items);
       numTracks += 100;

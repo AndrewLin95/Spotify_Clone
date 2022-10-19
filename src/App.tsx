@@ -111,10 +111,11 @@ const App: FC = () => {
       uri: value.uri,
       urlID: value.id,
     });
-    console.log('testValue', value);
+    console.log('testValue PLAYLIST', value);
   }
 
   const handleAlbumClick = (value: any) => {
+    console.log('testValue ALBUM', value);
     setCurrPlaylistAlbum({
       image: value.images[0].url,
       type: value.type,
