@@ -29,10 +29,16 @@ export interface PlaylistTrackObjectFull {
 export interface tracksInterface {
   addedDate: string,
   trackDuration: number,
-  albumImg?: string,
+  albumImg: string,
   trackName: string,
   artistName: string,
-  album?: any,
+  album: any,
+}
+
+export interface tracksInterfaceAlbum {
+  trackDuration: number,
+  trackName: string,
+  artistName: string,
 }
 
 interface WebPlaybackTrack {
