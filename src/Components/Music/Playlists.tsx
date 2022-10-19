@@ -45,10 +45,9 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handl
         <MusicTracks 
           currPlaylistAlbum={currPlaylistAlbum} 
           tracks={tracks} 
+          albumTracks={albumTracks}
           handleTrackPress={handleTrackPress} 
           handleAlbumClick={handleAlbumClick}
-
-          albumTracks={albumTracks}
         />
       }
     </div>

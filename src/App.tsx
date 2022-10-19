@@ -105,6 +105,7 @@ const App: FC = () => {
     console.log('testValue PLAYLIST', value);
   }
 
+  // TODO: Interface for value below
   const handleAlbumClick = (value: any) => {
     console.log('testValue ALBUM', value);
     setCurrPlaylistAlbum({
