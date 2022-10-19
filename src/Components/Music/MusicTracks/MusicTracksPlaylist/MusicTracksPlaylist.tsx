@@ -5,22 +5,14 @@ import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import { toInteger } from 'lodash';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { tracksInterface } from '../../../Util/modals';
+import { tracksInterface, currPlaylistAlbumInterface } from '../../../Util/modals';
 import formatDate from '../../../Util/formatDate';
 import formatTime from '../../../Util/formatTime';
 
 interface Props{
   tracks: tracksInterface,
   handleTrackPress: (trackURI: string, key: string) => void,
-  currPlaylistAlbum: {
-    image: string,
-    type: string,
-    name: string,
-    owner_name: string,
-    totalTracks: string,
-    uri: string,
-    urlID: string,
-  },
+  currPlaylistAlbum: currPlaylistAlbumInterface,
   handleAlbumClick: (value: any) => void;
 }
 

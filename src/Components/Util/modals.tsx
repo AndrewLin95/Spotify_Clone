@@ -41,6 +41,16 @@ export interface tracksInterfaceAlbum {
   artistName: string,
 }
 
+export interface currPlaylistAlbumInterface {
+  image: string,
+  type: string,
+  name: string,
+  owner_name: string,
+  totalTracks: string,
+  uri: string,
+  urlID: string,
+}
+
 interface WebPlaybackTrack {
   uri: string, // Spotify URI
   id: string,                // Spotify ID from URI (can be null)

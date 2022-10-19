@@ -5,21 +5,13 @@ import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import { toInteger } from 'lodash';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { tracksInterfaceAlbum } from '../../../Util/modals';
+import { tracksInterfaceAlbum, currPlaylistAlbumInterface } from '../../../Util/modals';
 import formatTime from '../../../Util/formatTime';
 
 interface Props{
   albumTracks: tracksInterfaceAlbum,
   handleTrackPress: (trackURI: string, key: string) => void,
-  currPlaylistAlbum: {
-    image: string,
-    type: string,
-    name: string,
-    owner_name: string,
-    totalTracks: string,
-    uri: string,
-    urlID: string,
-  },
+  currPlaylistAlbum: currPlaylistAlbumInterface,
 }
 
 const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, currPlaylistAlbum }) => {

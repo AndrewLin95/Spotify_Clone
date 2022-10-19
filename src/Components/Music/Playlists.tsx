@@ -1,19 +1,11 @@
 import { FC, useEffect, useState } from 'react';
 import MusicHeader from './MusicHeader/MusicHeader';
 import MusicTracks from './MusicTracks/MusicTracks';
-import { tracksInterface, tracksInterfaceAlbum } from '../Util/modals';
+import { tracksInterface, tracksInterfaceAlbum, currPlaylistAlbumInterface } from '../Util/modals';
 import pullPlaylistTracks from '../APICalls/pullPlaylistTracks';
 
 interface Props{
-  currPlaylistAlbum: {
-    image: string,
-    type: string,
-    name: string,
-    owner_name: string,
-    totalTracks: string,
-    uri: string,
-    urlID: string,
-  },
+  currPlaylistAlbum: currPlaylistAlbumInterface,
   token: string,
   handleTrackPress: (trackURI: string, key: string) => void,
   handleAlbumClick: (value: any) => void;

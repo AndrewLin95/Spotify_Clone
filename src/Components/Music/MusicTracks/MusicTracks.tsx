@@ -4,7 +4,7 @@ import Table from '@mui/material/Table';
 import './style.css';
 import MusicTracksPlaylist from './MusicTracksPlaylist/MusicTracksPlaylist';
 import MusicTracksAlbum from './MusicTracksAlbum/MusicTracksAlbum';
-import { tracksInterface, tracksInterfaceAlbum } from '../../Util/modals';
+import { tracksInterface, tracksInterfaceAlbum, currPlaylistAlbumInterface } from '../../Util/modals';
 
 // TODO: Interface for Tracks to support both playlist and album
 
@@ -12,15 +12,7 @@ interface Props{
   tracks: tracksInterface,
   albumTracks: tracksInterfaceAlbum,
   handleTrackPress: (trackURI: string, key: string) => void,
-  currPlaylistAlbum: {
-    image: string,
-    type: string,
-    name: string,
-    owner_name: string,
-    totalTracks: string,
-    uri: string,
-    urlID: string,
-  },
+  currPlaylistAlbum: currPlaylistAlbumInterface,
   handleAlbumClick: (value: any) => void;
 }
 

@@ -8,19 +8,10 @@ import Footer from "./Components/Footer/Footer";
 import Login from "./Components/Login/Login";
 import Home from './Components/Home/Home';
 import { spotifyAPI } from './Components/Spotify/Spotify';
+import { currPlaylistAlbumInterface } from './Components/Util/modals'
 
 import useRetrieveToken from './Components/Util/useRetrieveToken';
 import Playlists from './Components/Music/Playlists';
-
-interface _currPlaylistAlbum{
-  image: string,
-  type: string,
-  name: string,
-  owner_name: string,
-  totalTracks: string,
-  uri: string,
-  urlID: string,
-}
 
 const App: FC = () => {
   const [token, setToken] = useState<any>();
@@ -29,7 +20,7 @@ const App: FC = () => {
   const [auth, setAuth] = useState<boolean>(false);
   const [query, setQuery] = useState<number | string>('');
 
-  const currPlaylistInterface = {} as _currPlaylistAlbum
+  const currPlaylistInterface = {} as currPlaylistAlbumInterface
   const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<any>({currPlaylistInterface});
 
   const [spotifyURI, setSpotifyURI] = useState<string>('');
