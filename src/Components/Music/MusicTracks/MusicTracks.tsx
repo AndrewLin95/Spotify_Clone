@@ -8,6 +8,7 @@ import TableBody from '@mui/material/TableBody';
 import { toInteger } from 'lodash';
 import './style.css';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { Link } from 'react-router-dom';
 import PlaylistTrackObjectFull from '../../Util/modals';
 import formatDate from '../../Util/formatDate';
 import formatTime from '../../Util/formatTime';
@@ -15,10 +16,21 @@ import formatTime from '../../Util/formatTime';
 interface Props{
   tracks: PlaylistTrackObjectFull[],
   handleTrackPress: (trackURI: string, key: string) => void,
-  currPlaylistAlbum: SpotifyApi.PlaylistObjectSimplified,
+  currPlaylistAlbum: {
+    image: string,
+    type: string,
+    name: string,
+    owner_name: string,
+    totalTracks: string,
+    playlisturi: string,
+    urlID: string,
+  },
 }
 
 const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum }) => {
+  if (tracks === undefined){
+    return null;
+  }
 
   return(
     <TableContainer>
@@ -41,7 +53,7 @@ const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum }) 
             return (
               <TableRow key={key}>
                 <TableCell 
-                  onClick={() => {handleTrackPress(currPlaylistAlbum.uri, key)}}
+                  onClick={() => {handleTrackPress(currPlaylistAlbum.playlisturi, key)}}
                   className='tableTrackNum' 
                   align='center'>{1 + toInteger(key)}
                 </TableCell>
@@ -54,7 +66,9 @@ const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum }) 
                       </div>
                   </div>
                 </TableCell>
-                <TableCell className='tableAlbum'>{value.track.album.name}</TableCell>
+                <Link to={'/playlist'} style={{textDecoration: 'none'}}>
+                  <TableCell className='tableAlbum'>{value.track.album.name}</TableCell>  
+                </Link>
                 <TableCell className='tableDateAdded'>{formattedDate}</TableCell>
                 <TableCell className='tableDuration' align='center'>{formattedTime}</TableCell>
               </TableRow>

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import PlaylistTrackObjectFull from '../Util/modals';
 
-const usePullTracks = (currPlaylistAlbum: SpotifyApi.PlaylistObjectSimplified, token: string ) => {
+const usePullTracks = (currPlaylistAlbum_id: string, token: string ) => {
   const [_loadingTracks, setLoadingTracks] = useState(true);
   const pagingObject = {} as PlaylistTrackObjectFull[]
   const [dataTracks, setDataTracks] = useState<PlaylistTrackObjectFull[]>(pagingObject);
 
   async function pullTracks() {
-    const url = `https://api.spotify.com/v1/playlists/${currPlaylistAlbum.id}/tracks`;
+    const url = `https://api.spotify.com/v1/playlists/${currPlaylistAlbum_id}/tracks`;
     
     const requestOptions = {
       method: 'GET',

@@ -3,7 +3,14 @@ import './style.css';
 import { FastAverageColor } from 'fast-average-color';
 
 interface Props{
-  currPlaylistAlbum: SpotifyApi.PlaylistObjectSimplified
+  currPlaylistAlbum: {
+    image: string,
+    type: string,
+    name: string,
+    owner_name: string,
+    totalTracks: string,
+    playlisturi: string,
+  },
 }
 
 const MusicHeader:FC<Props> = ({ currPlaylistAlbum }) => {
@@ -28,11 +35,11 @@ const MusicHeader:FC<Props> = ({ currPlaylistAlbum }) => {
       // backgroundColor: `rgba(${domColor.value[0]}, ${domColor.value[1]}, ${domColor.value[2]}, 0.7)`,
     }}>
       <div className='musicHeaderContainer'>
-        <img className='musicHeaderImage' src={currPlaylistAlbum.images[0].url} crossOrigin='anonymous' width={`200px`} height={`200px`}/>
+        <img className='musicHeaderImage' src={currPlaylistAlbum.image} crossOrigin='anonymous' width={`200px`} height={`200px`}/>
         <div className='musicHeaderText'>
           <div className='musicHeaderType'>{currPlaylistAlbum.type.toUpperCase()}</div>
           <div className='musicHeaderName'>{currPlaylistAlbum.name}</div>
-          <div className='musicHeaderInfo'>{currPlaylistAlbum.owner.display_name} · {currPlaylistAlbum.tracks.total} songs</div>
+          <div className='musicHeaderInfo'>{currPlaylistAlbum.owner_name} · {currPlaylistAlbum.totalTracks} songs</div>
         </div>
       </div>
     </div>

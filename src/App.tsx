@@ -12,6 +12,16 @@ import { spotifyAPI } from './Components/Spotify/Spotify';
 import useRetrieveToken from './Components/Util/useRetrieveToken';
 import Playlists from './Components/Music/Playlists';
 
+interface _currPlaylistAlbum{
+  image: string,
+  type: string,
+  name: string,
+  owner_name: string,
+  totalTracks: string,
+  playlisturi: string,
+  urlID: string,
+}
+
 const App: FC = () => {
   const [token, setToken] = useState<any>();
   // TODO: fix the any type for user (SpotifyApi.CurrentUsersProfileResponse)
@@ -19,8 +29,8 @@ const App: FC = () => {
   const [auth, setAuth] = useState<boolean>(false);
   const [query, setQuery] = useState<number | string>('');
 
-  const currPlaylistInterface = {} as SpotifyApi.PlaylistObjectSimplified
-  const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<SpotifyApi.PlaylistObjectSimplified>(currPlaylistInterface);
+  const currPlaylistInterface = {} as _currPlaylistAlbum
+  const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<any>({currPlaylistInterface});
 
   const [spotifyURI, setSpotifyURI] = useState<string>('');
   const [playlistAlbumKey, setPlaylistAlbumKey] = useState<string>('');
@@ -92,7 +102,15 @@ const App: FC = () => {
 
   // handles playlist click from Home page
   const handlePlaylistAlbumClick = (value: SpotifyApi.PlaylistObjectSimplified) => {
-    setCurrPlaylistAlbum(value);
+    setCurrPlaylistAlbum({
+      image: value.images[0].url,
+      type: value.type,
+      name: value.name,
+      owner_name: value.owner.display_name,
+      totalTracks: value.tracks.total,
+      playlisturi: value.uri,
+      urlID: value.id,
+    });
     console.log('testValue', value);
   }
 
