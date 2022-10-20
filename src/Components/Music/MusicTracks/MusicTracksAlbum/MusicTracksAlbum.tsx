@@ -11,10 +11,10 @@ import formatTime from '../../../Util/formatTime';
 interface Props{
   albumTracks: tracksInterfaceAlbum,
   handleTrackPress: (trackURI: string, key: string) => void,
-  currPlaylistAlbum: currPlaylistAlbumInterface,
+  trackUri: string,
 }
 
-const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, currPlaylistAlbum }) => {
+const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, trackUri }) => {
   return (
     <>
       <TableHead>
@@ -32,7 +32,7 @@ const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, currPlayli
           return (
             <TableRow key={key}>
               <TableCell 
-                onClick={() => {handleTrackPress(currPlaylistAlbum.uri, key)}}
+                onClick={() => {handleTrackPress(trackUri, key)}}
                 className='tableTrackNum' 
                 align='center'>{1 + toInteger(key)}
               </TableCell>

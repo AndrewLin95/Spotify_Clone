@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from 'react';
-import './style.css';
 import { FastAverageColor } from 'fast-average-color';
 
 interface Props{

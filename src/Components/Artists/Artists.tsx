@@ -1,5 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import ArtistHeader from "./ArtistHeader/ArtistHeader";
+import ArtistContent from './ArtistContent/ArtistContent';
 import getArtist from '../APICalls/getArtist';
 
 interface Props{
@@ -30,6 +31,7 @@ const Artists:FC<Props> = ({ artistID, token }) => {
   return (
     <div className="mainContainer">
       <ArtistHeader artistData={artistData}/>
+      <ArtistContent />
     </div>
   )
 }

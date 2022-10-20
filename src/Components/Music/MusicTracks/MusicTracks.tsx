@@ -28,13 +28,13 @@ const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum, ha
           <MusicTracksPlaylist 
             tracks={tracks}
             handleTrackPress={handleTrackPress}
-            currPlaylistAlbum={currPlaylistAlbum}
+            trackUri={currPlaylistAlbum.uri}
             handleAlbumClick={handleAlbumClick}
           /> : 
           <MusicTracksAlbum 
             albumTracks={albumTracks}
             handleTrackPress={handleTrackPress}
-            currPlaylistAlbum={currPlaylistAlbum}
+            trackUri={currPlaylistAlbum.uri}
           />
         }
       </Table>
