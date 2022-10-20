@@ -8,10 +8,11 @@ import useHomePageData from '../APICalls/useHomePageData';
 
 interface Props{
   user: SpotifyApi.CurrentUsersProfileResponse,
-  handlePlaylistClick: (value: SpotifyApi.PlaylistObjectSimplified) => void;
+  handlePlaylistClick: (value: SpotifyApi.PlaylistObjectSimplified) => void,
+  handleArtistClick: (artistURI: string) => void,
 }
 
-const Home: FC<Props> = ({ user, handlePlaylistClick }) => {
+const Home: FC<Props> = ({ user, handlePlaylistClick, handleArtistClick }) => {
   const [userPlaylist, setUserPlaylist] = useState<SpotifyApi.PlaylistObjectSimplified[]>([]);
   const [userTopArtists, setUserTopArtists] = useState<SpotifyApi.ArtistObjectFull[]>([]);
   const [userRecommendedArtists, setUserRecommendedArtists] = useState<SpotifyApi.ArtistObjectFull[]>([]);
@@ -33,7 +34,7 @@ const Home: FC<Props> = ({ user, handlePlaylistClick }) => {
   return (
     <div className='mainContainer'>
       <HomePlaylist userPlaylist={userPlaylist} handlePlaylistClick={handlePlaylistClick}/>
-      <HomeTopArtist userTopArtists={userTopArtists} />
+      <HomeTopArtist userTopArtists={userTopArtists} handleArtistClick={handleArtistClick}/>
       <HomeRecommendedArtist userRecommendedArtists={userRecommendedArtists} />
     </div>
   )

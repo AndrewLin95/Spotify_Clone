@@ -7,6 +7,7 @@ import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Login from "./Components/Login/Login";
 import Home from './Components/Home/Home';
+import Artists from './Components/Artists/Artists';
 import { spotifyAPI } from './Components/Spotify/Spotify';
 import { currPlaylistAlbumInterface } from './Components/Util/modals'
 
@@ -25,6 +26,8 @@ const App: FC = () => {
 
   const [spotifyURI, setSpotifyURI] = useState<string>('');
   const [playlistAlbumKey, setPlaylistAlbumKey] = useState<string>('');
+
+  const [artistID, setArtistID] = useState<string>('');
 
   const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
   const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
@@ -103,7 +106,7 @@ const App: FC = () => {
       urlID: value.id,
     });
     console.log('testValue PLAYLIST', value);
-  }
+  };
 
   // TODO: Interface for value below
   const handleAlbumClick = (value: any) => {
@@ -117,7 +120,11 @@ const App: FC = () => {
       uri: value.uri,
       urlID: value.id
     })
-  }
+  };
+
+  const handleArtistClick = (artistID: string) => {
+    setArtistID(artistID);
+  };
 
   return (
     <BrowserRouter>
@@ -127,13 +134,27 @@ const App: FC = () => {
           <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
           {auth ? (
             <>
-              <Route path="/home" element={<Home user={user} handlePlaylistClick={handlePlaylistClick}/>}/> 
-              <Route path="/playlist" element={<Playlists 
-                currPlaylistAlbum={currPlaylistAlbum} 
-                token={token} 
-                handleTrackPress={handleTrackPress} 
-                handleAlbumClick={handleAlbumClick}
-              />} />
+              <Route path="/home" element={
+                <Home 
+                  user={user} 
+                  handlePlaylistClick={handlePlaylistClick}
+                  handleArtistClick={handleArtistClick}
+                />}
+              /> 
+              <Route path="/playlist" element={
+                <Playlists 
+                  currPlaylistAlbum={currPlaylistAlbum} 
+                  token={token} 
+                  handleTrackPress={handleTrackPress} 
+                  handleAlbumClick={handleAlbumClick}
+                />} 
+              />
+              <Route path='/artists' element={
+                <Artists 
+                  artistID={artistID}
+                  token={token} 
+                />
+              }/>
             </>
           ) : (
             <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
