@@ -8,18 +8,20 @@ interface Props{
 }
 
 const Artists:FC<Props> = ({ artistID, token }) => {
+  const [artistData, setArtistData] = useState();
 
   useEffect(() => {
     async function getArtistInfo() {
       const data = await getArtist(artistID, token);
       console.log(data);
+      setArtistData(data);
     }
     getArtistInfo();
   }, [artistID])
 
   return (
     <div className="mainContainer">
-      <ArtistHeader />
+      <ArtistHeader artistData={artistData}/>
     </div>
   )
 }

@@ -20,7 +20,7 @@ const SpotifyWebPlaybackSDK = ( token: any ) => {
   
     window.onSpotifyWebPlaybackSDKReady = () => {
       const player = new window.Spotify.Player({
-        name: 'Web Playback SDK',
+        name: `Spotify Clone`,
         getOAuthToken: (cb: any) => { cb(token) },
         volume: 0.2
       });
