@@ -1,7 +1,6 @@
 #footerContainer{
   height: 80px;
   width: 100%;
-  border: pink solid 1px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
