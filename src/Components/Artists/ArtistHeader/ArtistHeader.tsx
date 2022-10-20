@@ -1,10 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 import './style.css';
 import { FastAverageColor } from 'fast-average-color';
-import formatFollowers from '../../Util/formatFollowers';
 
 interface Props{
-  artistData: any
+  artistData: SpotifyApi.ArtistObjectFull 
 }
 
 const ArtistHeader:FC<Props> = ({ artistData }) => {
@@ -23,10 +22,6 @@ const ArtistHeader:FC<Props> = ({ artistData }) => {
       })
   }, [artistData])
   
-  if (artistData === undefined){
-    return null
-  }
-
   return (
     <div className='musicHeaderMain' style={{
       backgroundImage: `linear-gradient(rgba(${domColor.value[0]}, ${domColor.value[1]}, ${domColor.value[2]}, 0.7), rgba(25,25,25,0) )`,  
