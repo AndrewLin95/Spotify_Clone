@@ -35,7 +35,7 @@ const Home: FC<Props> = ({ user, handlePlaylistClick, handleArtistClick }) => {
     <div className='mainContainer'>
       <HomePlaylist userPlaylist={userPlaylist} handlePlaylistClick={handlePlaylistClick}/>
       <HomeTopArtist userTopArtists={userTopArtists} handleArtistClick={handleArtistClick}/>
-      <HomeRecommendedArtist userRecommendedArtists={userRecommendedArtists} />
+      <HomeRecommendedArtist userRecommendedArtists={userRecommendedArtists} handleArtistClick={handleArtistClick}/>
     </div>
   )
 }
