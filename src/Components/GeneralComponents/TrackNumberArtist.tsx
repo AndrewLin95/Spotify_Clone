@@ -10,6 +10,7 @@ interface Props{
 }
 
 const TrackNumberArtist:FC<Props> = ({ handleTrackPress, trackUri, trackNum, orderingNum }) => {
+  // Not sure why, but the spotify documentation is offset by 1
   const realTrackNum = (trackNum - 1).toString()
 
   return (
