@@ -26,7 +26,7 @@ const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, trackUri }
 
           return (
             <TableRow key={key}>
-              <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} key={key} />
+              <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} trackNum={key} />
               <TrackTitleSimple trackName={value.trackName} artistName={value.artistName}/>
               <TrackDuration formattedTime={formattedTime} />
             </TableRow>

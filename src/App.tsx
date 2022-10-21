@@ -153,6 +153,7 @@ const App: FC = () => {
                 <Artists 
                   artistID={artistID}
                   token={token} 
+                  handleTrackPress={handleTrackPress} 
                 />
               }/>
             </>

@@ -5,15 +5,15 @@ import TableCell from '@mui/material/TableCell';
 interface Props{
   handleTrackPress: (trackURI: string, key: string) => void,
   trackUri: string,
-  key: string,
+  trackNum: string,
 }
 
-const TrackNumber:FC<Props> = ({ handleTrackPress, trackUri, key }) => {
+const TrackNumber:FC<Props> = ({ handleTrackPress, trackUri, trackNum }) => {
   return (
     <TableCell 
-      onClick={() => {handleTrackPress(trackUri, key)}}
+      onClick={() => {handleTrackPress(trackUri, trackNum)}}
       className='tableTrackNum' 
-      align='center'>{1 + toInteger(key)}
+      align='center'>{1 + toInteger(trackNum)}
     </TableCell>
   )
 }

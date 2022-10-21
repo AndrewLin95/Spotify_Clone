@@ -1,7 +1,16 @@
+import { FC } from 'react';
+import ArtistPopularTracks from './Components/ArtistPopularTracks';
 
-const ArtistContent = () => {
+interface Props{
+  artistTopTracks: {tracks: SpotifyApi.TrackObjectFull[]}
+  handleTrackPress: (trackURI: string, key: string) => void,
+}
+
+const ArtistContent:FC<Props> = ({ artistTopTracks, handleTrackPress }) => {
   return (
-    <div></div>
+    <div id="mainContentPage">
+      <ArtistPopularTracks artistTopTracks={artistTopTracks} handleTrackPress={handleTrackPress}/>
+    </div>
   )
 }
 

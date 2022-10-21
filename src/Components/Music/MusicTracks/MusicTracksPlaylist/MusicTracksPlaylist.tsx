@@ -31,7 +31,7 @@ const MusicTracksPlaylist:FC<Props> = ({ tracks, handleTrackPress, trackUri, han
 
           return (
             <TableRow key={key}>
-              <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} key={key} />
+              <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} trackNum={key} />
               <TracktitleFull albumImg={value.albumImg} trackName={value.trackName} artistName={value.artistName} />
               <TrackAlbumName handleAlbumClick={handleAlbumClick} album={value.album} albumName={value.album.name}/>
               <TrackAddedDate formattedDate={formattedDate}/>
