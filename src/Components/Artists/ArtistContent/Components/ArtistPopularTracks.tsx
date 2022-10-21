@@ -4,7 +4,7 @@ import TableRow from '@mui/material/TableRow';
 import TrackHeaderSimple from "../../../GeneralComponents/TrackHeaderSimple";
 import formatTime from '../../../Util/formatTime';
 
-import TrackNumber from '../../../GeneralComponents/TrackNumber';
+import TrackNumberArtist from '../../../GeneralComponents/TrackNumberArtist';
 import TrackDuration from '../../../GeneralComponents/TrackDuration';
 import TrackTitleFull from '../../../GeneralComponents/TrackTitleFull';
 
@@ -24,7 +24,7 @@ const ArtistPopularTracks:FC<Props> = ({ artistTopTracks, handleTrackPress }) =>
 
           return (
             <TableRow key={key}>
-              <TrackNumber handleTrackPress={handleTrackPress} trackUri={value.uri} trackNum={key} />
+              <TrackNumberArtist handleTrackPress={handleTrackPress} trackUri={value.album.uri} orderingNum={key} trackNum={value.track_number} />
               <TrackTitleFull albumImg={value.album.images[2].url} trackName={value.name} artistName={value.artists[0].name} />
               <TrackDuration formattedTime={formattedTime} />
             </TableRow>

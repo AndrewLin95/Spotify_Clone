@@ -52,9 +52,9 @@ const App: FC = () => {
   }
 
   const handleTrackPress = (spotifyURI: string, key: string) => {
+    console.log(spotifyURI);
     setSpotifyURI(spotifyURI);
     setPlaylistAlbumKey(key);
-    console.log('playlistalbumkey', key);
   }
 
   // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
