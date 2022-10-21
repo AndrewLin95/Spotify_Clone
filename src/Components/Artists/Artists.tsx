@@ -3,6 +3,7 @@ import ArtistHeader from "./ArtistHeader/ArtistHeader";
 import ArtistContent from './ArtistContent/ArtistContent';
 import getArtist from '../APICalls/getArtist';
 import getArtistTopTrack from '../APICalls/getArtistTopTrack';
+import getArtistAlbum from '../APICalls/getArtistAlbum';
 
 interface Props{
   artistID: string,
@@ -24,6 +25,9 @@ const Artists:FC<Props> = ({ artistID, token, handleTrackPress }) => {
     async function getArtistInfo() {
       const _artistData = await getArtist(artistID, token);
       const _artistTopTracks = await getArtistTopTrack(artistID, token);
+      const _artistAlbums = await getArtistAlbum(artistID, token);
+
+      console.log('LOOKATTHIS', _artistAlbums)
 
       console.log('artist toptracks', _artistTopTracks);
 
