@@ -6,6 +6,9 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { Link } from 'react-router-dom';
 
+import CardImage from '../../GeneralComponents/CardImage';
+import CardContentSimple from '../../GeneralComponents/CardContentSimple';
+
 interface Props{
   userTopArtists: SpotifyApi.ArtistObjectFull[],
   handleArtistClick: (artistURI: string) => void,
@@ -26,13 +29,8 @@ const HomeTopArtist:FC<Props> = ({ userTopArtists, handleArtistClick }) => {
             >
               <Card>
                 <CardActionArea>
-                  <CardMedia
-                    component='img'
-                    image={value.images[0].url}
-                  />
-                  <CardContent>
-                    <div className='homeCardName'>{value.name}</div>
-                  </CardContent>
+                  <CardImage imgUrl={value.images[0].url}/>
+                  <CardContentSimple valueName={value.name}/>
                 </CardActionArea>
               </Card>
             </Link>

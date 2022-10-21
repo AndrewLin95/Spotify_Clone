@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
-import TrackHeaderSimple from "../../../GeneralComponents/TrackHeaderSimple";
-import formatTime from '../../../Util/formatTime';
+import TrackHeaderSimple from "../../../../GeneralComponents/TrackHeaderSimple";
+import formatTime from '../../../../Util/formatTime';
 
-import TrackNumberArtist from '../../../GeneralComponents/TrackNumberArtist';
-import TrackDuration from '../../../GeneralComponents/TrackDuration';
-import TrackTitleFull from '../../../GeneralComponents/TrackTitleFull';
+import TrackNumberArtist from '../../../../GeneralComponents/TrackNumberArtist';
+import TrackDuration from '../../../../GeneralComponents/TrackDuration';
+import TrackTitleFull from '../../../../GeneralComponents/TrackTitleFull';
 
 interface Props{
   artistTopTracks: {tracks: SpotifyApi.TrackObjectFull[]},

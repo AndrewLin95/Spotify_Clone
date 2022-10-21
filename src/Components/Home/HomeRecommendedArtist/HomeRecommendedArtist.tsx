@@ -2,8 +2,9 @@ import { FC } from 'react';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import { CardActionArea } from '@mui/material';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
+
+import CardImage from '../../GeneralComponents/CardImage';
+import CardContentSimple from '../../GeneralComponents/CardContentSimple';
 
 interface Props{
   userRecommendedArtists: SpotifyApi.ArtistObjectFull[],
@@ -18,13 +19,8 @@ const HomeRecommendedArtist:FC<Props> = ({ userRecommendedArtists }) => {
           return (
             <Card key={key} className='homeCardContainer'>
               <CardActionArea>
-                <CardMedia
-                  component='img'
-                  image={value.images[0].url}
-                />
-                <CardContent>
-                  <div className='homeCardName'>{value.name}</div>
-                </CardContent>
+                <CardImage imgUrl={value.images[0].url}/>
+                <CardContentSimple valueName={value.name}/>
               </CardActionArea>
             </Card>
           )
