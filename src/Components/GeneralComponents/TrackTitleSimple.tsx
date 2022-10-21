@@ -6,7 +6,7 @@ interface Props{
   artistName: string,
 }
 
-const TrackTitle:FC<Props> = ({ trackName, artistName }) => {
+const TrackTitleSimple:FC<Props> = ({ trackName, artistName }) => {
   return (
     <TableCell className='tableTitleContainer'> 
       <div className='tableTitle'>
@@ -19,4 +19,4 @@ const TrackTitle:FC<Props> = ({ trackName, artistName }) => {
   )
 }
 
-export default TrackTitle;
+export default TrackTitleSimple;

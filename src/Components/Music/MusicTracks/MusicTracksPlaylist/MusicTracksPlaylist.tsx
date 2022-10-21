@@ -1,13 +1,16 @@
 import { FC } from 'react';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
-import { toInteger } from 'lodash';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { tracksInterface, currPlaylistAlbumInterface } from '../../../Util/modals';
+import { tracksInterface } from '../../../Util/modals';
 import formatDate from '../../../Util/formatDate';
 import formatTime from '../../../Util/formatTime';
+
+import TrackHeaderFull from '../../../GeneralComponents/TrackHeaderFull';
+import TrackNumber from '../../../GeneralComponents/TrackNumber';
+import TracktitleFull from '../../../GeneralComponents/TrackTitleFull';
+import TrackAlbumName from '../../../GeneralComponents/TrackAlbumName';
+import TrackAddedDate from '../../../GeneralComponents/TrackAddedDate';
+import TrackDuration from '../../../GeneralComponents/TrackDuration';
 
 interface Props{
   tracks: tracksInterface,
@@ -19,15 +22,7 @@ interface Props{
 const MusicTracksPlaylist:FC<Props> = ({ tracks, handleTrackPress, trackUri, handleAlbumClick }) => {
   return (
     <>
-      <TableHead>
-        <TableRow>
-          <TableCell align='center'>#</TableCell>
-          <TableCell align='left'>TITLE</TableCell>
-          <TableCell align='left'>ALBUM</TableCell>
-          <TableCell align='left'>DATE ADDED</TableCell>
-          <TableCell align='center'><AccessTimeIcon fontSize='small'></AccessTimeIcon></TableCell>
-        </TableRow>
-      </TableHead>
+      <TrackHeaderFull />
 
       <TableBody>
         {Object.entries(tracks).map(([key, value]) => {
@@ -36,25 +31,11 @@ const MusicTracksPlaylist:FC<Props> = ({ tracks, handleTrackPress, trackUri, han
 
           return (
             <TableRow key={key}>
-              <TableCell 
-                onClick={() => {handleTrackPress(trackUri, key)}}
-                className='tableTrackNum' 
-                align='center'>{1 + toInteger(key)}
-              </TableCell>
-              <TableCell className='tableTitleContainer'> 
-                <div className='tableTitle'>
-                  <img className='tableImg' src={value.albumImg}/>
-                  <div className='tableTitleText'>
-                    <div>{value.trackName}</div>
-                    <div className='tableArtist'>{value.artistName}</div>
-                  </div>
-                </div>
-              </TableCell>
-              <div onClick={() => {handleAlbumClick(value.album)}}>
-                <TableCell className='tableAlbum'>{value.album.name}</TableCell>  
-              </div>
-              <TableCell className='tableDateAdded'>{formattedDate}</TableCell>
-              <TableCell className='tableDuration' align='center'>{formattedTime}</TableCell>
+              <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} key={key} />
+              <TracktitleFull albumImg={value.albumImg} trackName={value.trackName} artistName={value.artistName} />
+              <TrackAlbumName handleAlbumClick={handleAlbumClick} album={value.album} albumName={value.album.name}/>
+              <TrackAddedDate formattedDate={formattedDate}/>
+              <TrackDuration formattedTime={formattedTime} />
             </TableRow>
           )
         })}

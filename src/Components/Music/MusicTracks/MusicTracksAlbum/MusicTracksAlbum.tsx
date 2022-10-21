@@ -6,7 +6,7 @@ import formatTime from '../../../Util/formatTime';
 
 import TrackHeaderSimple from '../../../GeneralComponents/TrackHeaderSimple';
 import TrackNumber from '../../../GeneralComponents/TrackNumber';
-import TrackTitle from '../../../GeneralComponents/TrackTitle';
+import TrackTitleSimple from '../../../GeneralComponents/TrackTitleSimple';
 import TrackDuration from '../../../GeneralComponents/TrackDuration';
 
 interface Props{
@@ -27,7 +27,7 @@ const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, trackUri }
           return (
             <TableRow key={key}>
               <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} key={key} />
-              <TrackTitle trackName={value.trackName} artistName={value.artistName}/>
+              <TrackTitleSimple trackName={value.trackName} artistName={value.artistName}/>
               <TrackDuration formattedTime={formattedTime} />
             </TableRow>
           )
