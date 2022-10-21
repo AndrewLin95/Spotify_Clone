@@ -1,8 +1,7 @@
+
 const ArtistContent = () => {
   return (
-    <div>
-
-    </div>
+    <div></div>
   )
 }
 

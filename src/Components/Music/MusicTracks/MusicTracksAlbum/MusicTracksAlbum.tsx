@@ -1,12 +1,13 @@
 import { FC } from 'react';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
-import { toInteger } from 'lodash';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { tracksInterfaceAlbum, currPlaylistAlbumInterface } from '../../../Util/modals';
+import { tracksInterfaceAlbum } from '../../../Util/modals';
 import formatTime from '../../../Util/formatTime';
+
+import TrackHeaderSimple from '../../../GeneralComponents/TrackHeaderSimple';
+import TrackNumber from '../../../GeneralComponents/TrackNumber';
+import TrackTitle from '../../../GeneralComponents/TrackTitle';
+import TrackDuration from '../../../GeneralComponents/TrackDuration';
 
 interface Props{
   albumTracks: tracksInterfaceAlbum,
@@ -17,13 +18,7 @@ interface Props{
 const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, trackUri }) => {
   return (
     <>
-      <TableHead>
-        <TableRow>
-          <TableCell align='center'>#</TableCell>
-          <TableCell align='left'>TITLE</TableCell>
-          <TableCell align='center'><AccessTimeIcon fontSize='small'></AccessTimeIcon></TableCell>
-        </TableRow>
-      </TableHead>
+      <TrackHeaderSimple />
 
       <TableBody>
         {Object.entries(albumTracks).map(([key, value]) => {
@@ -31,20 +26,9 @@ const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, trackUri }
 
           return (
             <TableRow key={key}>
-              <TableCell 
-                onClick={() => {handleTrackPress(trackUri, key)}}
-                className='tableTrackNum' 
-                align='center'>{1 + toInteger(key)}
-              </TableCell>
-              <TableCell className='tableTitleContainer'> 
-                <div className='tableTitle'>
-                  <div className='tableTitleText'>
-                    <div>{value.trackName}</div>
-                    <div className='tableArtist'>{value.artistName}</div>
-                  </div>
-                </div>
-              </TableCell>
-              <TableCell className='tableDuration' align='center'>{formattedTime}</TableCell>
+              <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} key={key} />
+              <TrackTitle trackName={value.trackName} artistName={value.artistName}/>
+              <TrackDuration formattedTime={formattedTime} />
             </TableRow>
           )
         })}
