@@ -24,7 +24,6 @@ const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, trackUri, 
       <TableBody>
         {Object.entries(albumTracks).map(([key, value]) => {
           const formattedTime = formatTime(value.trackDuration);
-          console.log('IMPORTANT', value);
           return (
             <TableRow key={key}>
               <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} trackNum={key} />

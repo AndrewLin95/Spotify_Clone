@@ -25,7 +25,7 @@ const albumStates = {
 
 const ArtistDiscography:FC<Props> = ({ artistAlbums, handleAlbumClick }) => {
 
-  const [albumState, setAlbumState] = useState(albumStates.All);
+  const [albumState, setAlbumState] = useState(albumStates.Singles);
   const [albumData, setAlbumData] = useState(artistAlbums.dataAll)
 
   // updates the toggle button for soup choices.
@@ -111,6 +111,7 @@ const ArtistDiscography:FC<Props> = ({ artistAlbums, handleAlbumClick }) => {
                 className='homeCardContainer artistCardContainer'
                 onClick={() => {handleAlbumClick(value)}}
                 to={'/playlist'}
+                style={{textDecoration: 'none'}}
               >
                 <Card>
                   <CardActionArea>

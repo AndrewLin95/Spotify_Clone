@@ -24,6 +24,7 @@ const HomeRecommendedArtist:FC<Props> = ({ userRecommendedArtists, handleArtistC
             className='homeCardContainer' 
             to={'/artists'} 
             onClick={() => {handleArtistClick(value.id)}}
+            style={{textDecoration: 'none'}}
           >
             <Card>
               <CardActionArea>
