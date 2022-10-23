@@ -8,7 +8,7 @@ interface Props{
   currPlaylistAlbum: currPlaylistAlbumInterface,
   token: string,
   handleTrackPress: (trackURI: string, key: string) => void,
-  handleAlbumClick: (value: any) => void;
+  handleAlbumClick: (value: any) => void,
 }
 
 const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handleAlbumClick }) => {

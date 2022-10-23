@@ -9,7 +9,7 @@ import Login from "./Components/Login/Login";
 import Home from './Components/Home/Home';
 import Artists from './Components/Artists/Artists';
 import { spotifyAPI } from './Components/Spotify/Spotify';
-import { currPlaylistAlbumInterface } from './Components/Util/modals'
+import { currPlaylistAlbumInterface, ArtistAlbum } from './Components/Util/modals'
 
 import useRetrieveToken from './Components/Util/useRetrieveToken';
 import Playlists from './Components/Music/Playlists';
@@ -154,6 +154,7 @@ const App: FC = () => {
                   artistID={artistID}
                   token={token} 
                   handleTrackPress={handleTrackPress} 
+                  handleAlbumClick={handleAlbumClick}
                 />
               }/>
             </>

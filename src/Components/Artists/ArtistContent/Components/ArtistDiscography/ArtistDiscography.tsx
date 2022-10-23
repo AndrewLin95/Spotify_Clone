@@ -6,7 +6,7 @@ import Card from '@mui/material/Card';
 import { CardActionArea } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
-import { ArtistAlbum, AlbumObjectFull } from '../../../../Util/modals';
+import { ArtistAlbum } from '../../../../Util/modals';
 import CardImage from '../../../../GeneralComponents/CardImage'
 import CardContentAlbum from '../../../../GeneralComponents/CardContentAlbum';
 import './style.css';
@@ -15,6 +15,7 @@ import './style.css';
 
 interface Props{
   artistAlbums: ArtistAlbum,
+  handleAlbumClick: (value: any) => void,
 }
 
 const albumStates = {
@@ -24,7 +25,7 @@ const albumStates = {
   Others: 'Others',
 }
 
-const ArtistDiscography:FC<Props> = ({ artistAlbums }) => {
+const ArtistDiscography:FC<Props> = ({ artistAlbums, handleAlbumClick }) => {
 
   const [albumState, setAlbumState] = useState(albumStates.All);
   const [albumData, setAlbumData] = useState(artistAlbums.dataAll)
@@ -107,9 +108,11 @@ const ArtistDiscography:FC<Props> = ({ artistAlbums }) => {
         <Stack className='cardContainer artistCardMain'>
           {Object.entries(albumData).map(([key, value]) => {
             return(
-              <div 
+              <Link 
                 key={key} 
                 className='homeCardContainer artistCardContainer'
+                onClick={() => {handleAlbumClick(value)}}
+                to={'/playlist'}
               >
                 <Card>
                   <CardActionArea>
@@ -121,7 +124,7 @@ const ArtistDiscography:FC<Props> = ({ artistAlbums }) => {
                     />
                   </CardActionArea>
                 </Card>
-              </div>
+              </Link>
             )
           })}
         </Stack>

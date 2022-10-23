@@ -10,9 +10,10 @@ interface Props{
   artistID: string,
   token: string,
   handleTrackPress: (trackURI: string, key: string) => void,
+  handleAlbumClick: (value: any) => void,
 }
 
-const Artists:FC<Props> = ({ artistID, token, handleTrackPress }) => {
+const Artists:FC<Props> = ({ artistID, token, handleTrackPress, handleAlbumClick }) => {
   const artistDataInterface = {} as SpotifyApi.ArtistObjectFull    
   const [artistData, setArtistData] = useState<SpotifyApi.ArtistObjectFull>(artistDataInterface);
 
@@ -53,7 +54,9 @@ const Artists:FC<Props> = ({ artistID, token, handleTrackPress }) => {
       <ArtistContent 
         artistTopTracks={artistTopTracks} 
         handleTrackPress={handleTrackPress} 
-        artistAlbums={artistAlbums}/>
+        artistAlbums={artistAlbums}
+        handleAlbumClick={handleAlbumClick}
+      />
     </div>
   )
 }
