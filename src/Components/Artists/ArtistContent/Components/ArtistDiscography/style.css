@@ -1,0 +1,10 @@
+.artistCardName{
+  width: 100%;
+  white-space: nowrap;
+}
+
+.artistCardInfo{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
