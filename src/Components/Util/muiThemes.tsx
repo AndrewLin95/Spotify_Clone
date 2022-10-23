@@ -40,9 +40,10 @@ const theme = createTheme({
     MuiTableContainer: {
       styleOverrides: {
         root: {
+          // change first color
           backgroundImage: `linear-gradient(rgba(255,255,255,0) 0px, rgba(0,0,0,1) 800px)`,
-          position: 'relative',
-          bottom: '250px',
+          // position: 'relative',
+          // bottom: '250px',
         }
       }
     },

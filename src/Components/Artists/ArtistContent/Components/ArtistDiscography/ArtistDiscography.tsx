@@ -91,39 +91,41 @@ const ArtistDiscography:FC<Props> = ({ artistAlbums }) => {
 
   return(
     <>
-      <div className='homeCategoryHeader'>Discography</div>
-      <ToggleButtonGroup
-        exclusive
-        value={albumState}
-        onChange={handleAlbumChange}
-        className='discographyToggleGroup'
-      >
-        <ToggleButton value={albumStates.All}>{albumStates.All}</ToggleButton>
-        <ToggleButton value={albumStates.Albums}>{albumStates.Albums}</ToggleButton>
-        <ToggleButton value={albumStates.Singles}>{albumStates.Singles}</ToggleButton>
-        <ToggleButton value={albumStates.Others}>{albumStates.Others}</ToggleButton>
-      </ToggleButtonGroup>
-      <Stack className='cardContainer artistCardMain'>
-        {Object.entries(albumData).map(([key, value]) => {
-          return(
-            <div 
-              key={key} 
-              className='homeCardContainer artistCardContainer'
-            >
-              <Card>
-                <CardActionArea>
-                  <CardImage imgUrl={value.images[1].url}/>
-                  <CardContentAlbum 
-                    valueAlbumName={value.name} 
-                    releaseDate={value.release_date} 
-                    type={value.album_group}
-                  />
-                </CardActionArea>
-              </Card>
-            </div>
-          )
-        })}
-      </Stack>
+      <div className='discographyHeader'>Discography</div>
+      <div className='discographyMain'>
+        <ToggleButtonGroup
+          exclusive
+          value={albumState}
+          onChange={handleAlbumChange}
+          className='discographyToggleGroup'
+        >
+          <ToggleButton value={albumStates.All}>{albumStates.All}</ToggleButton>
+          <ToggleButton value={albumStates.Albums}>{albumStates.Albums}</ToggleButton>
+          <ToggleButton value={albumStates.Singles}>{albumStates.Singles}</ToggleButton>
+          <ToggleButton value={albumStates.Others}>{albumStates.Others}</ToggleButton>
+        </ToggleButtonGroup>
+        <Stack className='cardContainer artistCardMain'>
+          {Object.entries(albumData).map(([key, value]) => {
+            return(
+              <div 
+                key={key} 
+                className='homeCardContainer artistCardContainer'
+              >
+                <Card>
+                  <CardActionArea>
+                    <CardImage imgUrl={value.images[1].url}/>
+                    <CardContentAlbum 
+                      valueAlbumName={value.name} 
+                      releaseDate={value.release_date} 
+                      type={value.album_group}
+                    />
+                  </CardActionArea>
+                </Card>
+              </div>
+            )
+          })}
+        </Stack>
+      </div>
     </>
   )
 }

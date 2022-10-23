@@ -10,8 +10,10 @@ interface Props{
 const CardContentAlbum:FC<Props> = ({ valueAlbumName, releaseDate, type }) => {
   return(
     <CardContent>
-      <div className='artistCardName'>{valueAlbumName}</div>
-      <div>{releaseDate} · {type}</div>
+      <div className='artistCardInfoDetails'>
+        <div className='artistCardName'>{valueAlbumName}</div>
+        <div className='artistCardName'>{releaseDate} · {type}</div>
+      </div>
     </CardContent>
   )
 }

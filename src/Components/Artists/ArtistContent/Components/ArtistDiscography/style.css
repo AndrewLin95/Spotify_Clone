@@ -1,6 +1,11 @@
 .artistCardName{
   width: 100%;
   white-space: nowrap;
+  font-size: 80%;
+}
+
+.artistCardInfoDetails{
+  margin: 5px;
 }
 
 .artistCardInfo{
@@ -12,4 +17,17 @@
 .discographyToggleGroup{
   padding-left: 20px;
   padding-bottom: 10px;
+}
+
+.discographyHeader{
+  background: rgba(0,0,0,0.65);
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.discographyMain{
+  background: rgba(0,0,0,0.65);
 }
