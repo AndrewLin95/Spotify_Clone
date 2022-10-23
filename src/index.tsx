@@ -24,3 +24,4 @@ root.render(
 // 7) gif for playing music when a track is playing? <- maybe
 // 8) pull albums API needs to pull all items past 50 too
 // 9) Search functionality
+// 10) Loading stuff. Look at mui

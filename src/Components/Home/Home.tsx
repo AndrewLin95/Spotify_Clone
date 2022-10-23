@@ -25,12 +25,6 @@ const Home: FC<Props> = ({ user, handlePlaylistClick, handleArtistClick }) => {
     setUserRecommendedArtists(dataHomePage.dataRelatedArtists);
   })
 
-  useEffect(() => {
-    console.log('userplayerlist', userPlaylist);
-    console.log('userTopArist', userTopArtists);
-    console.log('userRecommendedArtists', userRecommendedArtists);
-  }, [userPlaylist])
-
   return (
     <div className='mainContainer'>
       <HomePlaylist userPlaylist={userPlaylist} handlePlaylistClick={handlePlaylistClick}/>

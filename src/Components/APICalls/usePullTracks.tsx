@@ -35,9 +35,7 @@ const usePullTracks = (currPlaylistAlbum_id: string, token: string ) => {
       }
 
       setDataTracks(dataPayload);
-      setLoadingTracks(false);
-      console.log('data', dataPayload);
-      
+      setLoadingTracks(false);      
     } catch (err) {
       throw err;
     }

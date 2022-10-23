@@ -18,8 +18,6 @@ const getTrack = (trackID: string, token: string) => {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
 
-      console.log(data);
-
     } catch (err) {
       throw (err);
     }

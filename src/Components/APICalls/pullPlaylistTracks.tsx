@@ -56,8 +56,6 @@ export default async function pullPlaylistTracks(currPlaylistAlbum_id: string, t
 
     _loadingTracks = false;
 
-    console.log('data', dataPayload);
-    console.log('transformeddata', transformedData)
     return { _loadingTracks, transformedData }    
 
   } catch (err) {

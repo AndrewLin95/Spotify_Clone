@@ -30,7 +30,6 @@ export default async function pullAlbumTracks(currPlaylistAlbum_id: string, toke
     }
     _loadingTracks = false;
 
-    console.log('data', dataPayload);
     return { _loadingTracks, dataPayload }    
 
   } catch (err) {
