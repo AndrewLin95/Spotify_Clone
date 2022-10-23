@@ -52,7 +52,6 @@ const App: FC = () => {
   }
 
   const handleTrackPress = (spotifyURI: string, key: string) => {
-    console.log(spotifyURI);
     setSpotifyURI(spotifyURI);
     setPlaylistAlbumKey(key);
   }
@@ -70,7 +69,7 @@ const App: FC = () => {
         setAlbum(response[1]);
         setTrack(response[2]);
       } catch (err) {
-        console.log(err);
+        throw(err)
       }
     }
 
@@ -105,12 +104,10 @@ const App: FC = () => {
       uri: value.uri,
       urlID: value.id,
     });
-    console.log('testValue PLAYLIST', value);
   };
 
   // TODO: Interface for value below
   const handleAlbumClick = (value: any) => {
-    console.log('testValue ALBUM', value);
     setCurrPlaylistAlbum({
       image: value.images[0].url,
       type: value.type,

@@ -32,10 +32,6 @@ const Artists:FC<Props> = ({ artistID, token, handleTrackPress, handleAlbumClick
       const _artistTopTracks = await getArtistTopTrack(artistID, token);
       const _artistAlbums = await getArtistAlbum(artistID, token);
 
-      console.log('LOOKATTHIS', _artistAlbums)
-
-      console.log('artist toptracks', _artistTopTracks);
-
       setArtistData(_artistData);
       setArtistTopTracks(_artistTopTracks);
       setArtistAlbums(_artistAlbums);
