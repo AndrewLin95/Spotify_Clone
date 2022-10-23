@@ -11,8 +11,6 @@ import CardImage from '../../../../GeneralComponents/CardImage'
 import CardContentAlbum from '../../../../GeneralComponents/CardContentAlbum';
 import './style.css';
 
-
-
 interface Props{
   artistAlbums: ArtistAlbum,
   handleAlbumClick: (value: any) => void,

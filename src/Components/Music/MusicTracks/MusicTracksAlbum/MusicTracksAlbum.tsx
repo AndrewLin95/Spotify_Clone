@@ -13,9 +13,10 @@ interface Props{
   albumTracks: tracksInterfaceAlbum,
   handleTrackPress: (trackURI: string, key: string) => void,
   trackUri: string,
+  handleArtistClick: (artistID: string) => void,
 }
 
-const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, trackUri }) => {
+const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, trackUri, handleArtistClick }) => {
   return (
     <>
       <TrackHeaderSimple />
@@ -23,11 +24,11 @@ const MusicTracksAlbum:FC <Props> = ({ albumTracks, handleTrackPress, trackUri }
       <TableBody>
         {Object.entries(albumTracks).map(([key, value]) => {
           const formattedTime = formatTime(value.trackDuration);
-
+          console.log('IMPORTANT', value);
           return (
             <TableRow key={key}>
               <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} trackNum={key} />
-              <TrackTitleSimple trackName={value.trackName} artistName={value.artistName}/>
+              <TrackTitleSimple trackName={value.trackName} artistName={value.artistName} artistID={value.album} handleArtistClick={handleArtistClick}/>
               <TrackDuration formattedTime={formattedTime} />
             </TableRow>
           )

@@ -8,7 +8,7 @@ import formatTime from '../../../../Util/formatTime';
 
 import TrackNumberArtist from '../../../../GeneralComponents/TrackNumberArtist';
 import TrackDuration from '../../../../GeneralComponents/TrackDuration';
-import TrackTitleFull from '../../../../GeneralComponents/TrackTitleFull';
+import TrackTitleArtist from '../../../../GeneralComponents/TrackTitleArtist';
 interface Props{
   artistTopTracks: {tracks: SpotifyApi.TrackObjectFull[]},
   handleTrackPress: (trackURI: string, key: string) => void,
@@ -27,7 +27,7 @@ const ArtistPopularTracks:FC<Props> = ({ artistTopTracks, handleTrackPress }) =>
           return (
             <TableRow key={key}>
               <TrackNumberArtist handleTrackPress={handleTrackPress} trackUri={value.album.uri} orderingNum={key} trackNum={value.track_number} />
-              <TrackTitleFull albumImg={value.album.images[2].url} trackName={value.name} artistName={value.album.name} />
+              <TrackTitleArtist albumImg={value.album.images[2].url} trackName={value.name}/>
               <TrackDuration formattedTime={formattedTime} />
             </TableRow>
           )

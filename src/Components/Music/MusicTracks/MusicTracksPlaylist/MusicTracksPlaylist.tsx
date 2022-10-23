@@ -7,7 +7,7 @@ import formatTime from '../../../Util/formatTime';
 
 import TrackHeaderFull from '../../../GeneralComponents/TrackHeaderFull';
 import TrackNumber from '../../../GeneralComponents/TrackNumber';
-import TracktitleFull from '../../../GeneralComponents/TrackTitleFull';
+import TrackTitleFull from '../../../GeneralComponents/TrackTitleFull';
 import TrackAlbumName from '../../../GeneralComponents/TrackAlbumName';
 import TrackAddedDate from '../../../GeneralComponents/TrackAddedDate';
 import TrackDuration from '../../../GeneralComponents/TrackDuration';
@@ -16,10 +16,11 @@ interface Props{
   tracks: tracksInterface,
   handleTrackPress: (trackURI: string, key: string) => void,
   trackUri: string,
-  handleAlbumClick: (value: any) => void;
+  handleAlbumClick: (value: any) => void,
+  handleArtistClick: (artistID: string) => void,
 }
 
-const MusicTracksPlaylist:FC<Props> = ({ tracks, handleTrackPress, trackUri, handleAlbumClick }) => {
+const MusicTracksPlaylist:FC<Props> = ({ tracks, handleTrackPress, trackUri, handleAlbumClick, handleArtistClick }) => {
   return (
     <>
       <TrackHeaderFull />
@@ -32,7 +33,13 @@ const MusicTracksPlaylist:FC<Props> = ({ tracks, handleTrackPress, trackUri, han
           return (
             <TableRow key={key}>
               <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} trackNum={key} />
-              <TracktitleFull albumImg={value.albumImg} trackName={value.trackName} artistName={value.artistName} />
+              <TrackTitleFull 
+                albumImg={value.albumImg} 
+                trackName={value.trackName} 
+                artistName={value.artistName} 
+                artistID={value.album.artists[0].id} 
+                handleArtistClick={handleArtistClick} 
+              />
               <TrackAlbumName handleAlbumClick={handleAlbumClick} album={value.album} albumName={value.album.name}/>
               <TrackAddedDate formattedDate={formattedDate}/>
               <TrackDuration formattedTime={formattedTime} />

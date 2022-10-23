@@ -49,7 +49,7 @@ export default async function pullPlaylistTracks(currPlaylistAlbum_id: string, t
           albumImg: undefined,
           trackName: value.name,
           artistName: value.artists[0].name,
-          album: undefined,
+          album: value.artists[0].id,
         }
       })
     };

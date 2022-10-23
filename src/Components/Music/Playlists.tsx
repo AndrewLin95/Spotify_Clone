@@ -9,9 +9,10 @@ interface Props{
   token: string,
   handleTrackPress: (trackURI: string, key: string) => void,
   handleAlbumClick: (value: any) => void,
+  handleArtistClick: (artistID: string) => void,
 }
 
-const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handleAlbumClick }) => {
+const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handleAlbumClick, handleArtistClick }) => {
   const pagingObject = {} as tracksInterface
   const [tracks, setTracks] = useState<tracksInterface>(pagingObject);
   const [loadingTracks, setLoadingTracks] = useState<boolean>(true);
@@ -48,6 +49,7 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handl
           albumTracks={albumTracks}
           handleTrackPress={handleTrackPress} 
           handleAlbumClick={handleAlbumClick}
+          handleArtistClick={handleArtistClick}
         />
       }
     </div>

@@ -147,6 +147,7 @@ const App: FC = () => {
                   token={token} 
                   handleTrackPress={handleTrackPress} 
                   handleAlbumClick={handleAlbumClick}
+                  handleArtistClick={handleArtistClick}
                 />} 
               />
               <Route path='/artists' element={

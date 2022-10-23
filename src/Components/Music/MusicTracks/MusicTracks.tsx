@@ -13,10 +13,11 @@ interface Props{
   albumTracks: tracksInterfaceAlbum,
   handleTrackPress: (trackURI: string, key: string) => void,
   currPlaylistAlbum: currPlaylistAlbumInterface,
-  handleAlbumClick: (value: any) => void;
+  handleAlbumClick: (value: any) => void,
+  handleArtistClick: (artistID: string) => void,
 }
 
-const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum, handleAlbumClick, albumTracks }) => {
+const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum, handleAlbumClick, albumTracks, handleArtistClick }) => {
   if (tracks === undefined){
     return null;
   }
@@ -30,11 +31,13 @@ const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum, ha
             handleTrackPress={handleTrackPress}
             trackUri={currPlaylistAlbum.uri}
             handleAlbumClick={handleAlbumClick}
+            handleArtistClick={handleArtistClick}
           /> : 
           <MusicTracksAlbum 
             albumTracks={albumTracks}
             handleTrackPress={handleTrackPress}
             trackUri={currPlaylistAlbum.uri}
+            handleArtistClick={handleArtistClick}
           />
         }
       </Table>

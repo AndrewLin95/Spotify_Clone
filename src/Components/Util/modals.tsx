@@ -39,6 +39,7 @@ export interface tracksInterfaceAlbum {
   trackDuration: number,
   trackName: string,
   artistName: string,
+  album: string,
 }
 
 export interface currPlaylistAlbumInterface {
