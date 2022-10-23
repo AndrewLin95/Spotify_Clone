@@ -24,7 +24,7 @@ export default async function getArtistAlbum(artistID: string, token:string ) {
     const data = await response.json();
 
     // sorts the response by date. Earliest to latest
-    const sortedData: AlbumObjectFull[] = data.items.sort((a: any, b: any) => {
+    const dataAll: AlbumObjectFull[] = data.items.sort((a: any, b: any) => {
       const aDate = a.release_date;
       const bDate = b.release_date;
 
@@ -36,28 +36,28 @@ export default async function getArtistAlbum(artistID: string, token:string ) {
     });
 
     // returns albums only, sorted
-    const dataAlbum: AlbumObjectFull[] = sortedData.reduce((albums:any, dataInput: any) => {
+    const dataAlbums: AlbumObjectFull[] = dataAll.reduce((albums:any, dataInput: any) => {
       if (dataInput.album_group === 'album'){
         return [...albums, dataInput]
       }
       return [...albums];
     }, [])
     // returns singles only
-    const dataSingles: AlbumObjectFull[] = sortedData.reduce((singles:any, dataInput: any) => {
+    const dataSingles: AlbumObjectFull[] = dataAll.reduce((singles:any, dataInput: any) => {
       if (dataInput.album_group === 'single'){
         return [...singles, dataInput]
       }
       return [...singles];
     }, [])
     // returns all other data
-    const dataOther: AlbumObjectFull[] = sortedData.reduce((other:any, dataInput: any) => {
+    const dataOthers: AlbumObjectFull[] = dataAll.reduce((other:any, dataInput: any) => {
       if (dataInput.album_group === 'appears_on'){
         return [...other, dataInput]
       }
       return [...other];
     }, [])
 
-    return {sortedData, dataAlbum, dataSingles, dataOther};
+    return {dataAll, dataAlbums, dataSingles, dataOthers};
   } catch (err) {
     throw err;
   }

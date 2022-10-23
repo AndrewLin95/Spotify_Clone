@@ -114,8 +114,8 @@ export interface AlbumObjectFull {
 }
 
 export interface ArtistAlbum{
-  sortedData: AlbumObjectFull[];
-  dataAlbum: AlbumObjectFull[];
+  dataAll: AlbumObjectFull[];
+  dataAlbums: AlbumObjectFull[];
   dataSingles: AlbumObjectFull[];
-  dataOther: AlbumObjectFull[];
+  dataOthers: AlbumObjectFull[];
 }
