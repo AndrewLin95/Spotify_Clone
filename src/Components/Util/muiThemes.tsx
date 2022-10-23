@@ -75,7 +75,26 @@ const theme = createTheme({
           color: '#eeeeee',
         }
       }
-    }
+    },
+    MuiToggleButtonGroup: {
+      styleOverrides: {
+        root: {
+          
+        },
+      }
+    },
+    MuiToggleButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(55, 55, 55, 0.7)',
+          color: '#eeeeee',
+        },
+        selected: {
+          backgroundColor: '#eeeeee',
+          color: 'rgba(55, 55, 55, 0.7)',
+        }
+      }
+    },
   }
 });
 

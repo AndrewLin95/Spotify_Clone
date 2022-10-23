@@ -1,55 +1,93 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Stack from '@mui/material/Stack';
-import ToggleButton from '@mui/material/ToggleButton';
+import MuiToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Card from '@mui/material/Card';
 import { CardActionArea } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { styled, useTheme } from '@mui/material/styles';
 import { ArtistAlbum, AlbumObjectFull } from '../../../../Util/modals';
 import CardImage from '../../../../GeneralComponents/CardImage'
 import CardContentAlbum from '../../../../GeneralComponents/CardContentAlbum';
 import './style.css';
+
+
 
 interface Props{
   artistAlbums: ArtistAlbum,
 }
 
 const albumStates = {
-  All: 'dataAll',
-  Albums: 'dataAlbums',
-  Singles: 'dataSingles',
-  Others: 'dataOthers',
+  All: 'All',
+  Albums: 'Albums',
+  Singles: 'Singles',
+  Others: 'Others',
 }
 
 const ArtistDiscography:FC<Props> = ({ artistAlbums }) => {
 
-  const [albumState, setAlbumState] = useState(artistAlbums.dataAll);
+  const [albumState, setAlbumState] = useState(albumStates.All);
+  const [albumData, setAlbumData] = useState(artistAlbums.dataAll)
 
   // updates the toggle button for soup choices.
   const handleAlbumChange = (
     event: React.MouseEvent<HTMLElement>,
-    _albumState: string
+    _albumState: string | null,
   ) => {
     // if _albumState !== null is added, it enforces that one button is selected at all times
     if (_albumState !== null) {
       switch (_albumState) {
         case albumStates.All:
-          setAlbumState(artistAlbums.dataAll);
+          setAlbumState(albumStates.All);
           break;
         case albumStates.Albums:
-          setAlbumState(artistAlbums.dataAlbums);
+          setAlbumState(albumStates.Albums);
           break;
         case albumStates.Singles:
-          setAlbumState(artistAlbums.dataSingles);
+          setAlbumState(albumStates.Singles);
           break;
         case albumStates.Others:
-          setAlbumState(artistAlbums.dataOthers);
+          setAlbumState(albumStates.Others);
           break;
         default:
           break;
       }
     }
   };
+
+  useEffect(() => {
+    switch (albumState) {
+      case albumStates.All:
+        setAlbumData(artistAlbums.dataAll);
+        break;
+      case albumStates.Albums:
+        setAlbumData(artistAlbums.dataAlbums);
+        break;
+      case albumStates.Singles:
+        setAlbumData(artistAlbums.dataSingles);
+        break;
+      case albumStates.Others:
+        setAlbumData(artistAlbums.dataOthers);
+        break;
+      default:
+        break;
+    }
+  }, [albumState])
+
+  // below is required to use custom mui themes
+  const theme = useTheme();
+
+  // style overrides for ToggleButton
+  const ToggleButton = styled(MuiToggleButton)({
+    '&.MuiToggleButton-root': {
+      backgroundColor: 'rgba(55, 55, 55, 0.7)',
+      color: '#eeeeee',
+    },
+    '&.Mui-selected, &.Mui-selected:hover': {
+      backgroundColor: '#eeeeee',
+      color: 'rgba(55, 55, 55, 0.7)',
+    }
+  });
 
   return(
     <>
@@ -58,6 +96,7 @@ const ArtistDiscography:FC<Props> = ({ artistAlbums }) => {
         exclusive
         value={albumState}
         onChange={handleAlbumChange}
+        className='discographyToggleGroup'
       >
         <ToggleButton value={albumStates.All}>{albumStates.All}</ToggleButton>
         <ToggleButton value={albumStates.Albums}>{albumStates.Albums}</ToggleButton>
@@ -65,7 +104,7 @@ const ArtistDiscography:FC<Props> = ({ artistAlbums }) => {
         <ToggleButton value={albumStates.Others}>{albumStates.Others}</ToggleButton>
       </ToggleButtonGroup>
       <Stack className='cardContainer artistCardMain'>
-        {Object.entries(albumState).map(([key, value]) => {
+        {Object.entries(albumData).map(([key, value]) => {
           return(
             <div 
               key={key} 

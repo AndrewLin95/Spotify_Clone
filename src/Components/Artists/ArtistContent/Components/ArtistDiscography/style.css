@@ -8,3 +8,8 @@
   flex-direction: row;
   gap: 10px;
 }
+
+.discographyToggleGroup{
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
