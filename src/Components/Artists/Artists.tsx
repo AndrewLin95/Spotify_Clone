@@ -4,6 +4,7 @@ import ArtistContent from './ArtistContent/ArtistContent';
 import getArtist from '../APICalls/getArtist';
 import getArtistTopTrack from '../APICalls/getArtistTopTrack';
 import getArtistAlbum from '../APICalls/getArtistAlbum';
+import { ArtistAlbum } from '../Util/modals';
 
 interface Props{
   artistID: string,
@@ -17,6 +18,9 @@ const Artists:FC<Props> = ({ artistID, token, handleTrackPress }) => {
 
   const trackObjectInterface = {} as {tracks: SpotifyApi.TrackObjectFull[]}
   const [artistTopTracks, setArtistTopTracks] = useState<{tracks: SpotifyApi.TrackObjectFull[]}>(trackObjectInterface);
+
+  const artistAlbumInterface = {} as ArtistAlbum
+  const [artistAlbums, setArtistAlbums] = useState(artistAlbumInterface);
 
   const [loadingData, setLoadingData] = useState<boolean>(true);
 
@@ -33,6 +37,7 @@ const Artists:FC<Props> = ({ artistID, token, handleTrackPress }) => {
 
       setArtistData(_artistData);
       setArtistTopTracks(_artistTopTracks);
+      setArtistAlbums(_artistAlbums);
       setLoadingData(false);
     }
     getArtistInfo();
@@ -45,7 +50,10 @@ const Artists:FC<Props> = ({ artistID, token, handleTrackPress }) => {
   return (
     <div className="mainContainer">
       <ArtistHeader artistData={artistData}/>
-      <ArtistContent artistTopTracks={artistTopTracks} handleTrackPress={handleTrackPress}/>
+      <ArtistContent 
+        artistTopTracks={artistTopTracks} 
+        handleTrackPress={handleTrackPress} 
+        artistAlbums={artistAlbums}/>
     </div>
   )
 }

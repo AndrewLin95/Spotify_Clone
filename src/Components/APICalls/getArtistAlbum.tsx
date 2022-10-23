@@ -1,5 +1,6 @@
 import { parseISO } from "date-fns/esm";
 import isAfter from "date-fns/isAfter";
+import { AlbumObjectFull } from '../Util/modals';
 
 export default async function getArtistAlbum(artistID: string, token:string ) {
   
@@ -23,7 +24,7 @@ export default async function getArtistAlbum(artistID: string, token:string ) {
     const data = await response.json();
 
     // sorts the response by date. Earliest to latest
-    const sortedData = data.items.sort((a: any, b: any) => {
+    const sortedData: AlbumObjectFull[] = data.items.sort((a: any, b: any) => {
       const aDate = a.release_date;
       const bDate = b.release_date;
 
@@ -35,21 +36,21 @@ export default async function getArtistAlbum(artistID: string, token:string ) {
     });
 
     // returns albums only, sorted
-    const dataAlbum = sortedData.reduce((albums:any, dataInput: any) => {
+    const dataAlbum: AlbumObjectFull[] = sortedData.reduce((albums:any, dataInput: any) => {
       if (dataInput.album_group === 'album'){
         return [...albums, dataInput]
       }
       return [...albums];
     }, [])
     // returns singles only
-    const dataSingles = sortedData.reduce((singles:any, dataInput: any) => {
+    const dataSingles: AlbumObjectFull[] = sortedData.reduce((singles:any, dataInput: any) => {
       if (dataInput.album_group === 'single'){
         return [...singles, dataInput]
       }
       return [...singles];
     }, [])
     // returns all other data
-    const dataOther = sortedData.reduce((other:any, dataInput: any) => {
+    const dataOther: AlbumObjectFull[] = sortedData.reduce((other:any, dataInput: any) => {
       if (dataInput.album_group === 'appears_on'){
         return [...other, dataInput]
       }

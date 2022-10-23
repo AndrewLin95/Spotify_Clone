@@ -1,6 +1,12 @@
+import { FC } from 'react';
 import Stack from '@mui/material/Stack';
+import { ArtistAlbum } from '../../../../Util/modals';
 
-const ArtistDiscography = () => {
+interface Props{
+  artistAlbums: ArtistAlbum,
+}
+
+const ArtistDiscography:FC<Props> = ({ artistAlbums }) => {
   return(
     <>
       <div className='homeCategoryHeader'>Discography</div>

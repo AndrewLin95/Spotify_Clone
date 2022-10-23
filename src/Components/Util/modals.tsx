@@ -97,3 +97,25 @@ export default interface WebPlaybackState {
   }
 }
 
+export interface AlbumObjectFull {
+  album_group: string,
+  album_type: string,
+  artists: SpotifyApi.ArtistObjectSimplified[],
+  external_urls: SpotifyApi.ExternalUrlObject,
+  href: string,
+  id: string,
+  images: SpotifyApi.ImageObject[],
+  name: string,
+  release_date: string,
+  release_date_precision: string,
+  total_tracks: number,
+  type: string,
+  uri: string,
+}
+
+export interface ArtistAlbum{
+  sortedData: AlbumObjectFull[];
+  dataAlbum: AlbumObjectFull[];
+  dataSingles: AlbumObjectFull[];
+  dataOther: AlbumObjectFull[];
+}

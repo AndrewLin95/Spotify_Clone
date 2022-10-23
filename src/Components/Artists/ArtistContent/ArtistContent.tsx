@@ -1,17 +1,19 @@
 import { FC } from 'react';
 import ArtistPopularTracks from './Components/ArtistPopularTracks/ArtistPopularTracks';
 import ArtistDiscography from './Components/ArtistDiscography/ArtistDiscography';
+import { ArtistAlbum } from '../../Util/modals';
 
 interface Props{
   artistTopTracks: {tracks: SpotifyApi.TrackObjectFull[]}
   handleTrackPress: (trackURI: string, key: string) => void,
+  artistAlbums: ArtistAlbum,
 }
 
-const ArtistContent:FC<Props> = ({ artistTopTracks, handleTrackPress }) => {
+const ArtistContent:FC<Props> = ({ artistTopTracks, handleTrackPress, artistAlbums }) => {
   return (
     <div id="mainContentPage">
       <ArtistPopularTracks artistTopTracks={artistTopTracks} handleTrackPress={handleTrackPress}/>
-      <ArtistDiscography />
+      <ArtistDiscography artistAlbums={artistAlbums}/>
     </div>
   )
 }
