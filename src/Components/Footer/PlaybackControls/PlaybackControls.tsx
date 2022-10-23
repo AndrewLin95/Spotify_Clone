@@ -28,7 +28,7 @@ const _repeatState = {
 
 const PlaybackControls:FC<Props> = ({ player, is_paused, handleShuffleState, shuffleState, handleRepeatState, repeatState }) => {
   return(
-    <Box sx={{width: 300, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <Box sx={{width: 300, height: 30, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <Stack spacing={1} direction='row' alignItems='center'>
         <div onClick={handleShuffleState}> { shuffleState ? <ShuffleOn fontSize='small' /> : <Shuffle fontSize='small'/> } </div>
         <div onClick={() => {player.previousTrack()}}><FastRewindRounded /></div>

@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Slider from '@mui/material/Slider';
-import getTrack from '../../APICalls/getTrack';
 
 interface Props{
   is_paused: boolean,
@@ -38,8 +37,8 @@ const TimeSlider:FC<Props> = ({ is_paused, trackPosition, current_track, token }
   }, [current_track])
 
   return (
-    <Box sx={{width: 300}}>
-      <Stack spacing={2} direction='row' alignItems='center'>
+    <Box sx={{width: 300, height: 30}}>
+      <Stack spacing={1} sx={{height: 30}} direction='row' alignItems='center'>
         <Slider aria-label='TrackTime' value={timeValue} max={trackDuration} />
       </Stack>
     </Box>

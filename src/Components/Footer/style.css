@@ -7,19 +7,34 @@
   align-items: center;
 }
 
+#footerLeft{
+  display: flex;
+  width:30vw;
+  height: 100%;
+}
+
 /* Footer Center */
 #footerCenter{
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  width:50vw;
+  height: 100%;
 }
 
 #footerPlaybackControlsContainer{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 15px;
 }
 
 #footerTimeSliderContainer{
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#footerRight{
+  height: 100%;
+  width: 20vw;
 }
