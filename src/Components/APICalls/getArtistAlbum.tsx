@@ -23,8 +23,22 @@ export default async function getArtistAlbum(artistID: string, token:string ) {
     const response = await fetch(url, requestOptions);
     const data = await response.json();
 
+    let dataPayload = data;
+    let numAlbums = 50;
+    let nextUrl = data.next;
+
+    while (data.total > numAlbums) {
+      const response = await fetch(nextUrl, requestOptions)
+      const data = await response.json();
+      nextUrl = data.next;
+      dataPayload.items.push(...data.items);
+      dataPayload.next = data.next;
+      dataPayload.offset = data.offset;
+      numAlbums += 50;
+    }
+
     // sorts the response by date. Earliest to latest
-    const dataAll: AlbumObjectFull[] = data.items.sort((a: any, b: any) => {
+    const dataAll: AlbumObjectFull[] = dataPayload.items.sort((a: any, b: any) => {
       const aDate = a.release_date;
       const bDate = b.release_date;
 
