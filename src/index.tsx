@@ -22,6 +22,6 @@ root.render(
 // 5) more info for artist page
 // 6) recommended track information (for playlists, albums). need to fill in gap
 // 7) gif for playing music when a track is playing? <- maybe
-// 8) pull albums API needs to pull all items past 50 too
+// 8) pull albums API needs to pull all items past 50 too      DONE
 // 9) Search functionality
-// 10) Loading stuff. Look at mui
+// 10) Loading stuff. Look at mui 
