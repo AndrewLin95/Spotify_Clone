@@ -4,6 +4,7 @@ import { debounce } from 'lodash';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './Components/Util/muiThemes';
 import Header from "./Components/Header/Header";
+import LeftSideBar from './Components/LeftSideBar/LeftSideBar';
 import Footer from "./Components/Footer/Footer";
 import Login from "./Components/Login/Login";
 import Home from './Components/Home/Home';
@@ -126,43 +127,48 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        {auth? <Header debouncedSearch={debouncedSearch} /> : null}
-        <Routes>
-          <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
-          {auth ? (
-            <>
-              <Route path="/home" element={
-                <Home 
-                  user={user} 
-                  handlePlaylistClick={handlePlaylistClick}
-                  handleArtistClick={handleArtistClick}
-                />}
-              /> 
-              <Route path="/playlist" element={
-                <Playlists 
-                  currPlaylistAlbum={currPlaylistAlbum} 
-                  token={token} 
-                  handleTrackPress={handleTrackPress} 
-                  handleAlbumClick={handleAlbumClick}
-                  handleArtistClick={handleArtistClick}
-                />} 
-              />
-              <Route path='/artists' element={
-                <Artists 
-                  artistID={artistID}
-                  token={token} 
-                  handleTrackPress={handleTrackPress} 
-                  handleAlbumClick={handleAlbumClick}
-                />
-              }/>
-            </>
-          ) : (
-            <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
-          )}
-          {/* page not found route */}
-          <Route path="*" element={<Login token={token} accessSite={accessSite}/>} />  
-        </Routes>
-        {auth? <Footer token={token} spotifyURI={spotifyURI} playlistAlbumKey={playlistAlbumKey}/> : null}
+        <div id='left'>
+          {auth ? <LeftSideBar /> : null}
+          <div>
+            {auth ? <Header debouncedSearch={debouncedSearch} /> : null}
+            <Routes>
+              <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
+              {auth ? (
+                <>
+                  <Route path="/home" element={
+                    <Home 
+                      user={user} 
+                      handlePlaylistClick={handlePlaylistClick}
+                      handleArtistClick={handleArtistClick}
+                    />}
+                  /> 
+                  <Route path="/playlist" element={
+                    <Playlists 
+                      currPlaylistAlbum={currPlaylistAlbum} 
+                      token={token} 
+                      handleTrackPress={handleTrackPress} 
+                      handleAlbumClick={handleAlbumClick}
+                      handleArtistClick={handleArtistClick}
+                    />} 
+                  />
+                  <Route path='/artists' element={
+                    <Artists 
+                      artistID={artistID}
+                      token={token} 
+                      handleTrackPress={handleTrackPress} 
+                      handleAlbumClick={handleAlbumClick}
+                    />
+                  }/>
+                </>
+              ) : (
+                <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
+              )}
+              {/* page not found route */}
+              <Route path="*" element={<Login token={token} accessSite={accessSite}/>} />  
+            </Routes>
+          </div>
+        </div>
+        {auth ? <Footer token={token} spotifyURI={spotifyURI} playlistAlbumKey={playlistAlbumKey}/> : null}
       </ThemeProvider>
     </BrowserRouter>
   )

@@ -1,0 +1,6 @@
+#LeftSideBarMainContainer{
+  height: calc(100vh - 90px);  
+  width: 10vw;
+  background: rgba(10,10,10,1);
+  border: purple solid 1px;
+}

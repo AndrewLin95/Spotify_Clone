@@ -8,7 +8,7 @@ const usePullTracks = (currPlaylistAlbum_id: string, token: string ) => {
 
   async function pullTracks() {
     const url = `https://api.spotify.com/v1/playlists/${currPlaylistAlbum_id}/tracks`;
-    
+
     const requestOptions = {
       method: 'GET',
       headers: { 

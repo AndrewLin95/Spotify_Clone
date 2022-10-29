@@ -39,3 +39,7 @@ code {
     border-radius: 10px;
     border: 2px solid #ffffff00;
   }
+
+#left{
+  display: flex;
+}
