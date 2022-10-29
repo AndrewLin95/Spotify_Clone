@@ -50,7 +50,7 @@ const App: FC = () => {
         setUser(u)
       }).then(() => {
         async function pullHPData() {
-          const data: any = await pullHomePageData(user);
+          const data: any = await pullHomePageData(user, _token);
           setDataHomePage(data);
         }
         pullHPData();

@@ -15,9 +15,9 @@ root.render(
 
 // TODOs:
 
-// 1) footer right component
+// 1) footer right component  DONE, maybe add more stuff to it?
 // 2) interfaces
-// 3) Left nav bar
+// 3) Left nav bar            
 // 4) profile + logout button
 // 5) more info for artist page
 // 6) recommended track information (for playlists, albums). need to fill in gap

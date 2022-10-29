@@ -1,6 +1,6 @@
 import { spotifyAPI } from '../Spotify/Spotify';
 
-export default async function pullHomePageData(user: any) {
+export default async function pullHomePageData(user: any, token: string) {
   try {
     let homePageData = {};
     // pulls the user playlists and top artists based on user profile
@@ -24,6 +24,21 @@ export default async function pullHomePageData(user: any) {
     // randomizes the top five user artists and returns recommended artists based on the determiend ID
     let response = await spotifyAPI.getArtistRelatedArtists(topFiveArtistID[Math.floor(Math.random()*topFiveArtistID.length)]);
     homePageData = {...homePageData, 'dataRelatedArtists' : response.artists}
+
+    const url = `https://api.spotify.com/v1/browse/featured-playlists`
+    const requestOptions = {
+      method: 'GET', 
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    }
+    const responseFeatured = await fetch(url, requestOptions)
+    const dataFeatured = await responseFeatured.json();
+
+    homePageData = {...homePageData, 'dataFeatured' : dataFeatured.playlists.items}
+
     return homePageData;
   } catch (err) {
     throw(err);

@@ -6,8 +6,6 @@ import './style.css';
 
 import { dataHomePageInterface } from '../Util/modals';
 
-import useHomePageData from '../APICalls/useHomePageData';
-
 interface Props{
   user: SpotifyApi.CurrentUsersProfileResponse,
   handlePlaylistClick: (value: SpotifyApi.PlaylistObjectSimplified) => void,
@@ -19,12 +17,18 @@ const Home: FC<Props> = ({ user, handlePlaylistClick, handleArtistClick, dataHom
   const [userPlaylist, setUserPlaylist] = useState<SpotifyApi.PlaylistObjectSimplified[]>([]);
   const [userTopArtists, setUserTopArtists] = useState<SpotifyApi.ArtistObjectFull[]>([]);
   const [userRecommendedArtists, setUserRecommendedArtists] = useState<SpotifyApi.ArtistObjectFull[]>([]);
+  const [userFeatured, setUserFeatured] = useState<SpotifyApi.PlaylistObjectSimplified[]>([])
 
   useEffect(() => {
     setUserPlaylist(dataHomePage.dataHomePagePlaylist);
     setUserTopArtists(dataHomePage.dataHomePageTopArtist);
     setUserRecommendedArtists(dataHomePage.dataRelatedArtists);
+    setUserFeatured(dataHomePage.dataFeatured);
   })
+
+  useEffect(() =>{
+    console.log(userFeatured);
+  }, [userFeatured])
 
   return (
     <div className='mainContainer'>
