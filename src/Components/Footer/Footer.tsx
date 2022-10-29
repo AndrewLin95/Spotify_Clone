@@ -3,6 +3,7 @@ import './style.css';
 import TimeSlider from './TimeSlider/TimeSlider';
 import PlaybackControls from './PlaybackControls/PlaybackControls';
 import FooterLeft from './FooterLeft/FooterLeft';
+import FooterRight from './FooterRight/FooterRight';
 import SpotifyWebPlaybackSDK from '../Spotify/SpotifyWebPlaybackSDK';
 import putPlaybackShuffle from '../APICalls/putPlaybackShuffle';
 import putRepeatState from '../APICalls/putRepeatState';
@@ -18,16 +19,6 @@ interface Props {
   token: string,
   spotifyURI: string,
   playlistAlbumKey: string,
-}
-
-interface play{
-  spotify_uri: any;
-  playerInstance: {
-      _options: {
-          getOAuthToken: any;
-          id: any;
-      };
-  };
 }
 
 const _repeatState = {
@@ -62,7 +53,7 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
     };
 
     try{
-      const response = await fetch(url, requestOptions)
+      await fetch(url, requestOptions)
     }
 
     catch (err){
@@ -128,7 +119,9 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
         </div>
       </div>
       <div id='footerRight'>
-
+        <FooterRight 
+          player={player}
+        />
       </div>
     </div>
   )
