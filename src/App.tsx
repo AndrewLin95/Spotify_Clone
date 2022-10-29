@@ -58,10 +58,10 @@ const App: FC = () => {
     };
   }, []);
 
-  useEffect(()=>{
-    console.log(dataHomePage);
-  }, [dataHomePage])
-
+  useEffect(() => {
+    console.log(dataHomePage)
+  }, [dataHomePage]);
+  
   const accessSite = ( authStatus: boolean ) => {
     setAuth(authStatus)
   }
@@ -142,7 +142,7 @@ const App: FC = () => {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <div id='left'>
-          {auth ? <LeftSideBar /> : null}
+          {auth ? <LeftSideBar dataPlaylist={dataHomePage.dataHomePagePlaylist} handlePlaylistClick={handlePlaylistClick} /> : null}
           <div>
             {auth ? <Header debouncedSearch={debouncedSearch} /> : null}
             <Routes>

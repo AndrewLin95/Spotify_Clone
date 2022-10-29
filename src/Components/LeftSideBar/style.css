@@ -1,6 +1,26 @@
 #LeftSideBarMainContainer{
   height: calc(100vh - 90px);  
-  width: 10vw;
+  width: calc(10vw - 15px);
   background: rgba(10,10,10,1);
-  border: purple solid 1px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+#leftSideBarSeperator{
+  border: solid 1px lightgrey;
+}
+
+#leftSideBarPlaylistContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leftSideBarPlaylistName{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(220, 220, 220, 1);
 }
