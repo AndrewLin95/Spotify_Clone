@@ -42,4 +42,6 @@ code {
 
 #left{
   display: flex;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
