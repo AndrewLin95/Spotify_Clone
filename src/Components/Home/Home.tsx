@@ -2,8 +2,8 @@ import { FC, useState, useEffect } from 'react';
 import HomePlaylist from './HomePlaylist/HomePlaylist';
 import HomeRecommendedArtist from './HomeRecommendedArtist/HomeRecommendedArtist';
 import HomeTopArtist from './HomeTopArtist/HomeTopArtist';
+import HomeFeatured from './HomeFeatured/HomeFeatured';
 import './style.css';
-
 import { dataHomePageInterface } from '../Util/modals';
 
 interface Props{
@@ -35,6 +35,7 @@ const Home: FC<Props> = ({ user, handlePlaylistClick, handleArtistClick, dataHom
       <HomePlaylist userPlaylist={userPlaylist} handlePlaylistClick={handlePlaylistClick}/>
       <HomeTopArtist userTopArtists={userTopArtists} handleArtistClick={handleArtistClick}/>
       <HomeRecommendedArtist userRecommendedArtists={userRecommendedArtists} handleArtistClick={handleArtistClick}/>
+      <HomeFeatured userFeatured={userFeatured} handlePlaylistClick={handlePlaylistClick}/>
     </div>
   )
 }
