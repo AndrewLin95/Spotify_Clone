@@ -10,9 +10,10 @@ import Login from "./Components/Login/Login";
 import Home from './Components/Home/Home';
 import Artists from './Components/Artists/Artists';
 import { spotifyAPI } from './Components/Spotify/Spotify';
-import { currPlaylistAlbumInterface, ArtistAlbum } from './Components/Util/modals'
+import { currPlaylistAlbumInterface, dataHomePageInterface } from './Components/Util/modals'
 
 import useRetrieveToken from './Components/Util/useRetrieveToken';
+import pullHomePageData from './Components/APICalls/pullHomePageData';
 import Playlists from './Components/Music/Playlists';
 
 const App: FC = () => {
@@ -21,6 +22,9 @@ const App: FC = () => {
   const [user, setUser] = useState<any>();
   const [auth, setAuth] = useState<boolean>(false);
   const [query, setQuery] = useState<number | string>('');
+
+  const _dataHomePageInterface = {} as dataHomePageInterface
+  const [dataHomePage, setDataHomePage] = useState<dataHomePageInterface>(_dataHomePageInterface)
 
   const currPlaylistInterface = {} as currPlaylistAlbumInterface
   const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<any>({currPlaylistInterface});
@@ -44,9 +48,19 @@ const App: FC = () => {
       spotifyAPI.setAccessToken(_token);
       spotifyAPI.getMe().then((u) => {
         setUser(u)
-      });
+      }).then(() => {
+        async function pullHPData() {
+          const data: any = await pullHomePageData(user);
+          setDataHomePage(data);
+        }
+        pullHPData();
+      })
     };
   }, []);
+
+  useEffect(()=>{
+    console.log(dataHomePage);
+  }, [dataHomePage])
 
   const accessSite = ( authStatus: boolean ) => {
     setAuth(authStatus)
@@ -140,6 +154,7 @@ const App: FC = () => {
                       user={user} 
                       handlePlaylistClick={handlePlaylistClick}
                       handleArtistClick={handleArtistClick}
+                      dataHomePage={dataHomePage}
                     />}
                   /> 
                   <Route path="/playlist" element={

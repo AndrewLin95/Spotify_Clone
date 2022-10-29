@@ -120,3 +120,9 @@ export interface ArtistAlbum{
   dataSingles: AlbumObjectFull[];
   dataOthers: AlbumObjectFull[];
 }
+
+export interface dataHomePageInterface{
+  dataHomePagePlaylist: SpotifyApi.PlaylistObjectSimplified[];
+  dataHomePageTopArtist: SpotifyApi.ArtistObjectFull[];
+  dataRelatedArtists: SpotifyApi.ArtistObjectFull[];
+}

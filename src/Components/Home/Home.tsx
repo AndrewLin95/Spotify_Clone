@@ -4,20 +4,21 @@ import HomeRecommendedArtist from './HomeRecommendedArtist/HomeRecommendedArtist
 import HomeTopArtist from './HomeTopArtist/HomeTopArtist';
 import './style.css';
 
+import { dataHomePageInterface } from '../Util/modals';
+
 import useHomePageData from '../APICalls/useHomePageData';
 
 interface Props{
   user: SpotifyApi.CurrentUsersProfileResponse,
   handlePlaylistClick: (value: SpotifyApi.PlaylistObjectSimplified) => void,
   handleArtistClick: (artistURI: string) => void,
+  dataHomePage: dataHomePageInterface
 }
 
-const Home: FC<Props> = ({ user, handlePlaylistClick, handleArtistClick }) => {
+const Home: FC<Props> = ({ user, handlePlaylistClick, handleArtistClick, dataHomePage }) => {
   const [userPlaylist, setUserPlaylist] = useState<SpotifyApi.PlaylistObjectSimplified[]>([]);
   const [userTopArtists, setUserTopArtists] = useState<SpotifyApi.ArtistObjectFull[]>([]);
   const [userRecommendedArtists, setUserRecommendedArtists] = useState<SpotifyApi.ArtistObjectFull[]>([]);
-
-  const { loading, dataHomePage } = useHomePageData(user, userTopArtists);
 
   useEffect(() => {
     setUserPlaylist(dataHomePage.dataHomePagePlaylist);
