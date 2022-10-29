@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import Slider from '@mui/material/Slider';
+import VolumeDownIcon from '@mui/icons-material/VolumeDown';
 
 interface Props{
   player: any;
@@ -18,8 +19,11 @@ const FooterRight:FC<Props> = ({player}) => {
   }
 
   return(
-    <div>
-      <Slider onChange={handleVolumeChange} aria-label='Volume' value={volume} max={100}/>
+    <div id='footerRightContainer'>
+      <div id='footerVolumeContainer'>
+        <VolumeDownIcon />
+        <Slider onChange={handleVolumeChange} aria-label='Volume' value={volume} max={100}/>
+      </div>
     </div>
   )
 }
