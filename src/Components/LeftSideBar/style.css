@@ -24,3 +24,15 @@
   text-overflow: ellipsis;
   color: rgba(220, 220, 220, 1);
 }
+
+#leftSideBarTopContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 50px;
+}
+
+.homeBtn{
+  text-decoration: none;
+  color: white;
+}
