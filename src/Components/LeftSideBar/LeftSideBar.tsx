@@ -19,7 +19,7 @@ const LeftSideBar: FC<Props> = ({dataPlaylist, handlePlaylistClick}) => {
         </div>
         <div>
           {/* to add link to search page */}
-          <FontAwesomeIcon id='headerSearchIcon' icon={faMagnifyingGlass} /> Search
+          <Link className='homeBtn' to="/home" style={{textDecoration: 'none'}}><FontAwesomeIcon id='headerSearchIcon' icon={faMagnifyingGlass}/>Search</Link>
         </div>
       </div>
       <div id='leftSideBarSeperator'></div>
