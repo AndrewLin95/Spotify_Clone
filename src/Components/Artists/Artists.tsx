@@ -5,6 +5,8 @@ import getArtist from '../APICalls/getArtist';
 import getArtistTopTrack from '../APICalls/getArtistTopTrack';
 import getArtistAlbum from '../APICalls/getArtistAlbum';
 import { ArtistAlbum } from '../Util/modals';
+import ArtistHeaderSkeleton from '../Skeleton/ArtistHeaderSkeleton';
+import MusicTracksSkeleton from '../Skeleton/MusicTracksSkeleton';
 
 interface Props{
   artistID: string,
@@ -46,13 +48,24 @@ const Artists:FC<Props> = ({ artistID, token, handleTrackPress, handleAlbumClick
 
   return (
     <div className="mainContainer">
-      <ArtistHeader artistData={artistData}/>
-      <ArtistContent 
-        artistTopTracks={artistTopTracks} 
-        handleTrackPress={handleTrackPress} 
-        artistAlbums={artistAlbums}
-        handleAlbumClick={handleAlbumClick}
-      />
+      {loadingData? 
+      <>
+        <ArtistHeaderSkeleton />
+        <MusicTracksSkeleton />
+      </>
+      :
+      <>
+        <ArtistHeader artistData={artistData}/>
+        <ArtistContent 
+          artistTopTracks={artistTopTracks} 
+          handleTrackPress={handleTrackPress} 
+          artistAlbums={artistAlbums}
+          handleAlbumClick={handleAlbumClick}
+        />
+      </>
+    }
+      
+
     </div>
   )
 }
