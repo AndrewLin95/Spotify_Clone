@@ -4,25 +4,10 @@ import TableBody from '@mui/material/TableBody';
 
 import MusicRowSkeleton from './MusicRowSkeleton';
 import TrackHeaderFull from '../GeneralComponents/TrackHeaderFull';
+import { skeletonObject } from '../Util/objects';
 
 const MusicTracksSkeleton = () => {
-  const skeletonObject = {
-    '1' : 1,
-    '2' : 2,
-    '3' : 3,
-    '4' : 4,
-    '5' : 5,
-    '6' : 6,
-    '7' : 7,
-    '8' : 8,
-    '9' : 9,
-    '10' : 10,
-    '11' : 11,
-    '12' : 12,
-    '13' : 13,
-    '14' : 14,
-    '15' : 15
-  };
+
   return (
     <TableContainer>
       <Table className='tableMain'>
