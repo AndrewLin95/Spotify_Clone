@@ -2,7 +2,7 @@
   "name": "spotify_clone",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://AndrewLin95.github.io/spotify_clone",
+  "homepage": "http://AndrewLin95.github.io/spotify_clone/",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
