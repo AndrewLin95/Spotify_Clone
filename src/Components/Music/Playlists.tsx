@@ -3,6 +3,7 @@ import MusicHeader from './MusicHeader/MusicHeader';
 import MusicTracks from './MusicTracks/MusicTracks';
 import { tracksInterface, tracksInterfaceAlbum, currPlaylistAlbumInterface } from '../Util/modals';
 import pullPlaylistTracks from '../APICalls/pullPlaylistTracks';
+import MusicTracksSkeleton from '../Skeleton/MusicTracksSkeleton';
 
 interface Props{
   currPlaylistAlbum: currPlaylistAlbumInterface,
@@ -42,7 +43,7 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handl
     <div className="mainContainer">
       <MusicHeader currPlaylistAlbum={currPlaylistAlbum} />
       {loadingTracks ? 
-        null : 
+        <MusicTracksSkeleton /> : 
         <MusicTracks 
           currPlaylistAlbum={currPlaylistAlbum} 
           tracks={tracks} 

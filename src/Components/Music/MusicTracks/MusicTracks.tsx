@@ -18,10 +18,6 @@ interface Props{
 }
 
 const MusicTracks:FC<Props> = ({ tracks, handleTrackPress, currPlaylistAlbum, handleAlbumClick, albumTracks, handleArtistClick }) => {
-  if (tracks === undefined){
-    return null;
-  }
-
   return(
     <TableContainer>
       <Table className='tableMain'>
