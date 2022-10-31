@@ -57,10 +57,6 @@ const App: FC = () => {
       })
     };
   }, []);
-
-  useEffect(() => {
-    console.log(dataHomePage)
-  }, [dataHomePage]);
   
   const accessSite = ( authStatus: boolean ) => {
     setAuth(authStatus)

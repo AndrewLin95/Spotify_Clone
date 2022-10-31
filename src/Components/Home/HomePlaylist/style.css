@@ -18,6 +18,10 @@
   max-width: 500px;
 }
 
+.linkPlaylist:hover{
+  background: rgba(55, 55, 55, 0.7);
+}
+
 .homePlaylistContainer{
   display: flex;
   gap: 10px;

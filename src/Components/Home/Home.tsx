@@ -26,10 +26,6 @@ const Home: FC<Props> = ({ user, handlePlaylistClick, handleArtistClick, dataHom
     setUserFeatured(dataHomePage.dataFeatured);
   })
 
-  useEffect(() =>{
-    console.log(userFeatured);
-  }, [userFeatured])
-
   return (
     <div className='mainContainer'>
       <HomePlaylist userPlaylist={userPlaylist} handlePlaylistClick={handlePlaylistClick}/>
