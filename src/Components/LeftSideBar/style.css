@@ -18,6 +18,14 @@
   gap: 10px;
 }
 
+.leftSideBarPlaylists{
+  text-decoration: none;
+}
+
+.leftSideBarPlaylists:hover{
+  font-weight: bolder;
+}
+
 .leftSideBarPlaylistName{
   white-space: nowrap;
   overflow: hidden;

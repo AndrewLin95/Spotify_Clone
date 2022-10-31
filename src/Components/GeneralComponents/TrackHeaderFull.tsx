@@ -11,7 +11,7 @@ const TrackHeaderFull = () => {
         <TableCell align='left'>TITLE</TableCell>
         <TableCell align='left'>ALBUM</TableCell>
         <TableCell align='left'>DATE ADDED</TableCell>
-        <TableCell align='center'><AccessTimeIcon fontSize='small'></AccessTimeIcon></TableCell>
+        <TableCell align='left'><AccessTimeIcon fontSize='small'></AccessTimeIcon></TableCell>
       </TableRow>
   </TableHead>
   )

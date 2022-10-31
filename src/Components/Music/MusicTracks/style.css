@@ -1,3 +1,7 @@
+.tableRow:hover{
+  background: rgba(55, 55, 55, 0.7);
+}
+
 .tableTrackNum{
   width: 50px;
 }
@@ -21,14 +25,28 @@
 .tableTitleText{
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .tableArtist{
   color: rgba(150, 150, 150, 1);
+  text-decoration: none;
+}
+
+.tableArtist:hover{
+  text-decoration: underline;
 }
 
 .tableAlbum{
+  position: relative;
+  top: 8px;
   width: 30vw;
+  height: 100%;
+  text-decoration: none;
+}
+
+.tableAlbum:hover{
+  text-decoration: underline;
 }
 
 .tableDateAdded{

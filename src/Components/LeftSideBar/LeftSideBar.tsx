@@ -26,7 +26,7 @@ const LeftSideBar: FC<Props> = ({dataPlaylist, handlePlaylistClick}) => {
       <div id='leftSideBarPlaylistContainer'>
         {Object.entries(dataPlaylist).map(([key, value]) => {
           return (
-            <Link to={'/playlist'} key={key} style={{textDecoration: 'none'}}>
+            <Link to={'/playlist'} key={key} className='leftSideBarPlaylists'>
               <div className='leftSideBarPlaylistName' onClick={() => {handlePlaylistClick(value)}} > 
                 {value.name}
               </div>

@@ -25,7 +25,7 @@ const ArtistPopularTracks:FC<Props> = ({ artistTopTracks, handleTrackPress }) =>
           const formattedTime = formatTime(value.duration_ms);
 
           return (
-            <TableRow key={key}>
+            <TableRow key={key} className="tableRow">
               <TrackNumberArtist handleTrackPress={handleTrackPress} trackUri={value.album.uri} orderingNum={key} trackNum={value.track_number} />
               <TrackTitleArtist albumImg={value.album.images[2].url} trackName={value.name}/>
               <TrackDuration formattedTime={formattedTime} />

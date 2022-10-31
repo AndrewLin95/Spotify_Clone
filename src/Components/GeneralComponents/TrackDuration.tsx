@@ -7,7 +7,7 @@ interface Props{
 
 const TrackDuration:FC<Props> = ({ formattedTime }) => {
   return(
-    <TableCell className='tableDuration' align='center'>{formattedTime}</TableCell>
+    <TableCell className='tableDuration' align='left'>{formattedTime}</TableCell>
   )
 }
 

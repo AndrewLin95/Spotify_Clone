@@ -31,7 +31,7 @@ const MusicTracksPlaylist:FC<Props> = ({ tracks, handleTrackPress, trackUri, han
           const formattedTime = formatTime(value.trackDuration);
 
           return (
-            <TableRow key={key}>
+            <TableRow key={key} className="tableRow">
               <TrackNumber handleTrackPress={handleTrackPress} trackUri={trackUri} trackNum={key} />
               <TrackTitleFull 
                 albumImg={value.albumImg} 
