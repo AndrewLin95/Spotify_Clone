@@ -4,6 +4,7 @@ import MusicTracks from './MusicTracks/MusicTracks';
 import { tracksInterface, tracksInterfaceAlbum, currPlaylistAlbumInterface } from '../Util/modals';
 import pullPlaylistTracks from '../APICalls/pullPlaylistTracks';
 import MusicTracksSkeleton from '../Skeleton/MusicTracksSkeleton';
+import MusicRecommendations from './MusicRecommendations/MusicRecommendations';
 
 interface Props{
   currPlaylistAlbum: currPlaylistAlbumInterface,
@@ -39,19 +40,29 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handl
     getPlaylistTrackInfo();
   }, [currPlaylistAlbum]);
 
+  useEffect(() => {
+    console.log('TRACKS', tracks);
+  }, [tracks])
+
   return (
     <div className="mainContainer">
       <MusicHeader currPlaylistAlbum={currPlaylistAlbum} />
       {loadingTracks ? 
         <MusicTracksSkeleton /> : 
-        <MusicTracks 
-          currPlaylistAlbum={currPlaylistAlbum} 
-          tracks={tracks} 
-          albumTracks={albumTracks}
-          handleTrackPress={handleTrackPress} 
-          handleAlbumClick={handleAlbumClick}
-          handleArtistClick={handleArtistClick}
-        />
+        <>
+          <MusicTracks 
+            currPlaylistAlbum={currPlaylistAlbum} 
+            tracks={tracks} 
+            albumTracks={albumTracks}
+            handleTrackPress={handleTrackPress} 
+            handleAlbumClick={handleAlbumClick}
+            handleArtistClick={handleArtistClick}
+          />
+          <MusicRecommendations 
+            token={token}
+            tracks={tracks}
+          />
+        </>
       }
     </div>
   )
