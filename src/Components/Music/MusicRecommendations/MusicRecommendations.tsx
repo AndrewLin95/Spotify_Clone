@@ -4,20 +4,21 @@ import { tracksInterface } from '../../Util/modals';
 
 interface Props {
   token: string;
-  tracks: tracksInterface;
+  tracks: tracksInterface[];
 }
 
 const MusicRecommendations:FC<Props> = ({ token, tracks }) => {
-  
+
   useEffect(() => {
-    
+    if (tracks === undefined){
+      return;
+    }
     async function _getRecommendations() {
       const data = await getRecommendations(token, tracks);
     }
 
     _getRecommendations();
-
-  }, [])
+  }, [tracks])
   
   
   return(

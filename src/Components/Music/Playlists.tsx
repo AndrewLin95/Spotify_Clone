@@ -15,8 +15,8 @@ interface Props{
 }
 
 const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handleAlbumClick, handleArtistClick }) => {
-  const pagingObject = {} as tracksInterface
-  const [tracks, setTracks] = useState<tracksInterface>(pagingObject);
+  const pagingObject = {} as tracksInterface[]
+  const [tracks, setTracks] = useState<tracksInterface[]>(pagingObject);
   const [loadingTracks, setLoadingTracks] = useState<boolean>(true);
 
   const pagingObjectAlbum = {} as tracksInterfaceAlbum

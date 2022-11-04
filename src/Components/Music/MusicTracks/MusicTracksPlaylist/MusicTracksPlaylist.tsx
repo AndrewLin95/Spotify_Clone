@@ -13,7 +13,7 @@ import TrackAddedDate from '../../../GeneralComponents/TrackAddedDate';
 import TrackDuration from '../../../GeneralComponents/TrackDuration';
 
 interface Props{
-  tracks: tracksInterface,
+  tracks: tracksInterface[],
   handleTrackPress: (trackURI: string, key: string) => void,
   trackUri: string,
   handleAlbumClick: (value: any) => void,

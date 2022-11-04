@@ -27,6 +27,7 @@ export interface PlaylistTrackObjectFull {
 }
 
 export interface tracksInterface {
+  toArray(): any;
   addedDate: string,
   trackDuration: number,
   albumImg: string,

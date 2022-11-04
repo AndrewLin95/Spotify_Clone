@@ -9,7 +9,7 @@ import { tracksInterface, tracksInterfaceAlbum, currPlaylistAlbumInterface } fro
 // TODO: Interface for Tracks to support both playlist and album
 
 interface Props{
-  tracks: tracksInterface,
+  tracks: tracksInterface[],
   albumTracks: tracksInterfaceAlbum,
   handleTrackPress: (trackURI: string, key: string) => void,
   currPlaylistAlbum: currPlaylistAlbumInterface,
