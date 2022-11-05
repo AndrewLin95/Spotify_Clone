@@ -61,6 +61,9 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handl
           <MusicRecommendations 
             token={token}
             tracks={tracks}
+            handleTrackPress={handleTrackPress} 
+            handleAlbumClick={handleAlbumClick}
+            handleArtistClick={handleArtistClick}
           />
         </>
       }

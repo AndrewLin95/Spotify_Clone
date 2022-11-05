@@ -46,3 +46,9 @@ code {
   overflow-y: hidden;
   overflow-x: hidden;
 }
+
+.darkBackground{
+  padding-top: 30px;
+  background-color: rgba(0,0,0,1);
+  padding-bottom: 50px;
+}
