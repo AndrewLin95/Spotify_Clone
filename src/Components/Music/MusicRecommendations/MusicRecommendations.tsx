@@ -30,10 +30,8 @@ const MusicRecommendations:FC<Props> = ({ token, tracks, handleTrackPress, handl
   
   const musicRecTracksInterface = [] as tracksInterfaceRec[];
   const [musicRecTracks, setMusicRecTracks] = useState<tracksInterfaceRec[]>(musicRecTracksInterface);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
     if (tracks === undefined){
       return;
     }
@@ -41,7 +39,6 @@ const MusicRecommendations:FC<Props> = ({ token, tracks, handleTrackPress, handl
       const data = await getRecommendations(token, tracks);
 
       setMusicRecTracks(data);
-      setLoading(false);
     }
     _getRecommendations();
   }, [tracks])
