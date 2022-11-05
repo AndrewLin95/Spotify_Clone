@@ -91,7 +91,7 @@ const MusicRecommendations:FC<Props> = ({ token, tracks, handleTrackPress, handl
           </Table>
         </TableContainer>
       </div>
-  </>
+    </>
   )
 }
 
