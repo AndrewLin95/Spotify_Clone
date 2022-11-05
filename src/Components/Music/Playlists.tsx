@@ -58,13 +58,17 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handl
             handleAlbumClick={handleAlbumClick}
             handleArtistClick={handleArtistClick}
           />
-          <MusicRecommendations 
+          {currPlaylistAlbum.type === 'playlist' ? 
+            <MusicRecommendations 
             token={token}
             tracks={tracks}
             handleTrackPress={handleTrackPress} 
             handleAlbumClick={handleAlbumClick}
             handleArtistClick={handleArtistClick}
-          />
+          /> :
+          null
+        }
+
         </>
       }
     </div>
