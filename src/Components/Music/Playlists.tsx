@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from 'react';
 import MusicHeader from './MusicHeader/MusicHeader';
 import MusicTracks from './MusicTracks/MusicTracks';
+import MusicRecommendations from './MusicRecommendations/MusicRecommendations';
 import { tracksInterface, tracksInterfaceAlbum, currPlaylistAlbumInterface } from '../Util/modals';
 import pullPlaylistTracks from '../APICalls/pullPlaylistTracks';
 import MusicTracksSkeleton from '../Skeleton/MusicTracksSkeleton';
-import MusicRecommendations from './MusicRecommendations/MusicRecommendations';
 
 interface Props{
   currPlaylistAlbum: currPlaylistAlbumInterface,
