@@ -3,6 +3,7 @@ import { tracksInterface } from "../Util/modals";
 export default async function getRecommendations(token: string, tracks: tracksInterface[]) {
   let artistIDArr: string[] = [];
 
+  // creates an array of artist IDs from the tracks in the playlist.
   let i = 0
   while (artistIDArr.length < 5 && i < (tracks.length - 1)){  
     const artistID: string = tracks[i].album.artists[0].id
@@ -25,6 +26,7 @@ export default async function getRecommendations(token: string, tracks: tracksIn
   }
 
   try {
+    // returns recommendatiosn based on several artist IDs
     const response = await fetch(url, requestOptions);
     const data = await response.json();
     console.log('DATA', data);
