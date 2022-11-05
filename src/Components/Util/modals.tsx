@@ -27,7 +27,6 @@ export interface PlaylistTrackObjectFull {
 }
 
 export interface tracksInterface {
-  toArray(): any;
   addedDate: string,
   trackDuration: number,
   albumImg: string,
@@ -41,6 +40,14 @@ export interface tracksInterfaceAlbum {
   trackName: string,
   artistName: string,
   album: string,
+}
+
+export interface tracksInterfaceRec {
+  trackDuration: number,
+  trackName: string,
+  artistName: string,
+  album: any,
+  albumImg: string,
 }
 
 export interface currPlaylistAlbumInterface {
