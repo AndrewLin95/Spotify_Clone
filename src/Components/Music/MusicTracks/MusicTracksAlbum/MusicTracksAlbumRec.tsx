@@ -22,26 +22,27 @@ const MusicTracksAlbumRec:FC<Props> = ({ token, albumTracks, handleTrackPress, h
   
   const musicRecAlbumsInterface = [] as AlbumObjectFull[]
   const [musicRecAlbums, setMusicRecAlbums] = useState<AlbumObjectFull[]>(musicRecAlbumsInterface);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     if (albumTracks === undefined){
       return;
     }
     async function _getRecommendationsAlbum(){
       const data = await getRecommendationAlbum(token, albumTracks);
       setMusicRecAlbums(data.items);
+      setLoading(false);
     }
     _getRecommendationsAlbum();
   }, [albumTracks])
-  
-  useEffect(() => {
-    console.log('musicrecalbums', musicRecAlbums)
-  }, [musicRecAlbums])
 
   return (
     <>
-      <div className='darkBackground'>
-        <div className='discographyHeader'>More by _____</div>
+      {loading ? 
+        null :
+        <div className='darkBackground'>
+        <div className='discographyHeader'>More by {musicRecAlbums[0].artists[0].name}</div>
         <Stack className='cardContainer artistCardMain'>
           {Object.entries(musicRecAlbums).map(([key,value]) => {
             return(
@@ -65,10 +66,9 @@ const MusicTracksAlbumRec:FC<Props> = ({ token, albumTracks, handleTrackPress, h
               </Link>
             )
           })}
-
-
         </Stack>
       </div>
+      }
     </>
   )
 }

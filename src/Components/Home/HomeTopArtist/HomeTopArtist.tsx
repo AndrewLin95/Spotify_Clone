@@ -13,7 +13,6 @@ interface Props{
 }
 
 const HomeTopArtist:FC<Props> = ({ userTopArtists, handleArtistClick }) => {
-  console.log(userTopArtists);
   return (
     <>
       <div className='homeCategoryHeader'>Your Top Artists</div>
