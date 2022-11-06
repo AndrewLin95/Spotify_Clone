@@ -1,3 +1,7 @@
+.tableMain{
+  overflow: hidden;
+}
+
 .tableRow:hover{
   background: rgba(55, 55, 55, 0.7);
 }
@@ -56,4 +60,12 @@
 
 .tableDuration{
   width: 50px;
+}
+
+.albumRecHeader{
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: larger;
+  font-weight: bold;
 }

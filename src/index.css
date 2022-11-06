@@ -49,6 +49,6 @@ code {
 
 .darkBackground{
   padding-top: 30px;
-  background-color: rgba(0,0,0,1);
   padding-bottom: 50px;
+  background: linear-gradient(rgba(13,13,13,1), rgba(0,0,0,1));
 }

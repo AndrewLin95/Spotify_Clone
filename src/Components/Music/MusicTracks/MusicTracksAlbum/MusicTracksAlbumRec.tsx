@@ -42,7 +42,7 @@ const MusicTracksAlbumRec:FC<Props> = ({ token, albumTracks, handleTrackPress, h
       {loading ? 
         null :
         <div className='darkBackground'>
-        <div className='discographyHeader'>More by {musicRecAlbums[0].artists[0].name}</div>
+        <div className='albumRecHeader'>More by {musicRecAlbums[0].artists[0].name}</div>
         <Stack className='cardContainer artistCardMain'>
           {Object.entries(musicRecAlbums).map(([key,value]) => {
             return(
