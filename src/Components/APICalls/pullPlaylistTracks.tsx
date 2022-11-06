@@ -17,7 +17,6 @@ export default async function pullPlaylistTracks(currPlaylistAlbum_id: string, t
   try {
     const response = await fetch(url, requestOptions)
     const data: any = await response.json();
-
     let dataPayload = data.items;
     let numTracks = 100;
     let nextUrl = data.next;

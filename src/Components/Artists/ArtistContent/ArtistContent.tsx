@@ -2,6 +2,7 @@ import { FC } from 'react';
 import ArtistPopularTracks from './Components/ArtistPopularTracks/ArtistPopularTracks';
 import ArtistDiscography from './Components/ArtistDiscography/ArtistDiscography';
 import { ArtistAlbum } from '../../Util/modals';
+import MusicTracksAlbumRec from '../../Music/MusicTracks/MusicTracksAlbum/MusicTracksAlbumRec';
 
 interface Props{
   artistTopTracks: {tracks: SpotifyApi.TrackObjectFull[]}

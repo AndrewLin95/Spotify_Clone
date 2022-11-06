@@ -41,10 +41,6 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handl
     getPlaylistTrackInfo();
   }, [currPlaylistAlbum]);
 
-  useEffect(() => {
-    console.log('TRACKS', tracks);
-  }, [tracks])
-
   return (
     <div className="mainContainer">
       <MusicHeader currPlaylistAlbum={currPlaylistAlbum} />
@@ -70,6 +66,9 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handl
             <MusicTracksAlbumRec 
               token={token}
               albumTracks={albumTracks}
+              handleTrackPress={handleTrackPress} 
+              handleAlbumClick={handleAlbumClick}
+              handleArtistClick={handleArtistClick}
             />
         }
         </>
