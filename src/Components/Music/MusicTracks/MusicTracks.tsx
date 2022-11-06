@@ -10,7 +10,7 @@ import { tracksInterface, tracksInterfaceAlbum, currPlaylistAlbumInterface } fro
 
 interface Props{
   tracks: tracksInterface[],
-  albumTracks: tracksInterfaceAlbum,
+  albumTracks: tracksInterfaceAlbum[],
   handleTrackPress: (trackURI: string, key: string) => void,
   currPlaylistAlbum: currPlaylistAlbumInterface,
   handleAlbumClick: (value: any) => void,

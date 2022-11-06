@@ -10,7 +10,7 @@ import TrackTitleSimple from '../../../GeneralComponents/TrackTitleSimple';
 import TrackDuration from '../../../GeneralComponents/TrackDuration';
 
 interface Props{
-  albumTracks: tracksInterfaceAlbum,
+  albumTracks: tracksInterfaceAlbum[],
   handleTrackPress: (trackURI: string, key: string) => void,
   trackUri: string,
   handleArtistClick: (artistID: string) => void,

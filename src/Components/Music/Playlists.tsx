@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import MusicHeader from './MusicHeader/MusicHeader';
 import MusicTracks from './MusicTracks/MusicTracks';
 import MusicRecommendations from './MusicRecommendations/MusicRecommendations';
+import MusicTracksAlbumRec from './MusicTracks/MusicTracksAlbum/MusicTracksAlbumRec';
 import { tracksInterface, tracksInterfaceAlbum, currPlaylistAlbumInterface } from '../Util/modals';
 import pullPlaylistTracks from '../APICalls/pullPlaylistTracks';
 import MusicTracksSkeleton from '../Skeleton/MusicTracksSkeleton';
@@ -19,8 +20,8 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handl
   const [tracks, setTracks] = useState<tracksInterface[]>(pagingObject);
   const [loadingTracks, setLoadingTracks] = useState<boolean>(true);
 
-  const pagingObjectAlbum = {} as tracksInterfaceAlbum
-  const [albumTracks, setAlbumTracks] = useState<tracksInterfaceAlbum>(pagingObjectAlbum)
+  const pagingObjectAlbum = {} as tracksInterfaceAlbum[]
+  const [albumTracks, setAlbumTracks] = useState<tracksInterfaceAlbum[]>(pagingObjectAlbum)
 
   useEffect(() =>{
     setLoadingTracks(true);
@@ -66,9 +67,11 @@ const Playlists:FC<Props> = ({ currPlaylistAlbum, token, handleTrackPress, handl
             handleAlbumClick={handleAlbumClick}
             handleArtistClick={handleArtistClick}
           /> :
-          null
+            <MusicTracksAlbumRec 
+              token={token}
+              albumTracks={albumTracks}
+            />
         }
-
         </>
       }
     </div>
