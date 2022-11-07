@@ -13,7 +13,7 @@
 }
 
 .cardContainer{
-  height: 15vw;
+  height: 18vw;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -26,7 +26,7 @@
 }
 
 .homeCardContainer{
-  height: 15vw;
+  height: 17vw;
   width: calc(100% / 8);
 }
 
@@ -38,20 +38,20 @@
 
 @media (max-width: 1200px) {
   .cardContainer{
-    height: 17vw;
+    height: 19vw;
   }
   .homeCardContainer{
-    height: 17vw;
+    height: 18vw;
     width: calc(100% / 7);
   }
 }
 
 @media (max-width: 900px) {
   .cardContainer{
-    height: 20vw;
+    height: 21vw;
   }
   .homeCardContainer{
-    height: 20vw;
+    height: 19vw;
     width: calc(100% / 6);
   }
   .homeCardName{
@@ -61,10 +61,10 @@
 
 @media (max-width: 600px) {
   .cardContainer{
-    height: 29vw;
+    height: 23vw;
   }
   .homeCardContainer{
-    height: 29vw;
+    height: 20vw;
     width: calc(100% / 4);
   }
   .homeCardName{

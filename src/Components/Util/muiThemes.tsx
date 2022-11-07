@@ -37,6 +37,14 @@ const theme = createTheme({
         }
       }
     },
+    MuiCardMedia: {
+      styleOverrides: {
+        root: {
+          width: '100%',
+          height: '15vw',
+        }
+      }
+    },
     MuiTableContainer: {
       styleOverrides: {
         root: {
@@ -74,6 +82,8 @@ const theme = createTheme({
         root: {
           backgroundColor: 'rgba(55, 55, 55, 0.7)',
           color: '#eeeeee',
+          height: '100%',
+          width: '100%',
         }
       }
     },
