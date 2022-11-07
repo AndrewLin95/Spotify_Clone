@@ -63,6 +63,9 @@ const Footer:FC<Props> = ({ token, spotifyURI, playlistAlbumKey }) => {
 
   // when a track gets clicked, spotifyURI at the app component changes state. this updates and plays the track
   useEffect(() => {
+    if (deviceID === '') {
+      return;
+    }
     playTracks(spotifyURI, playlistAlbumKey)
   }, [spotifyURI, playlistAlbumKey])
 
