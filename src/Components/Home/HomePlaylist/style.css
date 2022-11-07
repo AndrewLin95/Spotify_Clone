@@ -15,7 +15,6 @@
   height: 100px;
   width: calc((100% - 70px) / 3); 
   min-width: 250px;
-  max-width: 500px;
 }
 
 .linkPlaylist:hover{
