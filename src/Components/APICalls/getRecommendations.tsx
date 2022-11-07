@@ -6,7 +6,7 @@ export default async function getRecommendations(token: string, tracks: tracksIn
   // creates an array of artist IDs from the tracks in the playlist.
   let i = 0
   while (artistIDArr.length < 5 && i < (tracks.length - 1)){  
-    const artistID: string = tracks[i].album.artists[0].id
+    const artistID: string = tracks[Math.floor(Math.random()*(tracks.length))].album.artists[0].id
     if(!artistIDArr.includes(artistID)){
       artistIDArr.push(artistID);
     }
