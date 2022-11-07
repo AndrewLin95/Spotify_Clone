@@ -4,7 +4,7 @@ import Skeleton from "@mui/material/Skeleton";
 import TableCell from '@mui/material/TableCell';
 
 interface Props{
-  key: string,
+  key: number,
 }
 
 const MusicRowSkeleton:FC<Props> = ({ key }) => {

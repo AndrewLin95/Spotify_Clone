@@ -15,9 +15,9 @@ const MusicTracksSkeleton = () => {
         <TrackHeaderFull />
 
         <TableBody>
-          {Object.entries(skeletonObject).map(([key, ]) => {
+          {Object.entries(skeletonObject).map(([, value]) => {
             return(
-              <MusicRowSkeleton key={key}/>
+              <MusicRowSkeleton key={value}/>
             )
           })}
         </TableBody>
