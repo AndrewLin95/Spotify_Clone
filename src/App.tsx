@@ -1,6 +1,5 @@
-import { FC, useState, useEffect, useMemo } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { debounce } from 'lodash';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './Components/Util/muiThemes';
 import Header from './Components/Header/Header';
@@ -25,7 +24,6 @@ const App: FC = () => {
   // TODO: fix the any type for user (SpotifyApi.CurrentUsersProfileResponse)
   const [user, setUser] = useState<any>();
   const [auth, setAuth] = useState<boolean>(false);
-  const [query, setQuery] = useState<number | string>('');
 
   const _dataHomePageInterface = {} as dataHomePageInterface;
   const [dataHomePage, setDataHomePage] = useState<dataHomePageInterface>(
@@ -78,43 +76,6 @@ const App: FC = () => {
     setPlaylistAlbumKey(key);
   };
 
-  // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
-  useEffect(() => {
-    async function searchArtist() {
-      try {
-        let response = await Promise.all([
-          spotifyAPI.searchArtists(query.toString()),
-          spotifyAPI.searchAlbums(query.toString()),
-          spotifyAPI.searchTracks(query.toString())
-        ]);
-        setArtist(response[0]);
-        setAlbum(response[1]);
-        setTrack(response[2]);
-      } catch (err) {
-        throw err;
-      }
-    }
-
-    if (query) {
-      searchArtist();
-    }
-  }, [query]);
-
-  // updates the search state with the search parameters after a short debounce
-  const handleSearch = (e: number | string) => {
-    setQuery(e);
-  };
-
-  const debouncedSearch = useMemo(() => {
-    return debounce(handleSearch, 300);
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      debouncedSearch.cancel();
-    };
-  });
-
   // handles playlist click from Home page
   const handlePlaylistClick = (value: SpotifyApi.PlaylistObjectSimplified) => {
     setCurrPlaylistAlbum({
@@ -156,7 +117,7 @@ const App: FC = () => {
             />
           ) : null}
           <div>
-            {auth ? <Header debouncedSearch={debouncedSearch} /> : null}
+            {auth ? <Header /> : null}
             <Routes>
               <Route
                 path=""

@@ -23,27 +23,3 @@
   background: rgba(55, 55, 55, 0.7);
   border-radius: 20px 20px;
 }
-
-#headerSearchContainer{
-  padding-top: 3px;
-}
-
-#headerSearchIcon{
-  padding-top: 5px;
-  padding-right: 5px;
-  font-size: 125%;
-  color: white;
-}
-
-#headerSearchInput{
-  padding: 12px;
-  width: 250px;
-  border-radius: 25px 25px;
-  background: rgba(55, 55, 55, 0.7);
-  border: solid 3px transparent;
-  color: white;
-}
-
-#headerSearchInput:focus{
-  border: solid 3px white;
-}
