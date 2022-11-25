@@ -1,20 +1,24 @@
 import { FC, useState, useEffect, useMemo } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './Components/Util/muiThemes';
-import Header from "./Components/Header/Header";
+import Header from './Components/Header/Header';
 import LeftSideBar from './Components/LeftSideBar/LeftSideBar';
-import Footer from "./Components/Footer/Footer";
-import Login from "./Components/Login/Login";
+import Footer from './Components/Footer/Footer';
+import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
 import Artists from './Components/Artists/Artists';
 import { spotifyAPI } from './Components/Spotify/Spotify';
-import { currPlaylistAlbumInterface, dataHomePageInterface } from './Components/Util/modals'
+import {
+  currPlaylistAlbumInterface,
+  dataHomePageInterface
+} from './Components/Util/modals';
 
 import useRetrieveToken from './Components/Util/useRetrieveToken';
 import pullHomePageData from './Components/APICalls/pullHomePageData';
 import Playlists from './Components/Music/Playlists';
+import Search from './Components/Search/Search';
 
 const App: FC = () => {
   const [token, setToken] = useState<any>();
@@ -23,11 +27,15 @@ const App: FC = () => {
   const [auth, setAuth] = useState<boolean>(false);
   const [query, setQuery] = useState<number | string>('');
 
-  const _dataHomePageInterface = {} as dataHomePageInterface
-  const [dataHomePage, setDataHomePage] = useState<dataHomePageInterface>(_dataHomePageInterface)
+  const _dataHomePageInterface = {} as dataHomePageInterface;
+  const [dataHomePage, setDataHomePage] = useState<dataHomePageInterface>(
+    _dataHomePageInterface
+  );
 
-  const currPlaylistInterface = {} as currPlaylistAlbumInterface
-  const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<any>({currPlaylistInterface});
+  const currPlaylistInterface = {} as currPlaylistAlbumInterface;
+  const [currPlaylistAlbum, setCurrPlaylistAlbum] = useState<any>({
+    currPlaylistInterface
+  });
 
   const [spotifyURI, setSpotifyURI] = useState<string>('');
   const [playlistAlbumKey, setPlaylistAlbumKey] = useState<string>('');
@@ -36,7 +44,7 @@ const App: FC = () => {
 
   const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
   const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
-  const [track, setTrack]= useState<SpotifyApi.TrackSearchResponse>();
+  const [track, setTrack] = useState<SpotifyApi.TrackSearchResponse>();
 
   // on mount, take token from url and store in state to be used for SpotifyAPI authentication
   useEffect(() => {
@@ -46,26 +54,29 @@ const App: FC = () => {
       setToken(_token);
       // sets the access token to be used for API calls
       spotifyAPI.setAccessToken(_token);
-      spotifyAPI.getMe().then((u) => {
-        setUser(u)
-      }).then(() => {
-        async function pullHPData() {
-          const data: any = await pullHomePageData(user, _token);
-          setDataHomePage(data);
-        }
-        pullHPData();
-      })
-    };
+      spotifyAPI
+        .getMe()
+        .then((u) => {
+          setUser(u);
+        })
+        .then(() => {
+          async function pullHPData() {
+            const data: any = await pullHomePageData(user, _token);
+            setDataHomePage(data);
+          }
+          pullHPData();
+        });
+    }
   }, []);
-  
-  const accessSite = ( authStatus: boolean ) => {
-    setAuth(authStatus)
-  }
+
+  const accessSite = (authStatus: boolean) => {
+    setAuth(authStatus);
+  };
 
   const handleTrackPress = (spotifyURI: string, key: string) => {
     setSpotifyURI(spotifyURI);
     setPlaylistAlbumKey(key);
-  }
+  };
 
   // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
   useEffect(() => {
@@ -75,28 +86,28 @@ const App: FC = () => {
           spotifyAPI.searchArtists(query.toString()),
           spotifyAPI.searchAlbums(query.toString()),
           spotifyAPI.searchTracks(query.toString())
-        ])
+        ]);
         setArtist(response[0]);
         setAlbum(response[1]);
         setTrack(response[2]);
       } catch (err) {
-        throw(err)
+        throw err;
       }
     }
 
-    if (query){
+    if (query) {
       searchArtist();
     }
-  }, [query])
-  
+  }, [query]);
+
   // updates the search state with the search parameters after a short debounce
   const handleSearch = (e: number | string) => {
     setQuery(e);
   };
 
-  const debouncedSearch = useMemo(() =>{
+  const debouncedSearch = useMemo(() => {
     return debounce(handleSearch, 300);
-  }, []); 
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -113,7 +124,7 @@ const App: FC = () => {
       owner_name: value.owner.display_name,
       totalTracks: value.tracks.total,
       uri: value.uri,
-      urlID: value.id,
+      urlID: value.id
     });
   };
 
@@ -127,7 +138,7 @@ const App: FC = () => {
       totalTracks: value.total_tracks,
       uri: value.uri,
       urlID: value.id
-    })
+    });
   };
 
   const handleArtistClick = (artistID: string) => {
@@ -137,52 +148,82 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <div id='left'>
-          {auth ? <LeftSideBar dataPlaylist={dataHomePage.dataHomePagePlaylist} handlePlaylistClick={handlePlaylistClick} /> : null}
+        <div id="left">
+          {auth ? (
+            <LeftSideBar
+              dataPlaylist={dataHomePage.dataHomePagePlaylist}
+              handlePlaylistClick={handlePlaylistClick}
+            />
+          ) : null}
           <div>
             {auth ? <Header debouncedSearch={debouncedSearch} /> : null}
             <Routes>
-              <Route path="" element={<Login token={token} accessSite={accessSite}/>} />
+              <Route
+                path=""
+                element={<Login token={token} accessSite={accessSite} />}
+              />
               {auth ? (
                 <>
-                  <Route path="/home" element={
-                    <Home 
-                      user={user} 
-                      handlePlaylistClick={handlePlaylistClick}
-                      handleArtistClick={handleArtistClick}
-                      dataHomePage={dataHomePage}
-                    />}
-                  /> 
-                  <Route path="/playlist" element={
-                    <Playlists 
-                      currPlaylistAlbum={currPlaylistAlbum} 
-                      token={token} 
-                      handleTrackPress={handleTrackPress} 
-                      handleAlbumClick={handleAlbumClick}
-                      handleArtistClick={handleArtistClick}
-                    />} 
+                  <Route
+                    path="/home"
+                    element={
+                      <Home
+                        user={user}
+                        handlePlaylistClick={handlePlaylistClick}
+                        handleArtistClick={handleArtistClick}
+                        dataHomePage={dataHomePage}
+                      />
+                    }
                   />
-                  <Route path='/artists' element={
-                    <Artists 
-                      artistID={artistID}
-                      token={token} 
-                      handleTrackPress={handleTrackPress} 
-                      handleAlbumClick={handleAlbumClick}
-                    />
-                  }/>
+                  <Route
+                    path="/playlist"
+                    element={
+                      <Playlists
+                        currPlaylistAlbum={currPlaylistAlbum}
+                        token={token}
+                        handleTrackPress={handleTrackPress}
+                        handleAlbumClick={handleAlbumClick}
+                        handleArtistClick={handleArtistClick}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/artists"
+                    element={
+                      <Artists
+                        artistID={artistID}
+                        token={token}
+                        handleTrackPress={handleTrackPress}
+                        handleAlbumClick={handleAlbumClick}
+                      />
+                    }
+                  />
+                  <Route path="/search" element={<Search />} />
                 </>
               ) : (
-                <Route path="" element={<Login token={token} accessSite={accessSite}/>} /> 
+                <Route
+                  path=""
+                  element={<Login token={token} accessSite={accessSite} />}
+                />
               )}
               {/* page not found route */}
-              <Route path="*" element={<Login token={token} accessSite={accessSite}/>} />  
+              <Route
+                path="*"
+                element={<Login token={token} accessSite={accessSite} />}
+              />
             </Routes>
           </div>
         </div>
-        {auth ? <Footer token={token} spotifyURI={spotifyURI} playlistAlbumKey={playlistAlbumKey}/> : null}
+        {auth ? (
+          <Footer
+            token={token}
+            spotifyURI={spotifyURI}
+            playlistAlbumKey={playlistAlbumKey}
+          />
+        ) : null}
       </ThemeProvider>
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export default App; 
+export default App;

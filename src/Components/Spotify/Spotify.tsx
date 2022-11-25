@@ -5,10 +5,10 @@ import SpotifyWebApi from 'spotify-web-api-js';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 // for development
-// const redirectUri = "http://localhost:3000";
+const redirectUri = 'http://localhost:3000';
 // for production
-const redirectUri =
-  'http://al.spotify-clone.s3-website.us-east-2.amazonaws.com/';
+// const redirectUri =
+//   'http://al.spotify-clone.s3-website.us-east-2.amazonaws.com/';
 const clientId = '44531b7506a649129f802b598710dfab';
 
 const scopes = [

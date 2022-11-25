@@ -5,37 +5,55 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './style.css';
 
-interface Props{
-  dataPlaylist: SpotifyApi.PlaylistObjectSimplified[],
+interface Props {
+  dataPlaylist: SpotifyApi.PlaylistObjectSimplified[];
   handlePlaylistClick: (value: SpotifyApi.PlaylistObjectSimplified) => void;
 }
 
-const LeftSideBar: FC<Props> = ({dataPlaylist, handlePlaylistClick}) => {
+const LeftSideBar: FC<Props> = ({ dataPlaylist, handlePlaylistClick }) => {
   return (
     <div id="LeftSideBarMainContainer">
-      <div id='leftSideBarTopContainer'>
+      <div id="leftSideBarTopContainer">
         <div>
-          <Link className='homeBtn' to="/home" style={{textDecoration: 'none'}}><FontAwesomeIcon icon={faHouse}/> Home </Link> 
+          <Link
+            className="homeBtn"
+            to="/home"
+            style={{ textDecoration: 'none' }}
+          >
+            <FontAwesomeIcon icon={faHouse} /> Home{' '}
+          </Link>
         </div>
         <div>
           {/* to add link to search page */}
-          <Link className='homeBtn' to="/home" style={{textDecoration: 'none'}}><FontAwesomeIcon id='headerSearchIcon' icon={faMagnifyingGlass}/>Search</Link>
+          <Link
+            className="homeBtn"
+            to="/search"
+            style={{ textDecoration: 'none' }}
+          >
+            <FontAwesomeIcon id="headerSearchIcon" icon={faMagnifyingGlass} />
+            Search
+          </Link>
         </div>
       </div>
-      <div id='leftSideBarSeperator'></div>
-      <div id='leftSideBarPlaylistContainer'>
+      <div id="leftSideBarSeperator"></div>
+      <div id="leftSideBarPlaylistContainer">
         {Object.entries(dataPlaylist).map(([key, value]) => {
           return (
-            <Link to={'/playlist'} key={key} className='leftSideBarPlaylists'>
-              <div className='leftSideBarPlaylistName' onClick={() => {handlePlaylistClick(value)}} > 
+            <Link to={'/playlist'} key={key} className="leftSideBarPlaylists">
+              <div
+                className="leftSideBarPlaylistName"
+                onClick={() => {
+                  handlePlaylistClick(value);
+                }}
+              >
                 {value.name}
               </div>
             </Link>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default LeftSideBar;
