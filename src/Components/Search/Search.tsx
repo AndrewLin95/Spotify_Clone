@@ -2,27 +2,24 @@ import { FC, useEffect, useState, useMemo } from 'react';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { debounce } from 'lodash';
+import getSearchItems from '../APICalls/getSearchItem';
 
 import './style.css';
 
-interface Props {}
+interface Props {
+  token: string;
+}
 
-const Search: FC<Props> = () => {
+const Search: FC<Props> = ({ token }) => {
   const [query, setQuery] = useState<number | string>('');
+
+  const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
+  const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
+  const [track, setTrack] = useState<SpotifyApi.TrackSearchResponse>();
 
   // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
   useEffect(() => {
-    async function searchArtist() {
-      try {
-        //to add
-      } catch (err) {
-        throw err;
-      }
-    }
-
-    if (query) {
-      searchArtist();
-    }
+    getSearchItems(token, query);
   }, [query]);
 
   // updates the search state with the search parameters after a short debounce

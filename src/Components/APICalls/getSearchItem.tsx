@@ -1,5 +1,8 @@
-export default async function getArtist(artistID: string, token: string) {
-  const url = `https://api.spotify.com/v1/artists/${artistID}`;
+export default async function getSearchItems(
+  token: string,
+  query: string | number
+) {
+  const url = `https://api.spotify.com/v1/search?q=${query}&type=album,artist,track,playlist&market=CA&limit=20`;
 
   const requestOptions = {
     method: 'GET',
@@ -13,7 +16,7 @@ export default async function getArtist(artistID: string, token: string) {
   try {
     const response = await fetch(url, requestOptions);
     const data = await response.json();
-    return data;
+    console.log('SEARCH DATA', data);
   } catch (err) {
     throw err;
   }

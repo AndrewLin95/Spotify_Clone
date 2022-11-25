@@ -40,10 +40,6 @@ const App: FC = () => {
 
   const [artistID, setArtistID] = useState<string>('');
 
-  const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
-  const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
-  const [track, setTrack] = useState<SpotifyApi.TrackSearchResponse>();
-
   // on mount, take token from url and store in state to be used for SpotifyAPI authentication
   useEffect(() => {
     const _token = useRetrieveToken();
@@ -159,7 +155,7 @@ const App: FC = () => {
                       />
                     }
                   />
-                  <Route path="/search" element={<Search />} />
+                  <Route path="/search" element={<Search token={token} />} />
                 </>
               ) : (
                 <Route
