@@ -20,7 +20,7 @@ export default async function getSearchItems(
   try {
     const response = await fetch(url, requestOptions);
     const data = await response.json();
-    console.log('SEARCH DATA', data);
+    return data;
   } catch (err) {
     throw err;
   }

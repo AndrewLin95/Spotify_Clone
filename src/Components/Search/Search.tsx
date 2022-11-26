@@ -16,11 +16,24 @@ const Search: FC<Props> = ({ token }) => {
   const [artist, setArtist] = useState<SpotifyApi.ArtistSearchResponse>();
   const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
   const [track, setTrack] = useState<SpotifyApi.TrackSearchResponse>();
+  const [playlist, setPlaylist] = useState<SpotifyApi.PlaylistSearchResponse>();
 
   // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
   useEffect(() => {
-    getSearchItems(token, query);
+    async function getSearchResults() {
+      const searchResults: any = await getSearchItems(token, query);
+      console.log(searchResults);
+      setArtist(searchResults.artists.items);
+      setAlbum(searchResults.albums.items);
+      setTrack(searchResults.tracks.items);
+      setPlaylist(searchResults.playlists.items);
+    }
+    getSearchResults();
   }, [query]);
+
+  useEffect(() => {
+    console.log('HERE', artist);
+  }, [artist]);
 
   // updates the search state with the search parameters after a short debounce
   const handleSearch = (e: number | string) => {
