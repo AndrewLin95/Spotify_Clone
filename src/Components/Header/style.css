@@ -1,6 +1,6 @@
 #headerContainer{
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 1em;
   height: 60px;
   padding-top: 10px;
@@ -9,6 +9,7 @@
 
 #headerHomeContainer{
   padding-top: 3px;
+  padding-right: 2rem;
 }
 
 #headerHome{

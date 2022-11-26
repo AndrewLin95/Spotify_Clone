@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { faHouse, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import './style.css';
 
 interface Props {}
 
@@ -13,16 +14,6 @@ const Header: FC<Props> = () => {
           <FontAwesomeIcon icon={faHouse} />
         </Link>
       </div>
-      {/* <div id="headerSearchContainer">
-        <FontAwesomeIcon id="headerSearchIcon" icon={faMagnifyingGlass} />
-        <input
-          onChange={(e) => {
-            debouncedSearch(e.target.value);
-          }}
-          id="headerSearchInput"
-          placeholder="What do you want to listen to?"
-        ></input>
-      </div> */}
     </div>
   );
 };

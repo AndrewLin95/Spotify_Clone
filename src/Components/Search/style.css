@@ -24,3 +24,50 @@
 #headerSearchInput:focus{
   border: solid 3px white;
 }
+
+/* Search Content */
+#searchContentContainer{
+  padding-left: 1rem;
+}
+
+.searchCategoryHeader{
+  padding-bottom: 10px;
+  font-size: larger;
+  font-weight: bold;
+}
+
+/* TopResults */
+#topResultContainer{
+  padding: 1rem;
+  width: 35%;
+  height: 250px;
+  background:rgba(40, 40, 40, 0.7);
+}
+
+#topResultContainer:hover{
+  background:rgba(55, 55, 55, 0.7);
+  transition: background-color 0.5s ease;
+}
+
+#topResultImage{
+  border-radius: 50%;
+  box-shadow: 5px 5px 50px 0px rgba(25, 25, 25, 1);
+}
+
+#topResultName{
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 2rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#topResultTypeContainer{
+  background: rgba(15, 15, 15, 0.8);
+  border-radius: 25px 25px;
+  padding: 10px;
+  font-weight: bold;
+  width: 65px;
+  text-align: center;
+  font-size: 90%;
+}
