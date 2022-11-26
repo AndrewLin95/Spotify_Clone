@@ -28,7 +28,6 @@ const LeftSideBar: FC<Props> = ({ dataPlaylist, handlePlaylistClick }) => {
           </Link>
         </div>
         <div>
-          {/* to add link to search page */}
           <Link
             className="homeBtn"
             to="/search"
