@@ -1,4 +1,6 @@
 #headerSearchContainer{
+  position: relative;
+  bottom: 4.6rem;
   padding-top: 1rem;
   padding-left: 1rem;
 }
