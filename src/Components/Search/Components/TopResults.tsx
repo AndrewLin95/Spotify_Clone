@@ -7,7 +7,6 @@ interface Props {
 }
 
 const TopResults: FC<Props> = ({ artist }) => {
-  console.log(artist);
   return (
     <>
       {/* TODO: Make a play button show on hover */}
