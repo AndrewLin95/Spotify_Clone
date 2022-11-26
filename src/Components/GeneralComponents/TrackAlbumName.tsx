@@ -15,6 +15,7 @@ const TrackAlbumName: FC<Props> = ({ handleAlbumClick, album, albumName }) => {
       onClick={() => {
         handleAlbumClick(album);
       }}
+      style={{ textDecoration: 'none' }}
     >
       <TableCell className="tableAlbum">{albumName}</TableCell>
     </Link>
