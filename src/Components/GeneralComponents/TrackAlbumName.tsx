@@ -1,18 +1,24 @@
 import { FC } from 'react';
 import TableCell from '@mui/material/TableCell';
+import { Link } from 'react-router-dom';
 
-interface Props{
+interface Props {
   handleAlbumClick: (value: any) => void;
   album: any;
   albumName: any;
 }
 
-const TrackAlbumName:FC<Props> = ({ handleAlbumClick, album, albumName }) => {
+const TrackAlbumName: FC<Props> = ({ handleAlbumClick, album, albumName }) => {
   return (
-    <div onClick={() => {handleAlbumClick(album)}}>
-      <TableCell className='tableAlbum'>{albumName}</TableCell>  
-  </div>
-  )
-}
+    <Link
+      to={'/playlist'}
+      onClick={() => {
+        handleAlbumClick(album);
+      }}
+    >
+      <TableCell className="tableAlbum">{albumName}</TableCell>
+    </Link>
+  );
+};
 
 export default TrackAlbumName;

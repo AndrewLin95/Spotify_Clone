@@ -31,6 +31,8 @@ const TopSongs: FC<Props> = ({
           <TableBody>
             {Object.entries(tracks).map(([key, value]) => {
               const formattedTime = formatTime(value.duration_ms);
+
+              console.log(value.album);
               return (
                 <TableRow key={key} className="tableRow">
                   <TrackTitleFullShort
