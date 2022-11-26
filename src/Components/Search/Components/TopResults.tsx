@@ -12,8 +12,8 @@ const TopResults: FC<Props> = ({ artist }) => {
     <>
       {/* TODO: Make a play button show on hover */}
       <div className="searchCategoryHeader">Top Result</div>
-      <Link to={'/artist'} style={{ textDecoration: 'none', color: 'white' }}>
-        <div id="topResultContainer">
+      <div id="topResultContainer">
+        <Link to={'/artist'} style={{ textDecoration: 'none', color: 'white' }}>
           <div id="topResultImageContainer">
             <img id="topResultImage" src={artist.images[2].url} />
           </div>
@@ -21,8 +21,8 @@ const TopResults: FC<Props> = ({ artist }) => {
           <div id="topResultTypeContainer">
             <div>{artist.type.toUpperCase()}</div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </>
   );
 };
