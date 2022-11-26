@@ -11,6 +11,10 @@ interface Props {
 }
 
 const LeftSideBar: FC<Props> = ({ dataPlaylist, handlePlaylistClick }) => {
+  if (dataPlaylist === null || dataPlaylist === undefined) {
+    return null;
+  }
+
   return (
     <div id="LeftSideBarMainContainer">
       <div id="leftSideBarTopContainer">
