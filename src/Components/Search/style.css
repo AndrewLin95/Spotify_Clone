@@ -31,16 +31,27 @@
 }
 
 .searchCategoryHeader{
+  padding-top: 10px;
   padding-bottom: 10px;
   font-size: larger;
   font-weight: bold;
 }
 
+#searchContentTopContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+#topResultMainContainer{
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  height: 250px;
+}
+
 /* TopResults */
 #topResultContainer{
   padding: 1rem;
-  width: 35%;
-  height: 250px;
   background:rgba(40, 40, 40, 0.7);
 }
 
@@ -59,7 +70,7 @@
   font-weight: bold;
   font-size: 2rem;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
 }
 
 #topResultTypeContainer{
@@ -70,4 +81,18 @@
   width: 65px;
   text-align: center;
   font-size: 90%;
+  margin-top: 5px;
+}
+
+/* Top Songs */
+
+.mainContainerTopSongs{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: calc(65% - 2rem);
+}
+
+.tableTitleContainerShort{
+  width: 40vw;
+  height: auto;
 }

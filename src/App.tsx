@@ -155,7 +155,16 @@ const App: FC = () => {
                       />
                     }
                   />
-                  <Route path="/search" element={<Search token={token} />} />
+                  <Route
+                    path="/search"
+                    element={
+                      <Search
+                        token={token}
+                        handleArtistClick={handleArtistClick}
+                        handleAlbumClick={handleAlbumClick}
+                      />
+                    }
+                  />
                 </>
               ) : (
                 <Route
