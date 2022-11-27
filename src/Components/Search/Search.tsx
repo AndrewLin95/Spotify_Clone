@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { debounce } from 'lodash';
 import TopResults from './Components/TopResults';
 import TopSongs from './Components/TopSongs';
+import TopArtists from './Components/TopArtists';
 import getSearchItems from '../APICalls/getSearchItem';
 import './style.css';
 
@@ -93,6 +94,7 @@ const Search: FC<Props> = ({ token, handleAlbumClick, handleArtistClick }) => {
               handleArtistClick={handleArtistClick}
             />
           </div>
+          <TopArtists />
         </div>
       )}
     </>
