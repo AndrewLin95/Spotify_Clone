@@ -5,6 +5,7 @@ import { debounce } from 'lodash';
 import TopResults from './Components/TopResults';
 import TopSongs from './Components/TopSongs';
 import TopArtists from './Components/TopArtists';
+import TopAlbums from './Components/TopAlbums';
 import getSearchItems from '../APICalls/getSearchItem';
 import './style.css';
 
@@ -23,13 +24,17 @@ const Search: FC<Props> = ({ token, handleAlbumClick, handleArtistClick }) => {
   const [artist, setArtist] =
     useState<SpotifyApi.ArtistObjectFull[]>(artistInterface);
 
-  const [album, setAlbum] = useState<SpotifyApi.AlbumSearchResponse>();
+  const albumInterface = [] as SpotifyApi.AlbumObjectFull[];
+  const [album, setAlbum] =
+    useState<SpotifyApi.AlbumObjectFull[]>(albumInterface);
 
   const tracksInterface = [] as SpotifyApi.TrackObjectFull[];
   const [tracks, setTracks] =
     useState<SpotifyApi.TrackObjectFull[]>(tracksInterface);
 
-  const [playlist, setPlaylist] = useState<SpotifyApi.PlaylistSearchResponse>();
+  const playlistInterface = [] as SpotifyApi.PlaylistObjectFull[];
+  const [playlist, setPlaylist] =
+    useState<SpotifyApi.PlaylistObjectFull[]>(playlistInterface);
 
   // when search query is updated, contacts the spotifyAPI endpoints to retrieve artists, albums and tracks
   useEffect(() => {
@@ -103,6 +108,7 @@ const Search: FC<Props> = ({ token, handleAlbumClick, handleArtistClick }) => {
             />
           </div>
           <TopArtists artist={artist} handleArtistClick={handleArtistClick} />
+          <TopAlbums album={album} handleAlbumClick={handleAlbumClick} />
         </div>
       )}
     </>

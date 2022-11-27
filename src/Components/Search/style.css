@@ -28,6 +28,9 @@
 /* Search Content */
 #searchContentContainer{
   padding-left: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 79vh;
 }
 
 .searchCategoryHeader{
