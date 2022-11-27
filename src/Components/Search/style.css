@@ -96,3 +96,9 @@
   width: 40vw;
   height: auto;
 }
+
+/* Top Artists */
+.topArtistContainer{
+  position: relative;
+  right: 15px;
+}

@@ -39,7 +39,6 @@ const Search: FC<Props> = ({ token, handleAlbumClick, handleArtistClick }) => {
       }
       const searchResults: any = await getSearchItems(token, query);
       console.log('SEARCH RESULTS', searchResults);
-      setArtist(searchResults.artists.items);
       setAlbum(searchResults.albums.items);
 
       // return only the top five tracks
@@ -50,6 +49,15 @@ const Search: FC<Props> = ({ token, handleAlbumClick, handleArtistClick }) => {
         i++;
       }
       setTracks(topFiveTracks);
+
+      // return only the top five tracks
+      const topTenArtists = [];
+      let j = 0;
+      while (j < 10) {
+        topTenArtists.push(searchResults.artists.items[j]);
+        j++;
+      }
+      setArtist(topTenArtists);
 
       setPlaylist(searchResults.playlists.items);
       setLoading(false);
@@ -94,7 +102,7 @@ const Search: FC<Props> = ({ token, handleAlbumClick, handleArtistClick }) => {
               handleArtistClick={handleArtistClick}
             />
           </div>
-          <TopArtists />
+          <TopArtists artist={artist} handleArtistClick={handleArtistClick} />
         </div>
       )}
     </>
