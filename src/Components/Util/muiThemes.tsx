@@ -24,7 +24,7 @@ const theme = createTheme({
   customPalette: {
     background: {
       main: 'rgba(25,25,25,1)',
-      secondary1: 'rgba(55, 55, 55, 0.7)',
+      secondary1: 'rgba(55, 55, 55, 0.7)'
     }
   },
   components: {
@@ -33,7 +33,7 @@ const theme = createTheme({
         root: {
           padding: '0px',
           height: '2vw',
-          width: '100%',
+          width: '100%'
         }
       }
     },
@@ -41,7 +41,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           width: '100%',
-          height: '15vw',
+          height: '15vw'
         }
       }
     },
@@ -49,7 +49,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           // change first color
-          backgroundImage: `linear-gradient(rgba(255,255,255,0) 0px, rgba(0,0,0,1) 800px)`,
+          backgroundImage: `linear-gradient(rgba(255,255,255,0) 0px, rgba(0,0,0,1) 800px)`
           // position: 'relative',
           // bottom: '250px',
         }
@@ -59,8 +59,10 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: 'rgba(220, 220, 220, 1)',
-          borderBottom: "none",
+          borderBottom: 'none',
           padding: '4px',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis'
         }
       }
     },
@@ -70,10 +72,10 @@ const theme = createTheme({
           color: 'rgba(255,255,255,1)',
           padding: '0px',
           paddingTop: '0px',
-          paddingBottom: '0px',
+          paddingBottom: '0px'
         },
         thumb: {
-          display: 'none',
+          display: 'none'
         }
       }
     },
@@ -83,33 +85,31 @@ const theme = createTheme({
           backgroundColor: 'rgba(55, 55, 55, 0.7)',
           color: '#eeeeee',
           height: '100%',
-          width: '100%',
+          width: '100%'
         }
       }
     },
     MuiToggleButtonGroup: {
       styleOverrides: {
-        root: {
-          
-        },
+        root: {}
       }
     },
     MuiToggleButton: {
       styleOverrides: {
         root: {
           backgroundColor: 'rgba(55, 55, 55, 0.7)',
-          color: '#eeeeee',
+          color: '#eeeeee'
         },
         selected: {
           backgroundColor: '#eeeeee',
-          color: 'rgba(55, 55, 55, 0.7)',
+          color: 'rgba(55, 55, 55, 0.7)'
         }
       }
     },
     MuiSkeleton: {
       styleOverrides: {
         root: {
-          backgroundColor: 'rgba(55, 55, 55, 0.7)',
+          backgroundColor: 'rgba(55, 55, 55, 0.7)'
         }
       }
     }

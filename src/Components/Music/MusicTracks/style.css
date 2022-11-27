@@ -47,6 +47,8 @@
   width: 30vw;
   height: 100%;
   text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tableAlbum:hover{
